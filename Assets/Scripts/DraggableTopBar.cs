@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(RectTransform))]
-public class DraggableTopBar : MonoBehaviour
+public class DraggableTopBar : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
+    [Tooltip("Whether or not the window can be dragged outside the screen borders")]
+    public bool KeepWithinScreen = false;
 
     private Vector3 mouseOffset;
     private RectTransform parentRect;
@@ -21,56 +23,61 @@ public class DraggableTopBar : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void OnBeginDrag()
+    public void OnBeginDrag(PointerEventData eventData)
     {
         mouseOffset = parentRect.position - Input.mousePosition;
-        Debug.Log("Beginning Drag");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         parentRect.position = Input.mousePosition + mouseOffset;
-        KeepInScreen();
-        Debug.Log("Dragging");
+        if (KeepWithinScreen)
+        {
+            KeepParentRectInScreen();
+        }
     }
 
-    private void KeepInScreen()
+    private void KeepParentRectInScreen()
     {
         parentRect.GetWorldCorners(parentRectCorners);
         Vector3 bottomLeftCorner = parentRectCorners[0];
         Vector3 topRightCorner = parentRectCorners[2];
 
+        // keep track of how much to move the rect to keep it in the screen
         float xPush = 0f;
         float yPush = 0f;
 
-        if(bottomLeftCorner.x < 0)
+        // calculate amount to move the rect based on position of rect corners and screen size
+        if (bottomLeftCorner.x < 0)
         {
             xPush -= parentRectCorners[0].x;
         }
         if (bottomLeftCorner.y < 0)
         {
-            xPush -= parentRectCorners[0].y;
+            yPush -= parentRectCorners[0].y;
         }
 
-        if (topRightCorner.x < 0)
+        if (topRightCorner.x > Screen.width)
         {
             xPush += (Screen.width - topRightCorner.x);
         }
-        if (topRightCorner.x < 0)
+        if (topRightCorner.y > Screen.height)
         {
             yPush += (Screen.height - topRightCorner.y);
         }
 
+        // reposition the rect
         if (Mathf.Abs(xPush) > 0f || Mathf.Abs(yPush) > 0f)
         {
             parentRect.position = new Vector3(
                 parentRect.position.x + xPush,
                 parentRect.position.y + yPush,
-                parentRect.position.z);
+                parentRect.position.z
+            );
 
+            // reset mouse offset position so draging is anchored to the new mouse position
             mouseOffset = parentRect.position - Input.mousePosition;
         }
-    } 
-
+    }
 
 }

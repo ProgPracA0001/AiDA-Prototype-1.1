@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c78554bcfdb1224492615ff289bfb4a
+guid: 7fb2df32c223923408882a1cb22fa301
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3897447130049412896
-    second: BoxDepressGrey_0
+      213: 919446688047527932
+    second: MinimizeSymbol_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,8 +51,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
-  spriteBorder: {x: 4, y: 4, z: 4, w: 4}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -139,22 +139,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoxDepressGrey_0
+      name: MinimizeSymbol_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e00a8a1c7c79e9c0800000000000000
-      internalID: -3897447130049412896
+      spriteID: cf77bfe24e782cc00800000000000000
+      internalID: 919446688047527932
       vertices: []
       indices: 
       edges: []
@@ -163,14 +163,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BoxDepressGrey_0: -3897447130049412896
+      MinimizeSymbol_0: 919446688047527932
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

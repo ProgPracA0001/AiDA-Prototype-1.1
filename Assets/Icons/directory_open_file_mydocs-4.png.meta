@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 57acc663fc091fe4695d047147132113
+guid: 0d39d31ee45d30f4c84c7a924eef52b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3800796406767189943
-    second: BoxWhite_0
+      213: -1199549531455474854
+    second: directory_open_file_mydocs-4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoxWhite_0
+      name: directory_open_file_mydocs-4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9408f073ecbd04bc0800000000000000
-      internalID: -3800796406767189943
+      spriteID: a533c1f7e085a5fe0800000000000000
+      internalID: -1199549531455474854
       vertices: []
       indices: 
       edges: []

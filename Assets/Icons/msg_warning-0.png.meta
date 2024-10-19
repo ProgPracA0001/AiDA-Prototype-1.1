@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19263337e04f9ec428968d9f66363713
+guid: d25fa060f0e79d640b53906b9a9989b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1055004154216259173
-    second: PixelCheckerboard_0
+      213: 4351580882740958414
+    second: msg_warning-0_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PixelCheckerboard_0
+      name: msg_warning-0_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b91e067bf4fdb51f0800000000000000
-      internalID: -1055004154216259173
+      spriteID: ec4d727d1cbe36c30800000000000000
+      internalID: 4351580882740958414
       vertices: []
       indices: 
       edges: []

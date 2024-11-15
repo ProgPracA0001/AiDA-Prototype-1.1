@@ -163,6 +163,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 636384079}
     m_Modifications:
+    - target: {fileID: 1029893743724004640, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7084503275697851854, guid: 35e702a34968e34458850d347240d300, type: 3}
+    - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Text
+      value: Help
+      objectReference: {fileID: 0}
     - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -269,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672918093846395348, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_Name
-      value: StartListButton (1)
+      value: HelpButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -842,6 +850,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 636384079}
     m_Modifications:
+    - target: {fileID: 1029893743724004640, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6375183843661807040, guid: d2c246040cd9a314f8a0c44ab891052e, type: 3}
+    - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Text
+      value: Log Off...
+      objectReference: {fileID: 0}
     - target: {fileID: 4707650642043924541, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -940,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672918093846395348, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_Name
-      value: StartListButton (3)
+      value: LogOffButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1606,6 +1622,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 636384079}
     m_Modifications:
+    - target: {fileID: 1029893743724004640, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5176670467691286889, guid: 51369e8fb4495764a8e798d96f90bf9c, type: 3}
+    - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Text
+      value: Shut Down..
+      objectReference: {fileID: 0}
     - target: {fileID: 4707650642043924541, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1704,7 +1728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672918093846395348, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_Name
-      value: StartListButton (4)
+      value: ShutDownButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1724,6 +1748,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 636384079}
     m_Modifications:
+    - target: {fileID: 1029893743724004640, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4406107664067057323, guid: 4de4f8347355af844b668834001eb3ba, type: 3}
+    - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Text
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -1830,7 +1862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672918093846395348, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_Name
-      value: StartListButton (2)
+      value: PauseButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1850,6 +1882,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 636384079}
     m_Modifications:
+    - target: {fileID: 1029893743724004640, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5271218146424653134, guid: 26efdc9f38b8a4746b7a18f815ca5dd4, type: 3}
+    - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
+      propertyPath: m_Text
+      value: Settings
+      objectReference: {fileID: 0}
     - target: {fileID: 1128870319868026914, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -1988,7 +2028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672918093846395348, guid: 49eac66090d914a448aa3ab6d20a7776, type: 3}
       propertyPath: m_Name
-      value: StartListButton
+      value: SettingsButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

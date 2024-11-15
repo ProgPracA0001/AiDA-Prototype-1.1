@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8186985229822961833}
   - component: {fileID: 3932062494470228354}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 64, y: 25}
+  m_AnchoredPosition: {x: 0, y: -23}
+  m_SizeDelta: {x: 64, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8186985229822961833
 CanvasRenderer:
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 208, y: 96}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: 64, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &110448725850434622
 CanvasRenderer:

@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DesktopScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 6ad4650d1256dbf49b2cc9b09e37a7b0
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

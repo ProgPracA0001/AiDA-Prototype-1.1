@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TextWithPlayerData : MonoBehaviour
 {
-    public string nameNeeded;
+    public string detailNeeded;
     public Text targetText;
 
     // Start is called before the first frame update
@@ -14,23 +14,27 @@ public class TextWithPlayerData : MonoBehaviour
     {
         PlayerManager.instance.LoadPlayerData();
 
-        if(nameNeeded.ToLower() == null )
+        if(detailNeeded.ToLower() == null )
         {
-            Debug.Log("Error: state which name you need, first, last, both");
+            Debug.Log("Error: state detail name you need, first, last, both");
         }
-        else if(nameNeeded.ToLower() == "both")
+        else if(detailNeeded.ToLower() == "both")
         {
             targetText.text = PlayerManager.instance.player.firstname + " " + PlayerManager.instance.player.lastname;
         }
-        else if(nameNeeded.ToLower() == "first")
+        else if(detailNeeded.ToLower() == "first")
         {
             targetText.text = PlayerManager.instance.player.firstname;
 
         }
-        else if (nameNeeded.ToLower() == "last")
+        else if (detailNeeded.ToLower() == "last")
         {
             targetText.text = PlayerManager.instance.player.lastname;
 
+        }
+        else if(detailNeeded.ToLower() == "chapter")
+        {
+            targetText.text = PlayerManager.instance.player.currentChapterTitle;
         }
         else
         {

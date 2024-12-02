@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scientist and cat image_0: 9183757867218215307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

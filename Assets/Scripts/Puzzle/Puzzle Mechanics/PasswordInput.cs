@@ -8,17 +8,21 @@ using UnityEngine.UI;
 public class PasswordInput : MonoBehaviour
 {
     public Text resultText;
+    public Text hintText;
     public TMP_InputField inputText = null;
     public GameObject lockedWindow;
     public GameObject unlockedWindow;
 
     public Puzzle puzzle;
+    private int attempts;
 
     public string correctPassword;
+    public string hint;
 
 
-    private void Start()
+    void Start()
     {
+        attempts = 0;
         if (puzzle==null)
         {
             puzzle = new Puzzle();
@@ -44,8 +48,15 @@ public class PasswordInput : MonoBehaviour
 
             if (userInput != correctPassword)
             {
+            
                 resultText.text = "Incorrect Password";
                 resultText.color = Color.red;
+                if (attempts == 2)
+                {
+                    hintText.text = hint;
+                }
+                attempts++;
+                
             }
             else
             {

@@ -20,7 +20,7 @@ public class PasswordInput : MonoBehaviour
     public string hint;
 
 
-    private void Start()
+    void Start()
     {
         attempts = 0;
         if (puzzle==null)

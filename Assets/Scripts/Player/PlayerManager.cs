@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public PlayerData playerOneData, playerTwoData, playerThreeData;
+    public PlayerData data, playerOneData, playerTwoData, playerThreeData;
 
 
     private string playerOneFile = "player1.txt";
@@ -22,20 +22,20 @@ public class PlayerManager : MonoBehaviour
     {
         if (selectedPlayer == "playerOne")
         {
-            string json = JsonUtility.ToJson(playerOneData);
+            string json = JsonUtility.ToJson(data);
             WriteToFile(playerOneFile, json);
 
         }
         else if (selectedPlayer == "playerTwo")
         {
-            string json = JsonUtility.ToJson(playerTwoData);
+            string json = JsonUtility.ToJson(data);
             WriteToFile(playerTwoFile, json);
 
         }
         else if (selectedPlayer == "playerThree")
         {
-            string json = JsonUtility.ToJson(playerTwoData);
-            WriteToFile(playerTwoFile, json);
+            string json = JsonUtility.ToJson(data);
+            WriteToFile(playerThreeFile, json);
 
         }
     }
@@ -59,21 +59,21 @@ public class PlayerManager : MonoBehaviour
     {
         if (selectedPlayer == "playerOne")
         {
-            playerOneData = new PlayerData();
+            data = new PlayerData();
             string json = ReadFromFile(playerOneFile, ref playerOneEmpty);
-            JsonUtility.FromJsonOverwrite(json, playerOneData);
+            JsonUtility.FromJsonOverwrite(json, data);
         }
         else if (selectedPlayer == "playerTwo")
         {
-            playerTwoData = new PlayerData();
+            data = new PlayerData();
             string json = ReadFromFile(playerTwoFile, ref playerTwoEmpty);
-            JsonUtility.FromJsonOverwrite(json, playerTwoData);
+            JsonUtility.FromJsonOverwrite(json, data);
         }
         else if (selectedPlayer == "playerThree")
         {
-            playerThreeData = new PlayerData();
+            data = new PlayerData();
             string json = ReadFromFile(playerThreeFile, ref playerThreeEmpty);
-            JsonUtility.FromJsonOverwrite(json, playerThreeData);
+            JsonUtility.FromJsonOverwrite(json, data);
 
         }
 

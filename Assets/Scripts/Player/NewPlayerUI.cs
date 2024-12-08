@@ -10,8 +10,6 @@ public class NewPlayerUI : MonoBehaviour
 {
     public PlayerManager playerManager;
 
-    public string currentPlayer;
-
     public TMP_InputField playerUsername;
     public TMP_InputField playerFirstName;
     public TMP_InputField playerLastName;
@@ -22,58 +20,23 @@ public class NewPlayerUI : MonoBehaviour
 
     public Text responseText;
 
-    void Awake()
-    {
-        currentPlayer = playerManager.selectedPlayer;
-    }
-
     public void CreateUsername()
     {
-        if(currentPlayer == "playerOne")
-        {
-            playerManager.playerOneData.username = playerUsername.text;
-            
-        }
-        else if (currentPlayer == "playerTwo")
-        {
-            playerManager.playerTwoData.username = playerUsername.text;
-        }
-        else if(currentPlayer == "playerThree")
-        {
-            playerManager.playerThreeData.username = playerUsername.text;
-        }
+        
+            playerManager.data.username = playerUsername.text;
+        
     }
 
     public void CreateFirstName()
     {
-        if(currentPlayer == "playerOne")
-        {
-            playerManager.playerOneData.firstName = playerFirstName.text;
-        }
-        else if (currentPlayer == "playerTwo")
-        {
-            playerManager.playerTwoData.firstName = playerFirstName.text;
-        }
-        else if (currentPlayer == "playerThree")
-        {
-            playerManager.playerThreeData.firstName = playerFirstName.text;
-        }
+            playerManager.data.firstName = playerFirstName.text;
+       
     }
 
     public void CreateLastName()
     {
-        if (currentPlayer == "playerOne")
-        {
-            playerManager.playerOneData.lastName = playerLastName.text;
-        }
-        else if (currentPlayer == "playerTwo")
-        {
-            playerManager.playerTwoData.lastName = playerLastName.text;
-        }
-        else if (currentPlayer == "playerThree")
-        {
-            playerManager.playerThreeData.lastName = playerLastName.text;
-        }
+            playerManager.data.lastName = playerLastName.text;
+        
     }
     
     public void CheckFields()

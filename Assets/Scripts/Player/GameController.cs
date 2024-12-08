@@ -58,6 +58,13 @@ public class GameController : MonoBehaviour
        
     }
 
+    public void UpdatePlayer()
+    {
+        currentPlayer.Save();
+        currentPlayer.LoadPlayer();
+    }
+
+
     public void LoadMainObjectiveOne()
     {
         if (currentPlayer.data.currentChapter == 1)

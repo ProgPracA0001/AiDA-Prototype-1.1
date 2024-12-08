@@ -13,7 +13,7 @@ public class PasswordInput : MonoBehaviour
     public GameObject lockedWindow;
     public GameObject unlockedWindow;
 
-    public Puzzle puzzle;
+    public GameController player;
     private int attempts;
 
     public string correctPassword;
@@ -23,19 +23,16 @@ public class PasswordInput : MonoBehaviour
     void Start()
     {
         attempts = 0;
-        if (puzzle==null)
-        {
-            puzzle = new Puzzle();
-        }
+        
     }
 
     public void checkIfPuzzleSolved()
     {
-        if (puzzle.solved)
+        if (player.currentPlayer.data.mainObjSubTwo_OneComplete)
         {
                 unlockedWindow.SetActive(true);
         }
-        else if (!puzzle.solved)
+        else if (!player.currentPlayer.data.mainObjSubTwo_OneComplete)
         {
             lockedWindow.SetActive(true);
         }
@@ -60,7 +57,8 @@ public class PasswordInput : MonoBehaviour
             }
             else
             {
-                puzzle.solved = true;
+                player.currentPlayer.data.mainObjSubTwo_OneComplete = true;
+                player.UpdatePlayer();
                 lockedWindow.SetActive(false);
                 unlockedWindow.SetActive(true);
             }

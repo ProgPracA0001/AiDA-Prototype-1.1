@@ -29,7 +29,7 @@ public class MyFilePuzzle : MonoBehaviour
     public GameObject lockedWindow;
     public GameObject unlockedWindow;
 
-    public Puzzle puzzle;
+    public GameController player;
     private int attempts;
 
     public string correctAnswerOne;
@@ -50,20 +50,17 @@ public class MyFilePuzzle : MonoBehaviour
         allCorrect = false;
 
         attempts = 0;
-        if (puzzle == null)
-        {
-            puzzle = new Puzzle();
-        }
+        
         
     }
 
     public void checkIfPuzzleSolved()
     {
-        if (puzzle.solved)
+        if (player.currentPlayer.data.mainObjSubThree_ThreeComplete)
         {
             unlockedWindow.SetActive(true);
         }
-        else if (!puzzle.solved)
+        else if (!player.currentPlayer.data.mainObjSubThree_ThreeComplete)
         {
             lockedWindow.SetActive(true);
         }
@@ -83,7 +80,8 @@ public class MyFilePuzzle : MonoBehaviour
 
         if (allCorrect)
         {
-            puzzle.solved = true;
+            player.currentPlayer.data.mainObjSubThree_ThreeComplete = true;
+            player.UpdatePlayer();
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
         }

@@ -10,6 +10,8 @@ public class PlayerData
     public string firstName = "";
     public string lastName = "";
 
+    public string notes = "";
+
     public int currentChapter = 1;
     public string currentChapterName = "Chapter One: An inherited Legacy...";
     

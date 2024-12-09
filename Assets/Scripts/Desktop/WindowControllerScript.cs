@@ -27,6 +27,7 @@ public class WindowControllerScript : MonoBehaviour
 
     public void Open()
     {
+        transform.SetParent(transform.root);
         gameObject.SetActive(true);
         BringToFront();
 

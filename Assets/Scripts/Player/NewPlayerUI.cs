@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class NewPlayerUI : MonoBehaviour
 {
     public PlayerManager playerManager;
 
-    public TMP_InputField playerUsername;
-    public TMP_InputField playerFirstName;
-    public TMP_InputField playerLastName;
-    public TMP_InputField playerPassword;
-    public TMP_InputField playerConfirmPassword;
+    public InputField playerUsername;
+    public InputField playerFirstName;
+    public InputField playerLastName;
+    public InputField playerPassword;
+    public InputField playerConfirmPassword;
 
     private bool fieldsChecked = false;
 
     public Text responseText;
 
+    private void Start()
+    {
+        Debug.Log(playerManager.selectedPlayer);
+    }
     public void CreateUsername()
     {
         

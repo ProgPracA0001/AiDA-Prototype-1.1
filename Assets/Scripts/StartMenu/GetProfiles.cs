@@ -66,6 +66,7 @@ public class GetProfiles : MonoBehaviour
             gameObject.SetActive(false);
             newGameSequence.SetActive(true);
             playerManager.playerSelected("playerOne");
+            Debug.Log(playerManager.selectedPlayer);
 
 
         }

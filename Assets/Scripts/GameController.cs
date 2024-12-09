@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
         currentPlayer.LoadPlayer();
     }
 
-
+   
     public void LoadMainObjectiveOne()
     {
         if (currentPlayer.data.currentChapter == 1)
@@ -141,16 +141,16 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Old Post: Enter the Correct Password and Access the Mystery Newspaper ";
 
-            mainObjSubOneTitle.text = "Find Clue 1";
-            mainObjSubOneDesc.text = "The Dr liked to take a lot of notes, maybe something can help";
+            mainObjSubOneTitle.text = "Find The First Clue";
+            mainObjSubOneDesc.text = "The Dr liked to take a lot of notes, maybe something can help!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Find Clue 2";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "Clue Number Two";
+            mainObjSubTwoDesc.text = "Clue Number Two is similar to the first, I think the Dr was hungry when he came up with this!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Decryption";
-            mainObjSubThreeDesc.text = "Using the clues solve the password to gain access to the Newspaper";
+            mainObjSubThreeDesc.text = "Using both clues solve the password to gain access to the Newspaper";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
 
         }

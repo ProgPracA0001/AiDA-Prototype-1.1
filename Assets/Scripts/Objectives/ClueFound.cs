@@ -17,6 +17,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubOne_OneComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveOne();
             }
         }
         else if (objective == "mainOneSubTwo")
@@ -25,6 +26,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubOne_TwoComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveOne();
             }
         }
         else if (objective == "mainOneSubThree")
@@ -33,6 +35,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubOne_ThreeComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveOne();
             }
         }
         else if (objective == "mainTwoSubOne")
@@ -41,6 +44,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubTwo_OneComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveTwo();
             }
         }
         else if (objective == "mainTwoSubTwo")
@@ -49,6 +53,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubTwo_TwoComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveTwo();
             }
         }
         else if (objective == "mainTwoSubThree")
@@ -57,6 +62,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubTwo_ThreeComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveTwo();
             }
         }
         else if (objective == "mainThreeSubOne")
@@ -65,6 +71,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubThree_OneComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveThree();
             }
         }
         else if (objective == "mainThreeSubTwo")
@@ -73,6 +80,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubThree_TwoComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveThree();
             }
         } 
         else if (objective == "mainThreeSubThree")
@@ -81,6 +89,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.mainObjSubThree_ThreeComplete = true;
                 player.UpdatePlayer();
+                player.LoadMainObjectiveThree();
             }
         }
         else if (objective == "sideOneSubOne")
@@ -89,6 +98,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubOne_OneComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveOne();
             }
         }
         else if (objective == "sideOneSubTwo")
@@ -97,6 +107,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubOne_TwoComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveOne();
             }
         }
         else if(objective == "sideOneSubThree")
@@ -105,6 +116,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubOne_ThreeComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveOne();
             }
         }
         else if (objective == "sideTwoSubOne")
@@ -113,6 +125,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubTwo_OneComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveTwo();
             }
         }
         else if (objective == "sideTwoSubTwo")
@@ -121,6 +134,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubTwo_TwoComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveTwo();
             }
         }
         else if(objective == "sideTwoSubTwo")
@@ -129,6 +143,7 @@ public class ClueFound : MonoBehaviour
             {
                 player.currentPlayer.data.sideObjSubTwo_ThreeComplete = true;
                 player.UpdatePlayer();
+                player.LoadSideObjectiveTwo();
             }
         }
     }

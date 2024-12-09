@@ -117,7 +117,9 @@ public class PlayerManager : MonoBehaviour
     public void playerSelected(string currentPlayer)
     {
         selectedPlayer = currentPlayer;
+        LoadPlayer();
     }
+
 
     public void LoadPlayerGame()
     {

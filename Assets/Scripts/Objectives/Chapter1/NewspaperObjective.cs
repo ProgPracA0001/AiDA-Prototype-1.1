@@ -31,7 +31,7 @@ public class NewspaperObjective : MonoBehaviour
         {
             unlockedWindow.SetActive(true);
         }
-        else if (!player.currentPlayer.data.mainObjSubTwo_ThreeComplete)
+        else if (!player.currentPlayer.data.sideObjSubOne_ThreeComplete)
         {
             lockedWindow.SetActive(true);
         }
@@ -58,6 +58,7 @@ public class NewspaperObjective : MonoBehaviour
         {
             player.currentPlayer.data.sideObjSubOne_ThreeComplete = true;
             player.UpdatePlayer();
+            player.LoadSideObjectiveOne();
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
         }

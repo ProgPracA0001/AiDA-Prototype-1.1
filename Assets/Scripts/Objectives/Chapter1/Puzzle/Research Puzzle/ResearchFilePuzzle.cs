@@ -98,6 +98,7 @@ public class ResearchFilePuzzle : MonoBehaviour
         {
             player.currentPlayer.data.mainObjSubTwo_TwoComplete = true;
             player.UpdatePlayer();
+            player.LoadMainObjectiveTwo();
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
 

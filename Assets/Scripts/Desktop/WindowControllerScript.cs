@@ -10,26 +10,45 @@ public class WindowControllerScript : MonoBehaviour
 
     private float ExpandedHeight;
     private bool isCollapsed = false;
+    private bool isOpen = false;
+
+    private int parentChildren;
+    private int grandParentChildren;
 
     private RectTransform RectTransform;
     // Start is called before the first frame update
     void Awake()
     {
-        RectTransform = GetComponent<RectTransform>();
+        RectTransform = GetComponent<RectTransform>(); 
    
+    }
+
+    void Update()
+    {
+        parentChildren = transform.parent.childCount;
+        grandParentChildren = transform.parent.parent.childCount;
     }
 
     // Update is called once per frame
     public void Close()
     {
         gameObject.SetActive(false);
+        isOpen = false;
     }
 
     public void Open()
     {
-        transform.SetParent(transform.root);
-        gameObject.SetActive(true);
-        BringToFront();
+
+        if (isOpen)
+        {
+            BringToFront();
+        }
+        else
+        { 
+            isOpen = true;
+            gameObject.SetActive(true);
+            BringToFront();
+        }
 
     }
 
@@ -60,7 +79,11 @@ public class WindowControllerScript : MonoBehaviour
 
     public void BringToFront()
     {
-        transform.SetSiblingIndex(transform.parent.childCount - 1);
+       
+        transform.SetSiblingIndex(parentChildren-1);
+        transform.parent.SetSiblingIndex(grandParentChildren - 1);
+
+
     }
 
 

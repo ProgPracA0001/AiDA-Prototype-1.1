@@ -32,6 +32,11 @@ public class MyFilePuzzle : MonoBehaviour
     public GameController player;
     private int attempts;
 
+    private int parentChildrenUnlocked;
+    private int grandParentChildrenUnlocked;
+    private int parentChildrenLocked;
+    private int grandParentChildrenLocked;
+
     public string correctAnswerOne;
     public string correctAnswerTwo;
     public string correctAnswerThree;
@@ -54,15 +59,28 @@ public class MyFilePuzzle : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        parentChildrenUnlocked = unlockedWindow.transform.parent.childCount;
+        grandParentChildrenUnlocked = unlockedWindow.transform.parent.parent.childCount;
+
+        parentChildrenLocked = lockedWindow.transform.parent.childCount;
+        grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
+    }
+
     public void checkIfPuzzleSolved()
     {
         if (player.currentPlayer.data.mainObjSubThree_ThreeComplete)
         {
             unlockedWindow.SetActive(true);
+            unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);
+            unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
         }
         else if (!player.currentPlayer.data.mainObjSubThree_ThreeComplete)
         {
             lockedWindow.SetActive(true);
+            lockedWindow.transform.SetSiblingIndex(parentChildrenLocked - 1);
+            lockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenLocked - 1);
         }
     }
 

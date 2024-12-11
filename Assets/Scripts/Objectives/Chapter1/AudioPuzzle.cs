@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewspaperObjective : MonoBehaviour
+
+public class AudioPuzzle : MonoBehaviour
 {
+    public Text pinInput;
     public Text resultText;
     public Text hintText;
-    public TMP_InputField inputText = null;
     public GameObject lockedWindow;
     public GameObject unlockedWindow;
 
@@ -34,21 +34,22 @@ public class NewspaperObjective : MonoBehaviour
     {
         parentChildrenUnlocked = unlockedWindow.transform.parent.childCount;
         grandParentChildrenUnlocked = unlockedWindow.transform.parent.parent.childCount;
-        
+
         parentChildrenLocked = lockedWindow.transform.parent.childCount;
         grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
     }
 
     public void checkIfPuzzleSolved()
     {
-        if (player.currentPlayer.data.sideObjSubOne_ThreeComplete)
+        if (player.currentPlayer.data.sideObjSubTwo_ThreeComplete)
         {
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);
             unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
         }
-        else if (!player.currentPlayer.data.sideObjSubOne_ThreeComplete)
+        else if (!player.currentPlayer.data.sideObjSubTwo_ThreeComplete)
         {
+
             lockedWindow.SetActive(true);
             lockedWindow.transform.SetSiblingIndex(parentChildrenLocked - 1);
             lockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenLocked - 1);
@@ -56,9 +57,24 @@ public class NewspaperObjective : MonoBehaviour
 
     }
 
+    public void ButtonInput(string value)
+    {
+        pinInput.text += value;
+    }
+
+    public void RemoveLastInput()
+    {
+        pinInput.text = pinInput.text.Substring(0, pinInput.text.Length - 1);
+    }
+
+    public void ClearInput()
+    {
+        pinInput.text = "";
+    }
+
     public void ValidateInput()
     {
-        string userInput = inputText.text;
+        string userInput = pinInput.text;
 
         if (userInput != correctPassword)
         {
@@ -74,13 +90,14 @@ public class NewspaperObjective : MonoBehaviour
         }
         else
         {
-            player.currentPlayer.data.sideObjSubOne_ThreeComplete = true;
+            player.currentPlayer.data.sideObjSubTwo_ThreeComplete = true;
             player.UpdatePlayer();
             player.LoadSideObjectiveOne();
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);
             unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
+
         }
     }
 }

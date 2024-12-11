@@ -166,16 +166,16 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "Voice From the Void: Unlock Mystery Audio File";
 
-            mainObjSubOneTitle.text = "Find Clue 1";
-            mainObjSubOneDesc.text = "";
+            mainObjSubOneTitle.text = "Find the First Combination Clue";
+            mainObjSubOneDesc.text = "This clue contains half the information you need for the combination!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Find Clue 2";
-            mainObjSubTwoDesc.text = "";      
-            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubTwoIcon);
+            mainObjSubTwoTitle.text = "Find The Second Clue";
+            mainObjSubTwoDesc.text = "This clue might require another file to be unlocked!";      
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "A Good Combination";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeDesc.text = "The clues together will allow for you work out the correct combination, you might want to keep notes!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
 
         }

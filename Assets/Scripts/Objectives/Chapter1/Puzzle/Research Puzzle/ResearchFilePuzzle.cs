@@ -87,8 +87,8 @@ public class ResearchFilePuzzle : MonoBehaviour
         else if (!player.currentPlayer.data.mainObjSubTwo_TwoComplete) 
         {
             lockedWindow.SetActive(true);
-            parentChildrenLocked = lockedWindow.transform.parent.childCount;
-            grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
+            lockedWindow.transform.SetSiblingIndex(parentChildrenLocked - 1);
+            lockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenLocked - 1);
         }
     }
 

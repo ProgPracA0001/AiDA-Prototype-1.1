@@ -8906,7 +8906,7 @@ MonoBehaviour:
   player: {fileID: 231903133}
   correctAnswerOne: superintelligent
   correctAnswerTwo: training
-  correctAnswerThree: algorithm
+  correctAnswerThree: algorithms
   correctAnswerFour: model
   hint: These statements are similar to a document in the research file...
 --- !u!1 &397753452

@@ -8,11 +8,19 @@ using UnityEngine.UI;
 
 public class GetProfiles : MonoBehaviour
 {
-   
-    [SerializeField] public Text profileOneText;
+    public Text profileOneText;
     public Text profileTwoText;
     public Text profileThreeText;
+    public Text profileFourText;
+    public Text profileFiveText;
+    public Text profileSixText;
 
+    public Text playerUsername;
+    public Text playerFirstName;
+    public Text playerLastName;
+    public Text playerCurrentChapter;
+
+    public GameObject profilePage;
     public GameObject newGameSequence;
 
     public PlayerManager playerManager;
@@ -20,12 +28,19 @@ public class GetProfiles : MonoBehaviour
     private bool profileOneNew;
     private bool profileTwoNew;
     private bool profileThreeNew;
+    private bool profileFourNew;
+    private bool profileFiveNew;
+    private bool profileSixNew;
 
-    private void Start()
+    void Start()
     {
+        LoadProfiles();
 
+    }
+
+    public void LoadProfiles()
+    {
         playerManager.LoadAll();
-
         if (playerManager.playerOneEmpty)
         {
             profileOneText.text = "New Game";
@@ -56,6 +71,69 @@ public class GetProfiles : MonoBehaviour
             profileThreeText.text = playerManager.playerThreeData.firstName + " " + playerManager.playerThreeData.lastName;
         }
 
+        if (playerManager.playerFourEmpty)
+        {
+            profileFourText.text = "New Game";
+            profileFourNew = true;
+        }
+        else
+        {
+            profileFourText.text = playerManager.playerFourData.firstName + " " + playerManager.playerFourData.lastName;
+        }
+
+        if (playerManager.playerFiveEmpty)
+        {
+            profileFiveText.text = "New Game";
+            profileFiveNew = true;
+        }
+        else
+        {
+            profileFiveText.text = playerManager.playerFiveData.firstName + " " + playerManager.playerFiveData.lastName;
+        }
+
+        if (playerManager.playerSixEmpty)
+        {
+            profileSixText.text = "New Game";
+            profileSixNew = true;
+        }
+        else
+        {
+            profileSixText.text = playerManager.playerSixData.firstName + " " + playerManager.playerSixData.lastName;
+        }
+    }
+
+    public void BackButton()
+    {
+        gameObject.SetActive(true);
+        profilePage.SetActive(false);
+        playerManager.LoadAll();
+        playerManager.playerSelected(null);
+        Debug.Log(playerManager.selectedPlayer);
+
+    }
+
+    public void ResumeGame()
+    {
+        playerManager.LoadPlayerGame();
+        SceneManager.LoadScene("DesktopScene");
+    }
+
+    public void DeleteProfile()
+    {
+        playerManager.DeletePlayer();
+        gameObject.SetActive(true);
+        profilePage.SetActive(false);
+        LoadProfiles();
+    }
+
+    public void DisplayProfile()
+    {
+        gameObject.SetActive(false);
+        profilePage.SetActive(true);
+        playerUsername.text = playerManager.data.username;
+        playerFirstName.text = playerManager.data.firstName;
+        playerLastName.text = playerManager.data.lastName;
+        playerCurrentChapter.text = playerManager.data.currentChapterName;
     }
 
     public void SelectProfileOne()
@@ -73,8 +151,8 @@ public class GetProfiles : MonoBehaviour
         else
         {
             playerManager.playerSelected("playerOne");
-            playerManager.LoadPlayerGame();
-            SceneManager.LoadScene("DesktopScene");
+            Debug.Log(playerManager.selectedPlayer);
+            DisplayProfile();
 
         }
     }
@@ -91,8 +169,9 @@ public class GetProfiles : MonoBehaviour
         else
         {
             playerManager.playerSelected("playerTwo");
-            playerManager.LoadPlayerGame();
-            SceneManager.LoadScene("DesktopScene");
+            Debug.Log(playerManager.selectedPlayer);
+            
+            DisplayProfile();
         }
     }
     public void SelectProfileThree()
@@ -108,8 +187,66 @@ public class GetProfiles : MonoBehaviour
         else
         {
             playerManager.playerSelected("playerThree");
-            playerManager.LoadPlayerGame();
-            SceneManager.LoadScene("DesktopScene");
+            Debug.Log(playerManager.selectedPlayer);
+
+            DisplayProfile();
+        }
+    }
+
+    public void SelectProfileFour()
+    {
+        if (profileFourNew)
+        {
+            profileFourNew = false;
+            gameObject.SetActive(false);
+            newGameSequence.SetActive(true);
+            playerManager.playerSelected("playerFour");
+
+        }
+        else
+        {
+            playerManager.playerSelected("playerFour");
+            Debug.Log(playerManager.selectedPlayer);
+
+            DisplayProfile();
+        }
+    }
+
+    public void SelectProfileFive()
+    {
+        if (profileFiveNew)
+        {
+            profileFiveNew = false;
+            gameObject.SetActive(false);
+            newGameSequence.SetActive(true);
+            playerManager.playerSelected("playerFive");
+
+        }
+        else
+        {
+            playerManager.playerSelected("playerFive");
+            Debug.Log(playerManager.selectedPlayer);
+
+            DisplayProfile();
+        }
+    }
+
+    public void SelectProfileSix()
+    {
+        if (profileSixNew)
+        {
+            profileSixNew = false;
+            gameObject.SetActive(false);
+            newGameSequence.SetActive(true);
+            playerManager.playerSelected("playerSix");
+
+        }
+        else
+        {
+            playerManager.playerSelected("playerSix");
+            Debug.Log(playerManager.selectedPlayer);
+
+            DisplayProfile();
         }
     }
 

@@ -137,7 +137,7 @@ public class ClueFound : MonoBehaviour
                 player.LoadSideObjectiveTwo();
             }
         }
-        else if(objective == "sideTwoSubTwo")
+        else if(objective == "sideTwoSubThree")
         {
             if (!player.currentPlayer.data.sideObjSubTwo_ThreeComplete)
             {

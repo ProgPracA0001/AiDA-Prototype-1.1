@@ -41,6 +41,11 @@ public class ResearchFilePuzzle : MonoBehaviour
     public GameController player;
     private int attempts;
 
+    private int parentChildrenUnlocked;
+    private int grandParentChildrenUnlocked;
+    private int parentChildrenLocked;
+    private int grandParentChildrenLocked;
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,15 +67,28 @@ public class ResearchFilePuzzle : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        parentChildrenUnlocked = unlockedWindow.transform.parent.childCount;
+        grandParentChildrenUnlocked = unlockedWindow.transform.parent.parent.childCount;
+
+        parentChildrenLocked = lockedWindow.transform.parent.childCount;
+        grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
+    }
+
     public void checkIfPuzzleSolved()
     {
         if (player.currentPlayer.data.mainObjSubTwo_TwoComplete)
         {
             unlockedWindow.SetActive(true);
+            unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);
+            unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
         }
         else if (!player.currentPlayer.data.mainObjSubTwo_TwoComplete) 
         {
             lockedWindow.SetActive(true);
+            parentChildrenLocked = lockedWindow.transform.parent.childCount;
+            grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
         }
     }
 
@@ -101,6 +119,8 @@ public class ResearchFilePuzzle : MonoBehaviour
             player.LoadMainObjectiveTwo();
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
+            unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);
+            unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
 
         }
         else if (attempts == 4)

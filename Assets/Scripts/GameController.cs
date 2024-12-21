@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -62,6 +63,12 @@ public class GameController : MonoBehaviour
     {
         currentPlayer.Save();
         currentPlayer.LoadPlayer();
+    }
+
+    public void LogOff()
+    {
+        currentPlayer.Save();
+        SceneManager.LoadScene("StartMenu");
     }
 
    

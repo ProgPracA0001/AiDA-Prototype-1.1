@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class WindowControllerScript : MonoBehaviour
 {
-    [Header("Collapse Window")]
+
     [SerializeField] private RectTransform HideOnCollapse = default;
     [SerializeField] private float CollapsedHight = 32;
+
+    public AudioClip selectedAudio = default;
 
     private float ExpandedHeight;
     private bool isCollapsed = false;
@@ -16,10 +18,12 @@ public class WindowControllerScript : MonoBehaviour
     private int grandParentChildren;
 
     private RectTransform RectTransform;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Awake()
     {
         RectTransform = GetComponent<RectTransform>(); 
+        audioSource = GetComponent<AudioSource>();
    
     }
 
@@ -38,17 +42,38 @@ public class WindowControllerScript : MonoBehaviour
 
     public void Open()
     {
-
-        if (isOpen)
+        if(selectedAudio != null)
         {
-            BringToFront();
+            if (isOpen)
+            {
+                BringToFront();
+                audioSource.PlayOneShot(selectedAudio);
+
+            }
+
+            else
+            {
+                isOpen = true;
+                audioSource.PlayOneShot(selectedAudio);
+                gameObject.SetActive(true);
+                BringToFront();
+            }
         }
         else
-        { 
-            isOpen = true;
-            gameObject.SetActive(true);
-            BringToFront();
+        {
+            if (isOpen)
+            {
+                BringToFront();
+            }
+
+            else
+            {
+                isOpen = true;
+                gameObject.SetActive(true);
+                BringToFront();
+            }
         }
+
 
     }
 

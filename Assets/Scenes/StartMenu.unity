@@ -6474,7 +6474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 338624049}
   chapterText: {fileID: 285888213}
-  typingSpeed: 0.001
+  typingSpeed: 0.008
   lineDelay: 0.2
   powerButton: {fileID: 1208396217}
   NewUserPage: {fileID: 2123566666}

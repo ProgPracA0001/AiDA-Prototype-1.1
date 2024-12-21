@@ -7,18 +7,34 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(RectTransform))]
 public class DraggableTopBar : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
-    [Tooltip("Whether or not the window can be dragged outside the screen borders")]
     public bool KeepWithinScreen = false;
 
     private Vector3 mouseOffset;
     private RectTransform parentRect;
+    private GameObject parentObject;
 
     private Vector3[] parentRectCorners = new Vector3[4];
+
+    private int parentChildren;
+    private int grandParentChildren;
 
     // Start is called before the first frame update
     private void Awake()
     {
         parentRect = transform.parent.GetComponent<RectTransform>();
+        parentObject = parentRect.gameObject;
+
+    }
+
+    void Update()
+    {
+        parentChildren = parentObject.transform.parent.childCount;
+        grandParentChildren = parentObject.transform.parent.parent.childCount;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+        }
 
     }
 
@@ -26,6 +42,7 @@ public class DraggableTopBar : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void OnBeginDrag(PointerEventData eventData)
     {
         mouseOffset = parentRect.position - Input.mousePosition;
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -78,6 +95,15 @@ public class DraggableTopBar : MonoBehaviour, IBeginDragHandler, IDragHandler
             // reset mouse offset position so draging is anchored to the new mouse position
             mouseOffset = parentRect.position - Input.mousePosition;
         }
+    }
+
+    public void BringToFront()
+    {
+
+        parentObject.transform.SetSiblingIndex(parentChildren - 1);
+        parentObject.transform.parent.SetSiblingIndex(grandParentChildren - 1);
+
+
     }
 
 }

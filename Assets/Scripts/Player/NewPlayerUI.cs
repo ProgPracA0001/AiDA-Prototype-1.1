@@ -16,13 +16,13 @@ public class NewPlayerUI : MonoBehaviour
     public InputField playerPassword;
     public InputField playerConfirmPassword;
 
-    private bool fieldsChecked = false;
 
     public Text responseText;
 
     private void Start()
     {
         Debug.Log(playerManager.selectedPlayer);
+
     }
     public void CreateUsername()
     {
@@ -43,33 +43,37 @@ public class NewPlayerUI : MonoBehaviour
         
     }
     
-    public void CheckFields()
+    public void SaveNewPlayer()
     {
-        if(playerPassword.text != playerConfirmPassword.text)
+       
+
+        if (playerUsername.text != "" && playerFirstName.text != "" && playerLastName.text != "" && playerPassword.text != "" && playerConfirmPassword.text != "")
         {
-            responseText.text = "Passwords Do Not Match";
-            responseText.color = Color.red;
-        }
-        else if (playerUsername.text == null || playerFirstName.text == null || playerLastName.text == null || playerPassword.text == null || playerConfirmPassword.text == null)
-        {
-            responseText.text = "Please Fill Out All Fields";
-            responseText.color = Color.red;
+            if (playerPassword.text != playerConfirmPassword.text)
+            {
+                responseText.text = "Passwords Do Not Match";
+                responseText.color = Color.red;
+            }
+            else
+            {
+                playerManager.Save();
+                playerManager.LoadPlayerGame();
+                SceneManager.LoadScene("DesktopScene");
+            }
+
         }
         else
         {
-            fieldsChecked = true;
+
+            responseText.text = "Please Fill Out All Fields";
+            responseText.color = Color.red;
+
         }
-    }
-    public void SaveNewPlayer()
-    {
-        CheckFields();
-        if (fieldsChecked)
-        {
-            playerManager.Save();
-            playerManager.LoadPlayerGame();
-            SceneManager.LoadScene("DesktopScene");
-        }
+
+
         
+
+
 
     }
 

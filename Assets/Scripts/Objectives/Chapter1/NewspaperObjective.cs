@@ -74,9 +74,7 @@ public class NewspaperObjective : MonoBehaviour
         }
         else
         {
-            player.currentPlayer.data.sideObjSubOne_ThreeComplete = true;
-            player.UpdatePlayer();
-            player.LoadSideObjectiveOne();
+            player.UpdateObjective("sideOneSubThree");
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);

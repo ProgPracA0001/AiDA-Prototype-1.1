@@ -98,9 +98,7 @@ public class MyFilePuzzle : MonoBehaviour
 
         if (allCorrect)
         {
-            player.currentPlayer.data.mainObjSubThree_ThreeComplete = true;
-            player.UpdatePlayer();
-            player.LoadMainObjectiveThree();
+            player.UpdateObjective("mainThreeSubThree");
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
         }

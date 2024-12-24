@@ -114,9 +114,7 @@ public class ResearchFilePuzzle : MonoBehaviour
 
         if (allCorrect)
         {
-            player.currentPlayer.data.mainObjSubTwo_TwoComplete = true;
-            player.UpdatePlayer();
-            player.LoadMainObjectiveTwo();
+            player.UpdateObjective("mainTwoSubTwo");
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);

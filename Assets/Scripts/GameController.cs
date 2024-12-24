@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,12 @@ public class GameController : MonoBehaviour
 
     public GameObject objectivesWindow;
     public GameObject welcomeWindow;
+    public GameObject objectiveCompleteWindow;
+    public GameObject ChapterUpdateWindow;
+
+    public Text objectiveCompleteText;
+    public Text newChapterText;
+    public float typingSpeed = 0.2f;
 
     public Text currentChapterTitle;
 
@@ -32,19 +39,22 @@ public class GameController : MonoBehaviour
     public Text mainObjSubTwoDesc;
     public Text mainObjSubThreeDesc;
 
-
+    //Before the Start the playermanager and current player will be assigned
     void Awake()
     {
         playerManagerObject = GameObject.Find("PlayerManager");
         currentPlayer = playerManagerObject.GetComponent<PlayerManager>();
 
     }
+
+    //On Start the current player selected will be loaded with the chapter titles.
     void Start()
     {
         currentPlayer.LoadPlayer();
 
         currentChapterTitle.text = currentPlayer.data.currentChapterName;
 
+        //Detecting if the player is a new user will check the first time log in variable of the player and open the welcome window!
         if (!currentPlayer.data.firstTimeLoginComplete)
         {
             objectivesWindow.SetActive(true);
@@ -55,23 +65,28 @@ public class GameController : MonoBehaviour
 
         }
 
+        //If returning player then main objective one is loaded.
         LoadMainObjectiveOne();
        
     }
 
+    //Saves the player and loads the updated variables
     public void UpdatePlayer()
     {
         currentPlayer.Save();
         currentPlayer.LoadPlayer();
     }
 
+    //When player is exiting out of the game to the main menu the player will be saved and the start menu loaded.
     public void LogOff()
     {
         currentPlayer.Save();
+        Destroy(this.playerManagerObject);
         SceneManager.LoadScene("StartMenu");
     }
 
    
+    //Loads Main objective One - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadMainObjectiveOne()
     {
         if (currentPlayer.data.currentChapter == 1)
@@ -92,14 +107,43 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            
+            mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
+
+            mainObjSubOneTitle.text = "Call the Fireman: Bypass the Security Software:";
+            mainObjSubOneDesc.text = "A firewall security software is blocking your access! Figure our how to disable it! Maybe the professor left some backdoors open or clues in files.";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 3)
+        {
+            mainObjectiveTitle.text = "";
+
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
     public void LoadMainObjectiveTwo()
     {
         if(currentPlayer.data.currentChapter == 1)
-        {    mainObjectiveTitle.text = "The File Explorer: Explore the Desktop's Main Folders";
+        {    
+            mainObjectiveTitle.text = "The File Explorer: Explore the Desktop's Main Folders";
 
             mainObjSubOneTitle.text = "Byte-Sized Expedition: Find the Dr's Diaries";
             mainObjSubOneDesc.text = "Scattered around the desktop are the Dr's personal files, explore them, some may contain vital information";
@@ -115,14 +159,43 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
+            mainObjectiveTitle.text = "Unfinished Business: Investigate the Dr's Last Experiment";
 
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "Test Subject Zero: Discover the True Nature Of The Experiment:";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 3)
+        {
+            mainObjectiveTitle.text = "";
+
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
     public void LoadMainObjectiveThree()
     {
         if(currentPlayer.data.currentChapter == 1)
-        {    mainObjectiveTitle.text = "Access Denied: Unlock the MyFile Folder:";
+        {    
+            mainObjectiveTitle.text = "Access Denied: Unlock the MyFile Folder:";
 
             mainObjSubOneTitle.text = "Time To Hit The Books: The First Clue";
             mainObjSubOneDesc.text = "Somewhere on the desktop is the first clue, time to track it down!";
@@ -138,7 +211,19 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
+            mainObjectiveTitle.text = "The Restoration Project: Restore the files needed for the 'O' File";
 
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
@@ -163,7 +248,19 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
+            mainObjectiveTitle.text = "";
 
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
@@ -188,7 +285,19 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
+            mainObjectiveTitle.text = "";
 
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
@@ -202,6 +311,287 @@ public class GameController : MonoBehaviour
         {
             objectiveIcon.sprite = objectiveDefault;
         }
+    }
+
+    public void checkProgression(string objective)
+    {
+         if (objective == "mainOne")
+        {    if (currentPlayer.data.mainObjSubOne_OneComplete && currentPlayer.data.mainObjSubOne_TwoComplete && currentPlayer.data.mainObjSubOne_ThreeComplete)
+            {
+                currentPlayer.data.mainObjectiveOneComplete = true;
+                UpdatePlayer();
+                CheckChapterProgression();
+            }
+        }
+        else if (objective == "mainTwo")
+        {
+            if (currentPlayer.data.mainObjSubTwo_OneComplete && currentPlayer.data.mainObjSubTwo_TwoComplete && currentPlayer.data.mainObjSubTwo_ThreeComplete)
+            {
+                currentPlayer.data.mainObjectiveTwoComplete = true;
+                UpdatePlayer();
+                CheckChapterProgression();
+            }
+        }
+        else if (objective == "mainThree")
+        {
+            if (currentPlayer.data.mainObjSubThree_OneComplete && currentPlayer.data.mainObjSubThree_TwoComplete && currentPlayer.data.mainObjSubThree_ThreeComplete)
+            {
+                currentPlayer.data.mainObjectiveThreeComplete = true;
+                UpdatePlayer();
+                CheckChapterProgression();
+            }
+        }
+        else if (objective == "sideOne")
+        {
+            if (currentPlayer.data.sideObjSubOne_OneComplete && currentPlayer.data.sideObjSubOne_TwoComplete && currentPlayer.data.sideObjSubOne_ThreeComplete)
+            {
+                currentPlayer.data.sideObjectiveOneComplete = true;
+                UpdatePlayer();
+                CheckChapterProgression();
+            }
+        }
+        else if (objective == "sideTwo")
+        {
+            if (currentPlayer.data.sideObjSubTwo_OneComplete && currentPlayer.data.sideObjSubTwo_TwoComplete && currentPlayer.data.sideObjSubTwo_ThreeComplete)
+            {
+                currentPlayer.data.sideObjectiveTwoComplete = true;
+                UpdatePlayer();
+                CheckChapterProgression();
+            }
+        }
+
+    }
+
+    public void CheckChapterProgression()
+    {
+        if (currentPlayer.data.mainObjectiveOneComplete && currentPlayer.data.mainObjectiveTwoComplete && currentPlayer.data.mainObjectiveThreeComplete && currentPlayer.data.sideObjectiveOneComplete && currentPlayer.data.sideObjectiveTwoComplete)
+        {
+            currentPlayer.data.currentChapter++;
+
+            if (currentPlayer.data.currentChapter == 2)
+            {
+                currentPlayer.data.currentChapterName = "Chapter Two: Secrets Beneath The Surface";
+                currentChapterTitle.text = "Thank you for playing! Chapter Two: Secrets Beneath The Surface currently in development!";
+                UpdatePlayer();
+                currentPlayer.LoadPlayer();
+                StartCoroutine(NewChapterStarted());
+                ResetObjectives();
+            }
+            else if (currentPlayer.data.currentChapter == 3)
+            {
+                currentPlayer.data.currentChapterName = "Chapter Three: Booting Up The Past...";
+                ResetObjectives();
+            }
+            else if (currentPlayer.data.currentChapter == 4)
+            {
+                currentPlayer.data.currentChapterName = "Chapter Four: Echoes In The Code";
+                ResetObjectives();
+            }
+            else if (currentPlayer.data.currentChapter == 5)
+            {
+                currentPlayer.data.currentChapterName = "Chapter Five: Shadows Of Influence";
+                ResetObjectives();
+            }
+            else if (currentPlayer.data.currentChapter == 6)
+            {
+                currentPlayer.data.currentChapterName = "Chapter Six: Ghosts In The Machine";
+                ResetObjectives();
+            }
+
+        }
+    }
+
+    public void UpdateObjective(string objective)
+    {
+        if (objective == "mainOneSubOne")
+        {
+            if (!currentPlayer.data.mainObjSubOne_OneComplete)
+            {
+                currentPlayer.data.mainObjSubOne_OneComplete = true;
+                checkProgression("mainOne");
+                UpdatePlayer();
+                LoadMainObjectiveOne();
+                ObjectivePopUp(mainObjSubOneTitle.text);
+            }
+        }
+        else if (objective == "mainOneSubTwo")
+        {
+            if (!currentPlayer.data.mainObjSubOne_TwoComplete)
+            {
+                currentPlayer.data.mainObjSubOne_TwoComplete = true;
+                checkProgression("mainOne");
+                UpdatePlayer();
+                LoadMainObjectiveOne();
+                ObjectivePopUp(mainObjSubTwoTitle.text);
+            }
+        }
+        else if (objective == "mainOneSubThree")
+        {
+            if (!currentPlayer.data.mainObjSubOne_ThreeComplete)
+            {
+                currentPlayer.data.mainObjSubOne_ThreeComplete = true;
+                checkProgression("mainOne");
+                UpdatePlayer();
+                LoadMainObjectiveOne();
+                ObjectivePopUp(mainObjSubThreeTitle.text);
+            }
+        }
+        else if (objective == "mainTwoSubOne")
+        {
+            if (!currentPlayer.data.mainObjSubTwo_OneComplete)
+            {
+                currentPlayer.data.mainObjSubTwo_OneComplete = true;
+                checkProgression("mainTwo");
+                UpdatePlayer();
+                LoadMainObjectiveTwo();
+                ObjectivePopUp(mainObjSubOneTitle.text);
+            }
+        }
+        else if (objective == "mainTwoSubTwo")
+        {
+            if (!currentPlayer.data.mainObjSubTwo_TwoComplete)
+            {
+                currentPlayer.data.mainObjSubTwo_TwoComplete = true;
+                checkProgression("mainTwo");
+                UpdatePlayer();
+                LoadMainObjectiveTwo();
+                ObjectivePopUp(mainObjSubTwoTitle.text);
+            }
+        }
+        else if (objective == "mainTwoSubThree")
+        {
+            if (!currentPlayer.data.mainObjSubTwo_ThreeComplete)
+            {
+                currentPlayer.data.mainObjSubTwo_ThreeComplete = true;
+                checkProgression("mainTwo");
+                UpdatePlayer();
+                LoadMainObjectiveTwo();
+                ObjectivePopUp(mainObjSubThreeTitle.text);
+            }
+        }
+        else if (objective == "mainThreeSubOne")
+        {
+            if (!currentPlayer.data.mainObjSubThree_OneComplete)
+            {
+                currentPlayer.data.mainObjSubThree_OneComplete = true;
+                checkProgression("mainThree");
+                UpdatePlayer();
+                LoadMainObjectiveThree();
+                ObjectivePopUp(mainObjSubOneTitle.text);
+            }
+        }
+        else if (objective == "mainThreeSubTwo")
+        {
+            if (!currentPlayer.data.mainObjSubThree_TwoComplete)
+            {
+                currentPlayer.data.mainObjSubThree_TwoComplete = true;
+                checkProgression("mainThree");
+                UpdatePlayer();
+                LoadMainObjectiveThree();
+                ObjectivePopUp(mainObjSubTwoTitle.text);
+            }
+        }
+        else if (objective == "mainThreeSubThree")
+        {
+            if (!currentPlayer.data.mainObjSubThree_ThreeComplete)
+            {
+                currentPlayer.data.mainObjSubThree_ThreeComplete = true;
+                checkProgression("mainThree");
+                UpdatePlayer();
+                LoadMainObjectiveThree();
+                ObjectivePopUp(mainObjSubThreeTitle.text);
+            }
+        }
+        else if (objective == "sideOneSubOne")
+        {
+            if (!currentPlayer.data.sideObjSubOne_OneComplete)
+            {
+                currentPlayer.data.sideObjSubOne_OneComplete = true;
+                checkProgression("sideOne");
+                UpdatePlayer();
+                LoadSideObjectiveOne();
+                ObjectivePopUp(mainObjSubOneTitle.text);
+            }
+        }
+        else if (objective == "sideOneSubTwo")
+        {
+            if (!currentPlayer.data.sideObjSubOne_TwoComplete)
+            {
+                currentPlayer.data.sideObjSubOne_TwoComplete = true;
+                checkProgression("sideOne");
+                UpdatePlayer();
+                LoadSideObjectiveOne();
+                ObjectivePopUp(mainObjSubTwoTitle.text);
+            }
+        }
+        else if (objective == "sideOneSubThree")
+        {
+            if (!currentPlayer.data.sideObjSubOne_ThreeComplete)
+            {
+                currentPlayer.data.sideObjSubOne_ThreeComplete = true;
+                checkProgression("sideOne");
+                UpdatePlayer();
+                LoadSideObjectiveOne();
+                ObjectivePopUp(mainObjSubThreeTitle.text);
+            }
+        }
+        else if (objective == "sideTwoSubOne")
+        {
+            if (!currentPlayer.data.sideObjSubTwo_OneComplete)
+            {
+                currentPlayer.data.sideObjSubTwo_OneComplete = true;
+                checkProgression("sideTwo");
+                UpdatePlayer();
+                LoadSideObjectiveTwo();
+                ObjectivePopUp(mainObjSubOneTitle.text);
+            }
+        }
+        else if (objective == "sideTwoSubTwo")
+        {
+            if (!currentPlayer.data.sideObjSubTwo_TwoComplete)
+            {
+                currentPlayer.data.sideObjSubTwo_TwoComplete = true;
+                checkProgression("sideTwo");
+                UpdatePlayer();
+                LoadSideObjectiveTwo();
+                ObjectivePopUp(mainObjSubTwoTitle.text);
+            }
+        }
+        else if (objective == "sideTwoSubThree")
+        {
+            if (!currentPlayer.data.sideObjSubTwo_ThreeComplete)
+            {
+                currentPlayer.data.sideObjSubTwo_ThreeComplete = true;
+                checkProgression("sideTwo");
+                UpdatePlayer();
+                LoadSideObjectiveTwo();
+                ObjectivePopUp(mainObjSubThreeTitle.text);
+            }
+        }
+    }
+    public IEnumerator NewChapterStarted()
+    {
+        ChapterUpdateWindow.SetActive(true);
+        yield return StartCoroutine(RunChapterTitle());
+        yield return new WaitForSeconds(6);
+        LogOff();
+        ChapterUpdateWindow.SetActive(false);
+
+    }
+
+    IEnumerator RunChapterTitle()
+    {
+        foreach(char letter in currentChapterTitle.text)
+        {
+            newChapterText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+    }
+
+    public void ObjectivePopUp(string objective)
+    {
+        objectiveCompleteText.text = objective;
+        objectiveCompleteWindow.SetActive(true);
     }
 
 
@@ -234,7 +624,10 @@ public class GameController : MonoBehaviour
         currentPlayer.data.sideObjSubTwo_TwoComplete = false;
         currentPlayer.data.sideObjSubTwo_ThreeComplete = false;
 
-        currentPlayer.Save();
+        UpdatePlayer();
+
+        LoadMainObjectiveOne();
+
     }
 
 

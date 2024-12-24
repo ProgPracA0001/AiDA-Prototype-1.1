@@ -27,9 +27,7 @@ public class NotePad : MonoBehaviour
         if (!player.currentPlayer.data.mainObjSubTwo_ThreeComplete && notePadInput != null)
         {
             player.currentPlayer.data.notes = notePadInput.text;
-            player.currentPlayer.data.mainObjSubTwo_ThreeComplete = true;
-            player.UpdatePlayer();
-            player.LoadMainObjectiveTwo();
+            player.UpdateObjective("mainTwoSubThree");
         }
         else
         {

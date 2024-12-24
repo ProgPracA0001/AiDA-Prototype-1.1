@@ -1337,7 +1337,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1521703397}
   - {fileID: 54319752}
   - {fileID: 1346887015}
   - {fileID: 2006482898}
@@ -1348,6 +1347,7 @@ RectTransform:
   - {fileID: 980564253}
   - {fileID: 1197590281}
   - {fileID: 1093507558}
+  - {fileID: 1521703397}
   m_Father: {fileID: 1418996293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4334,6 +4334,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1521703397}
     m_Modifications:
+    - target: {fileID: 2865861730161267151, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
+      propertyPath: selectedAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 765fb7c3f30298849a89c4dcb043eced, type: 3}
     - target: {fileID: 4398745544671383753, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
       propertyPath: m_Color.b
       value: 0.14861016
@@ -4482,12 +4486,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865861730161267151, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
   m_PrefabInstance: {fileID: 207355051}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 207355055}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3fb17483bd66dc418f416310fe0045d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &207355055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8313512116191847504, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
+  m_PrefabInstance: {fileID: 207355051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &207818854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5145,6 +5154,11 @@ MonoBehaviour:
   objectiveDefault: {fileID: 4406107664067057323, guid: 4de4f8347355af844b668834001eb3ba, type: 3}
   objectivesWindow: {fileID: 1659339950}
   welcomeWindow: {fileID: 1338986674}
+  objectiveCompleteWindow: {fileID: 207355055}
+  ChapterUpdateWindow: {fileID: 722598302}
+  objectiveCompleteText: {fileID: 1453222203}
+  newChapterText: {fileID: 1071331072}
+  typingSpeed: 0.01
   currentChapterTitle: {fileID: 1766944761}
   mainObjectiveTitle: {fileID: 1654956987}
   mainObjSubOneTitle: {fileID: 1282000061}
@@ -6707,7 +6721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -6715,7 +6729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6771,10 +6785,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 271614940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: mainTwoSubOne
 --- !u!1001 &283573028
 PrefabInstance:
@@ -7389,7 +7403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -7397,7 +7411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7453,10 +7467,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 295826921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: mainOneSubTwo
 --- !u!1 &312731855
 GameObject:
@@ -8013,7 +8027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -8025,7 +8039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8085,10 +8099,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 328214715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: sideOneSubOne
 --- !u!1 &336460581
 GameObject:
@@ -12540,7 +12554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -12548,7 +12562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -12604,10 +12618,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 589135332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: sideOneSubTwo
 --- !u!1001 &595914968
 PrefabInstance:
@@ -13774,6 +13788,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722504669}
+  m_CullTransparentMesh: 1
+--- !u!1 &722598302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722598303}
+  - component: {fileID: 722598305}
+  - component: {fileID: 722598304}
+  m_Layer: 5
+  m_Name: NewChapterWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &722598303
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722598302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1071331070}
+  m_Father: {fileID: 1266747084}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &722598304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722598302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &722598305
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722598302}
   m_CullTransparentMesh: 1
 --- !u!1 &727167309
 GameObject:
@@ -20329,6 +20419,85 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 442857386103710436, guid: a177987002dd7024386f38f72e649bea, type: 3}
   m_PrefabInstance: {fileID: 1001636507}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1071331069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1071331070}
+  - component: {fileID: 1071331071}
+  - component: {fileID: 1071331072}
+  m_Layer: 5
+  m_Name: NewChapterTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1071331070
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071331069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 722598303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1071331071
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071331069}
+  m_CullTransparentMesh: 1
+--- !u!114 &1071331072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071331069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9553073a47cab4b4b93b68617e8e05d5, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 125
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!224 &1073980662 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 442857386103710436, guid: a177987002dd7024386f38f72e649bea, type: 3}
@@ -22581,7 +22750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -22589,7 +22758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -22645,10 +22814,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223087016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: sideTwoSubTwo
 --- !u!1001 &1228391022
 PrefabInstance:
@@ -23038,6 +23207,7 @@ RectTransform:
   - {fileID: 1418996293}
   - {fileID: 1212369252}
   - {fileID: 1089764776}
+  - {fileID: 722598303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -25074,7 +25244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -25082,7 +25252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -25138,10 +25308,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1346161375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: sideTwoSubOne
 --- !u!1 &1346887014
 GameObject:
@@ -26447,9 +26617,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1221849340537497025, guid: 610b237e96747e844b1d52142268ecd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406360193}
-    - targetCorrespondingSourceObject: {fileID: 1221849340537497025, guid: 610b237e96747e844b1d52142268ecd4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1406360194}
     - targetCorrespondingSourceObject: {fileID: 5587838779513386996, guid: 610b237e96747e844b1d52142268ecd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406360192}
@@ -26526,20 +26693,6 @@ MonoBehaviour:
   player: {fileID: 231903133}
   targetData: both
   targetText: {fileID: 87181469}
---- !u!114 &1406360194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406360191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
-  objective: mainOneSubThree
 --- !u!224 &1407309231 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 442857386103710436, guid: a177987002dd7024386f38f72e649bea, type: 3}
@@ -31915,7 +32068,7 @@ PrefabInstance:
     - target: {fileID: 2865861730161267151, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
       propertyPath: selectedAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 765fb7c3f30298849a89c4dcb043eced, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3215625814911741741, guid: ca3a017cacb06d94eb0700ad96158417, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -35806,7 +35959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -35814,7 +35967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -35870,10 +36023,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1912884657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: mainThreeSubTwo
 --- !u!1001 &1913847201
 PrefabInstance:
@@ -36634,7 +36787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -36642,7 +36795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -36698,10 +36851,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1933089946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: mainOneSubThree
 --- !u!1001 &1945385321
 PrefabInstance:
@@ -38700,7 +38853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateObjective
+      value: UpdatedObjective
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -38708,7 +38861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ClueFound, Assembly-CSharp
+      value: UpdateObjective, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5557063087885503177, guid: 14596688c08a4894f9bc182ffec55327, type: 3}
       propertyPath: OnDoubleClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -38764,10 +38917,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023673757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b5c29caba66fa41a200d59dd153296, type: 3}
+  m_Script: {fileID: 11500000, guid: e03a2764ba87be340820a9942a173f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 231903133}
+  controller: {fileID: 231903133}
   objective: mainThreeSubOne
 --- !u!224 &2031027855 stripped
 RectTransform:

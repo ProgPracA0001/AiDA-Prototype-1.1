@@ -90,9 +90,7 @@ public class AudioPuzzle : MonoBehaviour
         }
         else
         {
-            player.currentPlayer.data.sideObjSubTwo_ThreeComplete = true;
-            player.UpdatePlayer();
-            player.LoadSideObjectiveOne();
+            player.UpdateObjective("sideTwoSubThree");
             lockedWindow.SetActive(false);
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);

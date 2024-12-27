@@ -42,7 +42,7 @@ public class WindowControllerScript : MonoBehaviour
 
     public void Open()
     {
-        if(selectedAudio != null)
+        if (selectedAudio != null)
         {
             if (isOpen)
             {

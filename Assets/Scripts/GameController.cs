@@ -39,6 +39,8 @@ public class GameController : MonoBehaviour
     public Text mainObjSubTwoDesc;
     public Text mainObjSubThreeDesc;
 
+    private int parentChildren;
+
     //Before the Start the playermanager and current player will be assigned
     void Awake()
     {
@@ -68,6 +70,12 @@ public class GameController : MonoBehaviour
         //If returning player then main objective one is loaded.
         LoadMainObjectiveOne();
        
+    }
+
+    void Update()
+    {
+        parentChildren = objectiveCompleteWindow.transform.parent.childCount;
+        
     }
 
     //Saves the player and loads the updated variables
@@ -109,16 +117,16 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
-            mainObjSubOneTitle.text = "Call the Fireman: Bypass the Security Software:";
-            mainObjSubOneDesc.text = "A firewall security software is blocking your access! Figure our how to disable it! Maybe the professor left some backdoors open or clues in files.";
+            mainObjSubOneTitle.text = "Broken Up:";
+            mainObjSubOneDesc.text = "There's broken file pieces everywhere, ";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "Call the Fireman: Bypass the Security Software:";
+            mainObjSubThreeDesc.text = "A firewall security software is blocking your access! Figure our how to disable it! Maybe the professor left some backdoors open or clues in files.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -592,6 +600,7 @@ public class GameController : MonoBehaviour
     {
         objectiveCompleteText.text = objective;
         objectiveCompleteWindow.SetActive(true);
+        objectiveCompleteWindow.transform.SetSiblingIndex(parentChildren - 1);
     }
 
 

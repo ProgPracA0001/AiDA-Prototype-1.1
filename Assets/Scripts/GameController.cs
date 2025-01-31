@@ -102,11 +102,11 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "New User Detected: Create a New Profile and First Time Login:";
 
             mainObjSubOneTitle.text = "Signed Up: Create User Profile and Login";
-            mainObjSubOneDesc.text = "Set up a profile with a username, password and first name";
+            mainObjSubOneDesc.text = "Set up a profile with a username, password and first name, then log in!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "Dr Who?: Find the Inheritance Message";
-            mainObjSubTwoDesc.text = "Go through the Welcome File and read the Inheritance Report";
+            mainObjSubTwoDesc.text = "Go through the Welcome File on the Desktop and read the Inheritance Report";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "The Last Message: Find the Dr's Last Message";
@@ -256,7 +256,7 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "";
+            mainObjectiveTitle.text = "Networking";
 
             mainObjSubOneTitle.text = "";
             mainObjSubOneDesc.text = "";
@@ -577,6 +577,8 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+   
     public IEnumerator NewChapterStarted()
     {
         ChapterUpdateWindow.SetActive(true);

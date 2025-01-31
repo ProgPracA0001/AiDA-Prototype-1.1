@@ -18,13 +18,18 @@ public class WindowControllerScript : MonoBehaviour
     private int grandParentChildren;
 
     private RectTransform RectTransform;
-    private AudioSource audioSource;
+    private AudioSource AudioSource;
     // Start is called before the first frame update
     void Awake()
     {
-        RectTransform = GetComponent<RectTransform>(); 
-        audioSource = GetComponent<AudioSource>();
-   
+        RectTransform = GetComponent<RectTransform>();
+
+        AudioSource = GetComponent<AudioSource>();
+        if (AudioSource == null && (selectedAudio != null))
+        {
+            Debug.LogException(new MissingComponentException("Window needs an AudioSource to play AudioClips"), this);
+        }
+
     }
 
     void Update()
@@ -47,14 +52,14 @@ public class WindowControllerScript : MonoBehaviour
             if (isOpen)
             {
                 BringToFront();
-                audioSource.PlayOneShot(selectedAudio);
+                AudioSource.PlayOneShot(selectedAudio);
 
             }
 
             else
             {
                 isOpen = true;
-                audioSource.PlayOneShot(selectedAudio);
+                AudioSource.PlayOneShot(selectedAudio);
                 gameObject.SetActive(true);
                 BringToFront();
             }
@@ -69,7 +74,7 @@ public class WindowControllerScript : MonoBehaviour
             else
             {
                 isOpen = true;
-                transform.SetParent(transform.root);
+                
                 gameObject.SetActive(true);
                 BringToFront();
             }

@@ -6,6 +6,8 @@ using UnityEngine.Rendering;
 
 public class PlayerData
 {
+
+
     public string username = "";
     public string firstName = "";
     public string lastName = "";
@@ -16,6 +18,8 @@ public class PlayerData
     public string currentChapterName = "Chapter One: An inherited Legacy...";
     
     public bool firstTimeLoginComplete = false;
+    public bool internetConnected = false;
+
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;
     public bool chapterThreeComplete = false;

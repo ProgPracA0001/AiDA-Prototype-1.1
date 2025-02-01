@@ -117,8 +117,8 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
-            mainObjSubOneTitle.text = "Broken Up:";
-            mainObjSubOneDesc.text = "There's broken file pieces everywhere, ";
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "A firewall security software is blocking your access to the Restricted Section! Figure our how to disable it! There's a manual folder in MyFiles, maybe something there can help!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Call the Fireman: Bypass the Security Software:";
-            mainObjSubThreeDesc.text = "A firewall security software is blocking your access! Figure our how to disable it! Maybe the professor left some backdoors open or clues in files.";
+            mainObjSubThreeDesc.text = "Disable the Firewall and gain access to the restricted section!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "First Questions: Access to the Research File is Protected";
-            mainObjSubTwoDesc.text = "Enter the correct word to unlock the Research folder";
+            mainObjSubTwoDesc.text = "Enter the correct word to unlock the Research folder, certain phrases may be found in other documents.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Note To Self: Note Down Your Clues and Findings";
@@ -221,7 +221,7 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restoration Project: Restore the files needed for the 'O' File";
 
-            mainObjSubOneTitle.text = "";
+            mainObjSubOneTitle.text = "Broken Up: Restore The Damaged Files";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
@@ -256,7 +256,7 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Networking";
+            mainObjectiveTitle.text = "Dial Up Dilemma: Using t";
 
             mainObjSubOneTitle.text = "";
             mainObjSubOneDesc.text = "";

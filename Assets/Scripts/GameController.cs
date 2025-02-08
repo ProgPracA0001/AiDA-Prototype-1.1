@@ -41,6 +41,9 @@ public class GameController : MonoBehaviour
 
     private int parentChildren;
 
+    public GameObject internetIcon;
+    public GameObject webCrawlerIcon;
+
     //Before the Start the playermanager and current player will be assigned
     void Awake()
     {
@@ -67,6 +70,15 @@ public class GameController : MonoBehaviour
 
         }
 
+        if (currentPlayer.data.internetLinkInstalled != true)
+        {
+            internetIcon.SetActive(false);
+        }
+
+        if (currentPlayer.data.internetConnected != true)
+        {
+            webCrawlerIcon.SetActive(false);
+        }
         //If returning player then main objective one is loaded.
         LoadMainObjectiveOne();
        

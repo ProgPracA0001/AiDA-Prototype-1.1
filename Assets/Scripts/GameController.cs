@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
             mainObjSubOneTitle.text = "";
-            mainObjSubOneDesc.text = "A firewall security software is blocking your access to the Restricted Section! Figure our how to disable it! There's a manual folder in MyFiles, maybe something there can help!";
+            mainObjSubOneDesc.text = "A firewall security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";

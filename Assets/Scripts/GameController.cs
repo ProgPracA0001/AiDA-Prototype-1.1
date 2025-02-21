@@ -129,8 +129,8 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
-            mainObjSubOneTitle.text = "";
-            mainObjSubOneDesc.text = "A firewall security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
+            mainObjSubOneTitle.text = "A Guide Through the Fire";
+            mainObjSubOneDesc.text = "A Firewall App Blocker security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -189,8 +189,8 @@ public class GameController : MonoBehaviour
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Test Subject Zero: Discover the True Nature Of The Experiment:";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "Test Subject ?: Discover the True Nature Of The Experiment:";
+            mainObjSubThreeDesc.text = "Test Subject who? Uncover who and what the test subject is... what was the Dr up to?";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -233,8 +233,8 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restoration Project: Restore the files needed for the 'O' File";
 
-            mainObjSubOneTitle.text = "Broken Up: Restore The Damaged Files";
-            mainObjSubOneDesc.text = "";
+            mainObjSubOneTitle.text = "Software will Sort It:";
+            mainObjSubOneDesc.text = "A software that restores file fragments ";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -261,25 +261,25 @@ public class GameController : MonoBehaviour
             mainObjSubTwoDesc.text = "Clue Number Two is similar to the first, I think the Dr was hungry when he came up with this!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Decryption";
+            mainObjSubThreeTitle.text = "The Clue Slueth";
             mainObjSubThreeDesc.text = "Using both clues solve the password to gain access to the Newspaper";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
 
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Dial Up Dilemma: Using t";
+            mainObjectiveTitle.text = "Dial Up Dilemma: Connect To The Internet and Start Searching!";
 
-            mainObjSubOneTitle.text = "";
-            mainObjSubOneDesc.text = "";
+            mainObjSubOneTitle.text = "Who You Gonna Call? Dial-Up Network!";
+            mainObjSubOneDesc.text = "How does Dial-Up work again? Maybe theres an information booklet we can use? Makes you miss the beauty of modern Wifi!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "Who Will You Actually Call Though?";
+            mainObjSubTwoDesc.text = "Seriously, these Dial-Up Networks actually require a legitimate line to link to... maybe the Dr left contact details?";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "The World Wide Web";
+            mainObjSubThreeDesc.text = "Once you have the details you need, complete the Dial-Up Network Install and you're online!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }

@@ -7,8 +7,8 @@ public class StoryTextController : MonoBehaviour
 {
     public Text targetText;
     public Text chapterText;
-    public float typingSpeed = 0.1f;
-    public float lineDelay = 0.5f;
+    public float typingSpeed = 1.0f;
+    public float lineDelay = 1.5f;
 
     public GameObject powerButton;
     public GameObject NewUserPage;
@@ -84,6 +84,7 @@ public class StoryTextController : MonoBehaviour
 
     public void PowerOn()
     {
+
         StartCoroutine(BootUpSequence());
         powerButton.SetActive(false);
 
@@ -114,7 +115,9 @@ public class StoryTextController : MonoBehaviour
 
     IEnumerator BootUpSequence()
     {
+        
         targetText.text = "";
+        yield return new WaitForSeconds(6);
 
         foreach (string line in BootUpText)
         {

@@ -181,7 +181,7 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "Unfinished Business: Investigate the Dr's Last Experiment";
 
-            mainObjSubOneTitle.text = "";
+            mainObjSubOneTitle.text = " ";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 

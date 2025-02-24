@@ -23,7 +23,15 @@ public class PlayerManager : MonoBehaviour
     public bool playerFourEmpty;
     public bool playerFiveEmpty;
     public bool playerSixEmpty;
-
+    void Update()
+    {
+        // If the left mouse button is pressed down...
+        if (Input.GetMouseButtonDown(0) == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        
+    }
     public void Save()
     {
         if (selectedPlayer == "playerOne")

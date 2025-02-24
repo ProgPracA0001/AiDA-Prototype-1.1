@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ResearchFilePuzzle : MonoBehaviour
 {
+    //All containers for the entering the puzzle pieces
     public GameObject containerT;
     public GameObject containerR;
     public GameObject containerA;
@@ -18,9 +19,12 @@ public class ResearchFilePuzzle : MonoBehaviour
     public GameObject containerN2;
     public GameObject containerT2;
 
+    //Hint text and content
     public Text hintText;
     public string hint;
 
+
+    //Booleans to check if objects are in the correct position
     private bool correctT;
     private bool correctR;
     private bool correctA;
@@ -33,14 +37,17 @@ public class ResearchFilePuzzle : MonoBehaviour
     private bool correctN2;
     private bool correctT2;
 
+    //If all are correct
     private bool allCorrect;
 
+    //Windows for before and after the puzzle is completed
     public GameObject lockedWindow;
     public GameObject unlockedWindow;
 
     public GameController player;
     private int attempts;
 
+    //Keep track of children (GameObjects) in the window
     private int parentChildrenUnlocked;
     private int grandParentChildrenUnlocked;
     private int parentChildrenLocked;
@@ -50,6 +57,7 @@ public class ResearchFilePuzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initiate all to false
         correctT = false;
         correctR = false;
         correctA = false;
@@ -69,6 +77,7 @@ public class ResearchFilePuzzle : MonoBehaviour
 
     void Update()
     {
+        //Keep track of which objects are being moved and total gameobjects in puzzle
         parentChildrenUnlocked = unlockedWindow.transform.parent.childCount;
         grandParentChildrenUnlocked = unlockedWindow.transform.parent.parent.childCount;
 
@@ -76,6 +85,7 @@ public class ResearchFilePuzzle : MonoBehaviour
         grandParentChildrenLocked = lockedWindow.transform.parent.parent.childCount;
     }
 
+    //Checks if the player has completed the puzzle already and shows corresponding window
     public void checkIfPuzzleSolved()
     {
         if (player.currentPlayer.data.mainObjSubTwo_TwoComplete)
@@ -95,6 +105,7 @@ public class ResearchFilePuzzle : MonoBehaviour
 
     public void ValidateInputs()
     {
+        //Checks if all containers are in the correct position.
         CheckContainer(containerT, "ItemT",ref correctT);
         CheckContainer(containerR, "ItemR",ref correctR);
         CheckContainer(containerA, "ItemA",ref correctA);
@@ -112,6 +123,7 @@ public class ResearchFilePuzzle : MonoBehaviour
             allCorrect = true;
         }
 
+        //Once all are correct the puzzle and player information updates and the unlocked window appears.
         if (allCorrect)
         {
             player.UpdateObjective("mainTwoSubTwo");
@@ -121,6 +133,7 @@ public class ResearchFilePuzzle : MonoBehaviour
             unlockedWindow.transform.parent.SetSiblingIndex(grandParentChildrenUnlocked - 1);
 
         }
+        //if player attempts to many times then a hint is shown to direct them
         else if (attempts == 4)
         {
             hintText.text = hint;
@@ -128,6 +141,8 @@ public class ResearchFilePuzzle : MonoBehaviour
         attempts++;
     }
 
+   
+    //Check container method checks if the container has been placed in the correct spot.
     public void CheckContainer(GameObject containerName, string correctTarget,ref bool targetCorrect)
     {
        if (containerName.transform.childCount != 0)

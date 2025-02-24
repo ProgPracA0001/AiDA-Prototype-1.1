@@ -37,10 +37,10 @@ public class MyFilePuzzle : MonoBehaviour
     private int parentChildrenLocked;
     private int grandParentChildrenLocked;
 
-    public string correctAnswerOne;
-    public string correctAnswerTwo;
-    public string correctAnswerThree;
-    public string correctAnswerFour;
+    private string correctAnswerOne = "superintelligent";
+    private string correctAnswerTwo = "training";
+    private string correctAnswerThree = "algorithm";
+    private string correctAnswerFour = "model";
 
     public string hint;
 
@@ -150,7 +150,7 @@ public class MyFilePuzzle : MonoBehaviour
     {
         string userAnswerThree = answerThree.text.ToLower();
 
-        if (userAnswerThree == correctAnswerThree)
+        if (userAnswerThree == correctAnswerThree || userAnswerThree == "algorithms")
         {
             correctThree = true;
             resultTextThree.text = "Correct!";
@@ -168,7 +168,7 @@ public class MyFilePuzzle : MonoBehaviour
     {
         string userAnswerFour = answerFour.text.ToLower();
 
-        if (userAnswerFour == correctAnswerFour)
+        if (userAnswerFour == correctAnswerFour || userAnswerFour == "models")
         {
             correctFour = true;
             resultTextFour.text = "Correct!";

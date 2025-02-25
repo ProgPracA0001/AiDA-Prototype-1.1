@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    //Player Manager from the first scene
     public GameObject playerManagerObject;
     public PlayerManager currentPlayer;
 
@@ -129,12 +130,12 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
-            mainObjSubOneTitle.text = "A Guide Through the Fire";
-            mainObjSubOneDesc.text = "A Firewall App Blocker security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
+            mainObjSubOneTitle.text = "Notes from The Dr's Hand Himself:";
+            mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research about Artificial Intelligence. Look for some notes that he has digitised!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "A Guide Through the Fire:";
+            mainObjSubTwoDesc.text = "A Firewall App Blocker security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Call the Fireman: Bypass the Security Software:";
@@ -143,10 +144,10 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "";
+            mainObjectiveTitle.text = "Ask AiDA:";
 
-            mainObjSubOneTitle.text = "";
-            mainObjSubOneDesc.text = "";
+            mainObjSubOneTitle.text = "The First Interaction:";
+            mainObjSubOneDesc.text = "Well... you can't tell me you're NOT going to say hello...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -158,7 +159,7 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }
-
+    //Loads Main objective Two - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadMainObjectiveTwo()
     {
         if(currentPlayer.data.currentChapter == 1)
@@ -179,17 +180,17 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Unfinished Business: Investigate the Dr's Last Experiment";
-
-            mainObjSubOneTitle.text = " ";
+            mainObjectiveTitle.text = "Unfinished Business: Uncover More About The Dr's Last Experiment";
+         
+            mainObjSubOneTitle.text = "";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoTitle.text = "Role Model: What Data Does The Experiment Use";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Test Subject ?: Discover the True Nature Of The Experiment:";
+            mainObjSubThreeTitle.text = "Test Subject Zero: Who is Zero?:";
             mainObjSubThreeDesc.text = "Test Subject who? Uncover who and what the test subject is... what was the Dr up to?";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -211,6 +212,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //Loads Main objective Three - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadMainObjectiveThree()
     {
         if(currentPlayer.data.currentChapter == 1)
@@ -231,10 +233,26 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "The Restoration Project: Restore the files needed for the 'O' File";
+            mainObjectiveTitle.text = "The Restoration Project: Restore The Corrupted Files";
 
-            mainObjSubOneTitle.text = "Software will Sort It:";
-            mainObjSubOneDesc.text = "A software that restores file fragments ";
+            mainObjSubOneTitle.text = "Software Will Sort It: Install The File Restoration Software";
+            mainObjSubOneDesc.text = "A software that restores file fragments is mentioned... If you have access to the internet maybe you can search for a download?";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "Hidden In Plain Sight: Find The Secret File";
+            mainObjSubTwoDesc.text = "Look for clues about the hidden file, track it down and take a peak at its contents";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "Restoration Complete: Install The Project";
+            mainObjSubThreeDesc.text = "Restore all necessary corrupted files and add them to the Project so that the option to install is available";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 3)
+        {
+            mainObjectiveTitle.text = "";
+
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -247,6 +265,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //Loads Side objective One - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadSideObjectiveOne()
     {
         if (currentPlayer.data.currentChapter == 1)
@@ -282,20 +301,25 @@ public class GameController : MonoBehaviour
             mainObjSubThreeDesc.text = "Once you have the details you need, complete the Dial-Up Network Install and you're online!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
+        else if (currentPlayer.data.currentChapter == 3)
+        {
+
+        }
     }
 
+    //Loads Side objective Two - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadSideObjectiveTwo()
     {
         if(currentPlayer.data.currentChapter == 1)
         {
             mainObjectiveTitle.text = "Voice From the Void: Unlock Mystery Audio File";
 
-            mainObjSubOneTitle.text = "Find the First Combination Clue";
+            mainObjSubOneTitle.text = "Combo Clue One: Find the First Clue To The Combernation";
             mainObjSubOneDesc.text = "This clue contains half the information you need for the combination!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Find The Second Clue";
-            mainObjSubTwoDesc.text = "This clue might require another file to be unlocked!";      
+            mainObjSubTwoTitle.text = "Make It Make Sense: Find The Second Clue";
+            mainObjSubTwoDesc.text = "This clue might require another file to be unlocked! But together, they should make sense!";      
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "A Good Combination";
@@ -305,22 +329,27 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "";
+            mainObjectiveTitle.text = "Recycle Deciple: Unlock The Recycle Bin";
 
-            mainObjSubOneTitle.text = "";
-            mainObjSubOneDesc.text = "";
+            mainObjSubOneTitle.text = "Making A Start: A Move In The Right Direction";
+            mainObjSubOneDesc.text = "Try searching on the internet for information about admin passwords, maybe something can help.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoTitle.text = "Instructions: ";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "Sifting Through The Trash: Gain Access To The Recycle Bin";
+            mainObjSubThreeDesc.text = "Once you have obtained an Admin Password give it a go! Unlock the Recycle Bin";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 3)
+        {
+
         }
     }
 
+    //Loads and updates current objective completion status and displays the corresponding image
     public void LoadObjectiveStatus(bool objective, Image objectiveIcon)
     {
         if (objective)
@@ -333,6 +362,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //Checks Progression of a single objective and then checks chapter progression
     public void checkProgression(string objective)
     {
          if (objective == "mainOne")
@@ -382,6 +412,7 @@ public class GameController : MonoBehaviour
 
     }
 
+    //Checks for completion of all objectives and updates the player, resets objectives and loads the new titles
     public void CheckChapterProgression()
     {
         if (currentPlayer.data.mainObjectiveOneComplete && currentPlayer.data.mainObjectiveTwoComplete && currentPlayer.data.mainObjectiveThreeComplete && currentPlayer.data.sideObjectiveOneComplete && currentPlayer.data.sideObjectiveTwoComplete)
@@ -618,6 +649,7 @@ public class GameController : MonoBehaviour
     }
 
 
+    //Once the player has progressed to the next chapter the objectives are then set to false
     public void ResetObjectives()
     {
         currentPlayer.data.mainObjectiveOneComplete = false;

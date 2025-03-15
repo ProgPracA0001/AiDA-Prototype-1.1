@@ -31,16 +31,13 @@ public class DraggableTopBar : MonoBehaviour, IBeginDragHandler, IDragHandler
         parentChildren = parentObject.transform.parent.childCount;
         grandParentChildren = parentObject.transform.parent.parent.childCount;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-        }
-
     }
+
 
     // Update is called once per frame
     public void OnBeginDrag(PointerEventData eventData)
     {
+        BringToFront();
         mouseOffset = parentRect.position - Input.mousePosition;
         
     }

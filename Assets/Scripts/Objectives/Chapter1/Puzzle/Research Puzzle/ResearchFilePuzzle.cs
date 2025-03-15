@@ -166,8 +166,6 @@ public class ResearchFilePuzzle : MonoBehaviour
             containerName.GetComponent<Image>().color = Color.red;
         }
         
-       
-
         
     }
 

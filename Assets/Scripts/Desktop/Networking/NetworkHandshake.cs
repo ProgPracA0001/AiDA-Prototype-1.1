@@ -55,7 +55,7 @@ public class NetworkHandshake : MonoBehaviour
                 processString = "Dialing";
                 loadStage(processString);
                 processStep ++;
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(3.0f);
 
             }
             else if (processStep < 6)
@@ -63,18 +63,19 @@ public class NetworkHandshake : MonoBehaviour
                 processString = "Performing Handshake"; 
                 loadStage(processString);
                 processStep ++;
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(4.0f);
             }
             else if (processStep == 6)
             {
                 processString = "Connecting";
                 loadStage(processString);
                 player.currentPlayer.data.internetConnected = true;
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(4.0f);
             }
            
         }
         statusText.text = "Connected";
+        player.UpdateObjective("sideOneSubThree");
         webCrawlerIcon.SetActive(true);
         
 

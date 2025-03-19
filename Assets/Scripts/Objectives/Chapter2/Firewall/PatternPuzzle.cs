@@ -9,6 +9,8 @@ public class PatternPuzzle : MonoBehaviour
     //GameController, which gets the current player
     public GameController player;
 
+    public GameObject restrictedSection;
+
     //Sprite to change to a TICK when each level complete
     public Sprite completeLevel;
 
@@ -77,8 +79,6 @@ public class PatternPuzzle : MonoBehaviour
     public int L3Score;
 
     public bool[] answersCorrect = new bool[6];
-
-    public GameObject startButton;
 
     public Text buttonOneText;
     public Text buttonTwoText;
@@ -373,6 +373,18 @@ public class PatternPuzzle : MonoBehaviour
 
             }
         }
+        else if (!level4Complete)
+        {
+            CheckLevelFour();
+
+            if (allObjectsCorrect)
+            {
+                player.UpdateObjective("mainOneSubThree");
+                restrictedSection.GetComponent<WindowControllerScript>().Open();
+                this.gameObject.SetActive(false);
+            }
+
+        }
     }
 
     public void CheckLevelTwo()
@@ -472,7 +484,7 @@ public class PatternPuzzle : MonoBehaviour
     }
 
 
-    public void validateLevelFour()
+    public void CheckLevelFour()
     {
         CheckContainer(containerOne, "Input", ref OneCorrect);
         CheckContainer(containerTwo, "Arrow", ref TwoCorrect);
@@ -483,12 +495,6 @@ public class PatternPuzzle : MonoBehaviour
         if (OneCorrect && TwoCorrect && ThreeCorrect && FourCorrect && FiveCorrect)
         {
             allObjectsCorrect = true;
-        }
-
-        if (allObjectsCorrect)
-        {
-            gameObject.GetComponent<WindowControllerScript>().Close();
-
         }
 
     }

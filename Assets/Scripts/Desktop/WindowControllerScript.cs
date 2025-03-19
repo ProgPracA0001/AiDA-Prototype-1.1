@@ -59,7 +59,7 @@ public class WindowControllerScript : MonoBehaviour
             else
             {
                 isOpen = true;
-                AudioSource.PlayOneShot(selectedAudio);
+                //AudioSource.PlayOneShot(selectedAudio);
                 gameObject.SetActive(true);
                 BringToFront();
             }

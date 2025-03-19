@@ -41,7 +41,7 @@ public class NewspaperObjective : MonoBehaviour
 
     public void checkIfPuzzleSolved()
     {
-        if (player.currentPlayer.data.sideObjSubOne_ThreeComplete)
+        if (player.currentPlayer.data.sideObjSubOne_ThreeComplete || player.currentPlayer.data.currentChapter >= 2)
         {
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);

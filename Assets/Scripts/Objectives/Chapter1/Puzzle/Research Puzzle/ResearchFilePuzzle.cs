@@ -88,7 +88,7 @@ public class ResearchFilePuzzle : MonoBehaviour
     //Checks if the player has completed the puzzle already and shows corresponding window
     public void checkIfPuzzleSolved()
     {
-        if (player.currentPlayer.data.mainObjSubTwo_TwoComplete)
+        if (player.currentPlayer.data.mainObjSubTwo_TwoComplete || player.currentPlayer.data.currentChapter >= 2)
         {
             unlockedWindow.SetActive(true);
             unlockedWindow.transform.SetSiblingIndex(parentChildrenUnlocked - 1);

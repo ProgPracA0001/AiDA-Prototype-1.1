@@ -131,7 +131,7 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
 
             mainObjSubOneTitle.text = "Notes from The Dr's Hand Himself:";
-            mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research about Artificial Intelligence. Look for some notes that he has digitised!";
+            mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research. Look for some notes that he has digitised!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "A Guide Through the Fire:";
@@ -627,7 +627,7 @@ public class GameController : MonoBehaviour
         ChapterUpdateWindow.SetActive(true);
         yield return StartCoroutine(RunChapterTitle());
         yield return new WaitForSeconds(6);
-        LogOff();
+        //LogOff();
         ChapterUpdateWindow.SetActive(false);
 
     }

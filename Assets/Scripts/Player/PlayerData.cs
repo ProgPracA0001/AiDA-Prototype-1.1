@@ -18,9 +18,13 @@ public class PlayerData
     public string currentChapterName = "Chapter One: An inherited Legacy...";
     
     public bool firstTimeLoginComplete = false;
+    public bool recuseBitFirstTimeOpeningComplete = false;
 
     public bool internetLinkInstalled = false;
     public bool internetConnected = false;
+    public bool RescureBitInstalled = false;
+
+    public bool diary02Corrupted = true;
 
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;

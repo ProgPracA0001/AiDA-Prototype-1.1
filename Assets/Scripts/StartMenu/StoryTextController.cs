@@ -26,7 +26,7 @@ public class StoryTextController : MonoBehaviour
         "Gentleman: This 73 Steadfel Road?\n",
         "You: Yes it is.. sorry who are you?\n",
         "Gentleman: I was told to drop off this package to whoever opens the door of this address.\n",
-        "/n",
+        "\n",
         "Before you can say anything he thrusts the box towards you, you stumble under the weight.\n",
         "He turns quickly, avoiding any conversation and hurtling back into the rain.\n",
         "You stand bewildered before turning back inside and settin the package down.\n",

@@ -18,7 +18,7 @@ public class RestrictedIconControl : MonoBehaviour
 
     public void CheckFirewallStatus()
     {
-        if (player.currentPlayer.data.mainObjSubOne_ThreeComplete && player.currentPlayer.data.currentChapter == 2)
+        if (player.currentPlayer.data.mainObjSubTwo_ThreeComplete && player.currentPlayer.data.currentChapter == 2)
         {
             unlockedWindow.GetComponent<WindowControllerScript>().Open();
 

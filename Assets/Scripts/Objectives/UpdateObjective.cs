@@ -6,10 +6,16 @@ public class UpdateObjective : MonoBehaviour
 {
     public GameController controller;
 
+    public int chapterNo;
+
     public string objective;
 
     public void UpdatedObjective()
     {
-        controller.UpdateObjective(objective);
+        if (controller.currentPlayer.data.currentChapter <= chapterNo)
+        {
+            controller.UpdateObjective(objective);
+        }
+            
     }
 }

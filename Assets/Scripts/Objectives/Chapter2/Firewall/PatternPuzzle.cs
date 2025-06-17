@@ -379,7 +379,7 @@ public class PatternPuzzle : MonoBehaviour
 
             if (allObjectsCorrect)
             {
-                player.UpdateObjective("mainOneSubThree");
+                player.UpdateObjective("mainTwoSubThree");
                 restrictedSection.GetComponent<WindowControllerScript>().Open();
                 this.gameObject.SetActive(false);
             }

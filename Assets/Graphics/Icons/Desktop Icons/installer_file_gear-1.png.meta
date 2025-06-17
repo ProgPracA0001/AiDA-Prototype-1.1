@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 009209f2c63a43841b6123e5b7f44ccb
+guid: 8e0b91496c931b4439f856957ecf33ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2176741867053821024
-    second: Screenshot 2025-06-03 135941_0
+      213: 9205001045428567493
+    second: installer_file_gear-1_0
+  - first:
+      213: -2740738332637503350
+    second: installer_file_gear-1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Screenshot 2025-06-03 135941_0
+      name: installer_file_gear-1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 489
-        height: 683
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +156,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a359860ec8aac1e0800000000000000
-      internalID: -2176741867053821024
+      spriteID: 5cd7edd3eabbebf70800000000000000
+      internalID: 9205001045428567493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: installer_file_gear-1_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8068dce101f6f9d0800000000000000
+      internalID: -2740738332637503350
       vertices: []
       indices: 
       edges: []
@@ -169,8 +193,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Screenshot 2025-06-03 135941_0: -2176741867053821024
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

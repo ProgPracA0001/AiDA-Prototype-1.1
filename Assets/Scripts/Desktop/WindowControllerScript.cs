@@ -12,7 +12,7 @@ public class WindowControllerScript : MonoBehaviour
 
     private float ExpandedHeight;
     private bool isCollapsed = false;
-    private bool isOpen = false;
+    public bool isOpen = false;
 
     private int parentChildren;
     private int grandParentChildren;
@@ -69,6 +69,12 @@ public class WindowControllerScript : MonoBehaviour
             if (isOpen)
             {
                 BringToFront();
+                if(isCollapsed)
+                {
+                    Expand();
+                }
+                
+
             }
 
             else

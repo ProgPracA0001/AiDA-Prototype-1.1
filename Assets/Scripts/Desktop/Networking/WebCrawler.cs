@@ -80,7 +80,7 @@ public class WebCrawler : MonoBehaviour
         }
         else
         {
-            webText.text = "ERROR 404: Page Not Found\n Try searching again";
+            webText.text = "ERROR 404: Page Not Found\n Try searching again\n Use more specific words or phrases in related to your search";
         }
     }
 

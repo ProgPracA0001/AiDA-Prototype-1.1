@@ -50,10 +50,19 @@ public class FileClass: MonoBehaviour
 
     public void CheckIfRestored()
     {
-        if(playerBool == "diary02")
+        if(playerBool == "diary05")
         {
-            isCorrupted = controller.currentPlayer.data.diary02Corrupted;
+            isCorrupted = controller.currentPlayer.data.diary05Corrupted;
 
+        }
+
+        else if(playerBool == "data03")
+        {
+            isCorrupted = controller.currentPlayer.data.data03Corrupted;
+        }
+        else if (playerBool == "data04")
+        {
+            isCorrupted = controller.currentPlayer.data.data04Corrupted;
         }
 
     }

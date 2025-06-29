@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 
 public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
     public Image image;
     public Text text;
-    [HideInInspector] public Transform parentAfterDrag;
+
+    public Transform parentAfterDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
     {

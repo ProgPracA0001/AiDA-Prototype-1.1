@@ -30,7 +30,7 @@ public class ScanTransfer : MonoBehaviour
    
     public GameObject diaryWindow;
     public GameObject diaryOriginalParent;
-    public GameObject diary02Icon;
+    public GameObject diary05Icon;
 
 
 
@@ -72,10 +72,10 @@ public class ScanTransfer : MonoBehaviour
 
         windowIcon.sprite = restoredDocumentImage;
 
-        if(transferIcon.GetComponent<FileClass>().name == "Diary02Icon")
+        if(transferIcon.GetComponent<FileClass>().name == "Diary05Icon")
         {
-            targetName = "diary02";
-            descriptionLabel.text = "Diary02.txt ready for transfer";
+            targetName = "diary05";
+            descriptionLabel.text = "Diary05.txt ready for transfer";
         }
 
     }
@@ -105,12 +105,12 @@ public class ScanTransfer : MonoBehaviour
         loadingContainer.SetActive(false);
         
 
-        if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary02Icon.GetComponent<FileClass>().isCorrupted)
+        if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted)
         {
             acceptContainer.SetActive(true);
             windowIcon.sprite = corruptedDocumentImage;
-            descriptionLabel.text = "Corrupted File Found: Diary02.txt";
-            targetName = "diary02";
+            descriptionLabel.text = "Corrupted File Found: Diary05.txt";
+            targetName = "diary05";
 
         }
         else
@@ -130,10 +130,10 @@ public class ScanTransfer : MonoBehaviour
     }
     public void TransferToRB()
     {
-        if(targetName == "diary02")
+        if(targetName == "diary05")
         {
-            diary02Icon.GetComponent<FileClass>().inRescueBit = true;
-            diary02Icon.transform.SetParent(rescueBitContainer.transform);
+            diary05Icon.GetComponent<FileClass>().inRescueBit = true;
+            diary05Icon.transform.SetParent(rescueBitContainer.transform);
 
         }
 
@@ -143,10 +143,10 @@ public class ScanTransfer : MonoBehaviour
 
     public void TransferBack()
     {
-        if(targetName == "diary02")
+        if(targetName == "diary05")
         {
-            diary02Icon.GetComponent<FileClass>().inRescueBit = false;
-            diary02Icon.transform.SetParent(diaryOriginalParent.transform);
+            diary05Icon.GetComponent<FileClass>().inRescueBit = false;
+            diary05Icon.transform.SetParent(diaryOriginalParent.transform);
         }
 
         RBScript.CheckContainer();

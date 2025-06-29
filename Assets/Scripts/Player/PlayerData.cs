@@ -24,7 +24,10 @@ public class PlayerData
     public bool internetConnected = false;
     public bool RescureBitInstalled = false;
 
-    public bool diary02Corrupted = true;
+    public bool diary05Corrupted = true;
+
+    public bool data03Corrupted = true;
+    public bool data04Corrupted = true;
 
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;

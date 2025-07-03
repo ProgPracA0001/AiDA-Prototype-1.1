@@ -15,6 +15,8 @@ public class ScanTransfer : MonoBehaviour
     public GameObject LoadingScreenBar;
     public int BarChildren;
 
+    public bool multipleWindowsOpen = false;
+
     public Sprite rescueBitImage;
     public Sprite corruptedDocumentImage;
     public Sprite restoredDocumentImage;
@@ -32,6 +34,10 @@ public class ScanTransfer : MonoBehaviour
     public GameObject diaryOriginalParent;
     public GameObject diary05Icon;
 
+
+    public GameObject data03Window;
+    public GameObject data03OriginalParent;
+    public GameObject data03Icon;
 
 
     // Start is called before the first frame update
@@ -72,12 +78,24 @@ public class ScanTransfer : MonoBehaviour
 
         windowIcon.sprite = restoredDocumentImage;
 
-        if(transferIcon.GetComponent<FileClass>().name == "Diary05Icon")
+        if (transferIcon.GetComponent<FileClass>().name == "Diary05Icon")
         {
             targetName = "diary05";
             descriptionLabel.text = "Diary05.txt ready for transfer";
         }
+        else if (transferIcon.GetComponent<FileClass>().name == "Data_03Icon")
+        {
 
+        }
+
+    }
+
+    public void CheckForOpenMultipleWindows()
+    {
+        if(diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted)
+        {
+
+        }
     }
     public void InitializeWindow()
     {
@@ -111,6 +129,10 @@ public class ScanTransfer : MonoBehaviour
             windowIcon.sprite = corruptedDocumentImage;
             descriptionLabel.text = "Corrupted File Found: Diary05.txt";
             targetName = "diary05";
+
+        }
+        else if(data03Window.GetComponent<WindowControllerScript>().isOpen && data03Icon.GetComponent<FileClass>().isCorrupted)
+        {
 
         }
         else

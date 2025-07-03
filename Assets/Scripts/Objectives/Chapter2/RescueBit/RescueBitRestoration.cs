@@ -70,23 +70,34 @@ public class RescueBitRestoration : MonoBehaviour
     public void CheckFileDetailsForCompletion()
     {
         Debug.Log("Checking File: " + targetName);
+
+        File.GetComponent<FileClass>().isCorrupted = false;
+        File.GetComponent<FileClass>().fileIcon.sprite = File.GetComponent<FileClass>().restoredIcon;
+        File.GetComponent<FileClass>().status = "Restored";
+
         if (targetName == "Diary05Icon")
         {
             Debug.Log("File is Diary");
-            File.GetComponent<FileClass>().isCorrupted = false;
-            File.GetComponent<FileClass>().fileIcon.sprite = File.GetComponent<FileClass>().restoredIcon;
-            File.GetComponent<FileClass>().status = "Restored";
+            
             player.currentPlayer.data.diary05Corrupted = false;
             player.UpdateObjective("mainThreeSubOne");
-            Debug.Log("RestoreComeplete");
-            rescueBit.RestoreComplete();
             
+            
+        }
+        else if(targetName == "Data_03Icon")
+        {
+            File.GetComponent<DraggableFile>().draggable = true;
+            player.currentPlayer.data.data03Corrupted = false;
+
+
         }
         else
         {
             Debug.Log("Not Matching");
         }
-            gameObject.GetComponent<WindowControllerScript>().Close();
+
+        rescueBit.RestoreComplete();
+        gameObject.GetComponent<WindowControllerScript>().Close();
     }
 
 

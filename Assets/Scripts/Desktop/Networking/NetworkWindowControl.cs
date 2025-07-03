@@ -96,7 +96,7 @@ public class NetworkWindowControl : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 setFirstPage();
-                InstallWindow.SetActive(true);
+                InstallWindow.GetComponent<WindowControllerScript>().Open();
             }
             else if (AreaCodeSelected.text != correctAreaCode && TelephoneNoInput.text == correctTelephoneNo && CountryCodeSelected.text == correctCountryCode)
             {

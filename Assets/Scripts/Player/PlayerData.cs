@@ -6,8 +6,6 @@ using UnityEngine.Rendering;
 
 public class PlayerData
 {
-
-
     public string username = "";
     public string firstName = "";
     public string lastName = "";
@@ -24,10 +22,22 @@ public class PlayerData
     public bool internetConnected = false;
     public bool RescureBitInstalled = false;
 
+    public bool recycleUnlocked = false;
+
+    public bool playerIsAdmin = false;
+
+    public bool emotionRestored = false;
+    public bool timeRestored = false;
+    public bool greetingsRestored = false;
+
+    public bool subject0Restored = false;
+
+    public bool AiDAInstalled = false;
+
     public bool diary05Corrupted = true;
 
     public bool data03Corrupted = true;
-    public bool data04Corrupted = true;
+    //public bool data04Corrupted = true;
 
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;

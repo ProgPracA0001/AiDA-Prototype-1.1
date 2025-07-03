@@ -7,20 +7,24 @@ using UnityEngine.EventSystems;
 public class DraggableFile : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 
 {
-
-
     public Image image;
     public Text text;
+
+    public bool draggable = true;
 
     public Transform parentAfterDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
-        image.raycastTarget = false;
-        text.raycastTarget = false;
+        if (draggable)
+        {
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+            transform.SetAsLastSibling();
+            image.raycastTarget = false;
+            text.raycastTarget = false;
+        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)

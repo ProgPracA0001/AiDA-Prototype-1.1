@@ -19,18 +19,20 @@ public class FileClass: MonoBehaviour
 
     public string fileType;
 
-    public string playerBool;
+    public string fileName;
 
     public Image fileIcon;
 
     public Sprite corruptedIcon;
     public Sprite restoredIcon;
 
+
     public bool isCorrupted;
     public bool inRescueBit = false;
 
     void Start()
     {
+        
         CheckIfRestored();
         
         if (isCorrupted)
@@ -50,20 +52,23 @@ public class FileClass: MonoBehaviour
 
     public void CheckIfRestored()
     {
-        if(playerBool == "diary05")
+        if(fileName == "diary05")
         {
             isCorrupted = controller.currentPlayer.data.diary05Corrupted;
 
         }
 
-        else if(playerBool == "data03")
+        else if(fileName == "data03")
         {
             isCorrupted = controller.currentPlayer.data.data03Corrupted;
+
+            if(isCorrupted)
+            {
+                gameObject.GetComponent<DraggableFile>().draggable = false;
+            }
+        
         }
-        else if (playerBool == "data04")
-        {
-            isCorrupted = controller.currentPlayer.data.data04Corrupted;
-        }
+        
 
     }
 

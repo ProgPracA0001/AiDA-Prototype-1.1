@@ -46,6 +46,8 @@ public class GameController : MonoBehaviour
     public GameObject webCrawlerIcon;
     public GameObject rescueBitIcon;
 
+    public GameObject BIOSWindow;
+
     //Before the Start the playermanager and current player will be assigned
     void Awake()
     {
@@ -93,7 +95,20 @@ public class GameController : MonoBehaviour
     void Update()
     {
         parentChildren = objectiveCompleteWindow.transform.parent.childCount;
+
+        if(Input.GetKeyDown(KeyCode.LeftControl) &&  Input.GetKeyDown(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Delete))
+        {
+            CheckToOpenBios();
+        }
         
+    }
+
+    public void CheckToOpenBios()
+    {
+        if (currentPlayer.data.currentChapter >= 2)
+        {
+            BIOSWindow.GetComponent<WindowControllerScript>().Open();
+        }
     }
 
     //Saves the player and loads the updated variables
@@ -155,8 +170,8 @@ public class GameController : MonoBehaviour
             mainObjSubOneDesc.text = "Well... you can't tell me you're NOT going to say hello...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "What can AiDA tell us?";
+            mainObjSubTwoDesc.text = "AiDA might have some useful information, go through the options provided and see what you can find out.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "";
@@ -241,21 +256,20 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "The Restoration Project: Restore The Corrupted Files";
 
             mainObjSubOneTitle.text = "Software Will Sort It: Install The File Restoration Software";
-            mainObjSubOneDesc.text = "A software that restores corrupted files is mentioned... If you have access to the internet maybe you can search for a download? Then test it by restoring the diary02 file!";
+            mainObjSubOneDesc.text = "A software that restores corrupted files is mentioned... If you have access to the internet maybe you can search for a download? Then test it by restoring the Diary05 file!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "Hidden In Plain Sight: A Secret File?";
-            mainObjSubTwoDesc.text = "Restore more files to find out more about the secret file the Dr mentioned in his diary! You need to find that file!";
+            mainObjSubTwoDesc.text = "Restore all corrupted files and using the documents in the Restricted Section correctly compile them into their categories to reveal the secret file.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Restoration Complete: Install The Project";
-            mainObjSubThreeDesc.text = "Restore all necessary corrupted files and add them to the Project so that the option to install is available";
+            mainObjSubThreeDesc.text = "Install the project by using the correct values for training the model. Some files may be elsewhere within the system, have you checked the recycle bin?";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
             mainObjectiveTitle.text = "";
-
             mainObjSubOneTitle.text = "";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
@@ -277,11 +291,11 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "The Old Post: Enter the Correct Password and Access the Mystery Newspaper ";
 
-            mainObjSubOneTitle.text = "Find The First Clue:";
+            mainObjSubOneTitle.text = "Find The First Clue: Contact List";
             mainObjSubOneDesc.text = "The Dr liked to take a lot of notes, maybe something can help!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Clue Number Two:";
+            mainObjSubTwoTitle.text = "Clue Number Two: Food Supplies";
             mainObjSubTwoDesc.text = "Clue Number Two is similar to the first, I think the Dr was hungry when he came up with this!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
@@ -294,8 +308,8 @@ public class GameController : MonoBehaviour
         {
             mainObjectiveTitle.text = "Deep Dive: Find out more about the Dr's job";
 
-            mainObjSubOneTitle.text = "Old Headliners:";
-            mainObjSubOneDesc.text = "Remember that old newspaper you found? Maybe a search online will give us some updates?";
+            mainObjSubOneTitle.text = "Old Headliners: From Paper to Digital";
+            mainObjSubOneDesc.text = "Remember that old newspaper you found? Maybe a search online will give us some updates? Use the journalists name or the newspaper title!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "";
@@ -340,17 +354,27 @@ public class GameController : MonoBehaviour
             mainObjSubOneDesc.text = "Try searching on the internet for information about admin passwords, maybe something can help.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Instructions: ";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "Instructions: Taking Control";
+            mainObjSubTwoDesc.text = "Using what you have found online, change your user privilege to ADMIN.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "Sifting Through The Trash: Gain Access To The Recycle Bin";
-            mainObjSubThreeDesc.text = "Once you have obtained an Admin Password give it a go! Unlock the Recycle Bin";
+            mainObjSubThreeDesc.text = "Once you have obtained an Admin Password give it a go! Unlock the Recycle Bin and look for that file the Dr mentioned for installing the software!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
+            mainObjSubOneTitle.text = "";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
+            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
@@ -437,6 +461,11 @@ public class GameController : MonoBehaviour
             else if (currentPlayer.data.currentChapter == 3)
             {
                 currentPlayer.data.currentChapterName = "Chapter Three: Booting Up The Past...";
+
+                currentChapterTitle.text = "Chapter Three: Booting Up The Past";
+                UpdatePlayer();
+                currentPlayer.LoadPlayer();
+
                 ResetObjectives();
             }
             else if (currentPlayer.data.currentChapter == 4)
@@ -699,6 +728,7 @@ public class GameController : MonoBehaviour
         UpdatePlayer();
 
         LoadMainObjectiveOne();
+        objectivesWindow.GetComponent<WindowControllerScript>().Open();
 
     }
 

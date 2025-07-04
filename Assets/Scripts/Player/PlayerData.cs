@@ -22,6 +22,8 @@ public class PlayerData
     public bool internetConnected = false;
     public bool RescureBitInstalled = false;
 
+    public bool ghostSiteUnlocked = false;
+
     public bool recycleUnlocked = false;
 
     public bool playerIsAdmin = false;
@@ -36,7 +38,7 @@ public class PlayerData
 
     public bool diary05Corrupted = true;
 
-    public bool data03Corrupted = true;
+    public bool data03Corrupted = false;
     //public bool data04Corrupted = true;
 
     public bool chapterOneComplete = false;

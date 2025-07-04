@@ -45,6 +45,11 @@ public class GameController : MonoBehaviour
     public GameObject internetIcon;
     public GameObject webCrawlerIcon;
     public GameObject rescueBitIcon;
+    public GameObject AiDAIcon;
+
+    public bool controlPressed = false;
+    public bool shiftPressed = false;
+    public bool altPressed = false;
 
     public GameObject BIOSWindow;
 
@@ -87,6 +92,11 @@ public class GameController : MonoBehaviour
         {
             rescueBitIcon.SetActive(false);
         }
+
+        if(currentPlayer.data.AiDAInstalled != true)
+        {
+            AiDAIcon.SetActive(false);
+        }
         //If returning player then main objective one is loaded.
         LoadMainObjectiveOne();
        
@@ -96,11 +106,39 @@ public class GameController : MonoBehaviour
     {
         parentChildren = objectiveCompleteWindow.transform.parent.childCount;
 
-        if(Input.GetKeyDown(KeyCode.LeftControl) &&  Input.GetKeyDown(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Delete))
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            controlPressed = true;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            controlPressed = false;
+        }
+        
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            shiftPressed = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            shiftPressed = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            altPressed = true;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            altPressed = false;
+        }
+
+
+        if (controlPressed && shiftPressed && altPressed)
         {
             CheckToOpenBios();
         }
-        
     }
 
     public void CheckToOpenBios()
@@ -312,12 +350,12 @@ public class GameController : MonoBehaviour
             mainObjSubOneDesc.text = "Remember that old newspaper you found? Maybe a search online will give us some updates? Use the journalists name or the newspaper title!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
-            mainObjSubTwoDesc.text = "";
+            mainObjSubTwoTitle.text = "Pattern Pending: A Strange Recurrence?";
+            mainObjSubTwoDesc.text = "While reading through articles, two words keep appearing. Why would the same source use the samelanguage or phrasing? It might be worth a search. ";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "Uncover the Unseen: Joiners Secret Site";
+            mainObjSubThreeDesc.text = "Something about the wording lingers... Familiar steps, repeated in the right order, might open more than just a door.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -457,16 +495,18 @@ public class GameController : MonoBehaviour
                 currentPlayer.LoadPlayer();
                 StartCoroutine(NewChapterStarted());
                 ResetObjectives();
+                
             }
             else if (currentPlayer.data.currentChapter == 3)
             {
                 currentPlayer.data.currentChapterName = "Chapter Three: Booting Up The Past...";
 
-                currentChapterTitle.text = "Chapter Three: Booting Up The Past";
+                currentChapterTitle.text = "Chapter Three: Booting Up The Past\n Coming soon....";
                 UpdatePlayer();
                 currentPlayer.LoadPlayer();
-
+                StartCoroutine(NewChapterStarted());
                 ResetObjectives();
+                LogOff();
             }
             else if (currentPlayer.data.currentChapter == 4)
             {
@@ -663,7 +703,6 @@ public class GameController : MonoBehaviour
         ChapterUpdateWindow.SetActive(true);
         yield return StartCoroutine(RunChapterTitle());
         yield return new WaitForSeconds(6);
-        //LogOff();
         ChapterUpdateWindow.SetActive(false);
 
     }

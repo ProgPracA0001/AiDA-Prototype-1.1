@@ -58,6 +58,7 @@ public class BIOS : MonoBehaviour
         {
             controller.currentPlayer.data.playerIsAdmin = true;
             controller.UpdateObjective("sideTwoSubTwo");
+            BIOSAssignAdmin.GetComponent<WindowControllerScript>().Close();
         }
     }
     public void LoadUserPrivileges()

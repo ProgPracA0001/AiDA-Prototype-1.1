@@ -24,7 +24,7 @@ public class NotePad : MonoBehaviour
 
     public void SaveNotes()
     {
-        if (!player.currentPlayer.data.mainObjSubTwo_ThreeComplete && notePadInput != null)
+        if (player.currentPlayer.data.currentChapter == 1 && !player.currentPlayer.data.mainObjSubTwo_ThreeComplete && notePadInput != null)
         {
             player.currentPlayer.data.notes = notePadInput.text;
             player.UpdateObjective("mainTwoSubThree");

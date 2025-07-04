@@ -17,9 +17,14 @@ public class WebCrawler : MonoBehaviour
 
     public GameObject RescueBitDownloadButton;
 
+    public GameObject GhostFilePage;
+    private string GhostFilePassword = "DataModelPattern";
+    public InputField userInput;
+    public Text GFResponseText;
+
     // Start is called before the first frame update
 
-    public string[] RestorationSoftware =
+    private string[] RestorationSoftware =
     {
         "RescueBit\n",
         "Your Data, Recovered Instantly\n",
@@ -32,11 +37,11 @@ public class WebCrawler : MonoBehaviour
         "Today, RescueBit offers a flexible subscription model. Our monthly plan includes full access to all tools, along with fast-track support from data recovery experts—one of the most popular perks among our customers.\n",
         "\n",
         "For users with lighter needs, we offer alternative versions of the software with limited tool access. These still provide reliable recovery for damaged and corrupted files, making RescueBit accessible to everyone.\n",
-        "To download our free version, please click the link below and start recovering your lost files today\n"
+        "To download our free version, please click the link below and start recovering your lost files today.\n"
 
     };
 
-    public string[] AdminPasswords =
+    private string[] AdminPasswords =
     {
         "Admin Passwords\n",
         "\n",
@@ -44,18 +49,17 @@ public class WebCrawler : MonoBehaviour
         "Unlike standard user passwords, admin passwords provide elevated privileges, making them essential for system management and security.\n",
         "\n",
         "WHY ARE THEY IMPORTANT?\n",
-        "Security Control:",
+        "Security Control:\n",
         "Security and Protection:\n",
-        "Troubleshooting and Maintenance: \n",
-        "Data Management: \n",
-        "\n",
-        "Many modern systems ustilise this within their window controls, however some older systems utilise the ctrl + alt + delete method to gain access to the BIOS.\n"
+        "Troubleshooting and Maintenance:\n",
+        "Data Management: Controlling data\n",
+        "Many modern systems ustilise this within their window controls, however some older systems utilise the ctrl + alt method to gain access to the BIOS.\n",
 
     };
 
-    public string[] OldHeadlines =
+    private string[] OldHeadlines =
     {
-        "The Old Post Archives\n",
+        "The Old Post: Archives\n",
         "Site ran by: J.G.Joiner\n",
         "\n",
         "**IMPORTANT** The Old Post head office caught fire in 1990, following further investigations into Dalhurst Explosion. Working there at the time I tried to save as much as possible.\n",
@@ -63,6 +67,7 @@ public class WebCrawler : MonoBehaviour
         "I returned to the office after the blaze however there was no chance of salvaging any documents, so there are unfortuantely large gaps between records.\n",
         "I have recorded all that I can on this website. I believe it is the publics right to know.\n",
         "\n",
+        "********************************************************************\n",
         "\n",
         "** RECORD: 01 **\n",
         "Date: Wednesday 24th November 1986\n",
@@ -74,9 +79,10 @@ public class WebCrawler : MonoBehaviour
         "A thunderous explosion rocked the quiet valley of Dalhurst last night. It emanated from an abandoned factory that had long been a silent sentinel of the town's industrial past. The derelict Structure, known to have been empty for years was suddenly engulfed in flames, sending shockwaves through the community.\n",
         "Emergency services rushed to the scene finding a roaring pile of rubble. As firefighters battled the inferno, suspicions arose. Some witness present before first responders, claimed to have seen strange vehicles appraoching the area shortly after the explosion, prompting fears of foul play. Authorities swiftly cordoned off the scene, launching an investigation into the cause of the blast. The death toll if any, remains unknown as teams combat the remaining flames. Residents already uneasy due to recent vandalism expressed concerns about their safety.\n",
         "\n",
-        "Questions linger about the cause of the explosion. Was it tragic accident? The truth remains elusive, shrouded in the smoke and rubble of the factory.\n",
+        "Questions linger about the cause of the explosion. Was it tragic accident? Or was it something buried beneath the surface? One investigator who managed to retrieve a data drive referred to the internal data as a 'ghost file', a term used to describe data trails with no source.\n",
+        "The truth remains elusive, shrouded in the smoke and rubble of the factory.\n",
         "\n",
-        "********************************************************************",
+        "********************************************************************\n",
         "\n",
         "** RECORD: 02 **\n",
         "Date: Saturday 24th January 1987\n",
@@ -89,10 +95,11 @@ public class WebCrawler : MonoBehaviour
         "Anonymous sources from within the emergeny services describe discovery of 'non-standard equiptment' buried in the debris, including reminents of sealed cases with serial numbers and no manufacturer. One fire chief, speaking under the condition of remaning anonymous described the interior as 'far from abandoned'.\n",
         "Reports from residents calimed unusual military presence in the weeks following the explosion, including unmarked cars parked around the factory site and sounds of helicopters flying over the valley during the night. The reason for these appearances remain unknown, with local authorities and federal investigators denying any connections. Residents have been told to remain calm with rassurance that these are most likely 'routine training operations'.\n",
         "\n",
+        "Several more data drives have been retrieves however all attempts to retrieve digital logs were met with corrupted files. Some surviving terminal logs refer to phantom entries or a hidden 'Ghost File' linking to something within the data structure. Despite multiple recovery efforts, the file's origin and purpose remain unverified.\n",
         "The death toll still remains as 0, and no offical casualty list has been released. Despite ongoing efforts to gain access to the lower level basements of the factory, structural integrity has caused significant delay. However, the factory, previously thought to be owned by a dissolved manufacturing company in 1949, has been linked to a shell corporation under review by investigative watchdogs. Rumours among residents suggest the factory may have been part of a larger, hidden research effort. Though no records of this work exists in public archives. A valley resident living 2 streets from the main road to the factory, on 'Hoburt street' claimed a strange man had knocked on her door. She described him as being wide-eyed and shaky, then when she asked who he was he fled.\n",
         "The truth remains elusive, keep updated and purchase the next issue of the Old Post.\n",
         "\n",
-        "********************************************************************",
+        "********************************************************************\n",
         "\n",
         "** RECORD: 03\n",
         "Date: Tuesday 24th September 1987\n",
@@ -103,21 +110,46 @@ public class WebCrawler : MonoBehaviour
         "\n",
         "A year has passed since the night that reshaped Dalhurst Valley forever. Official Statements have dried up, but the residents have not forgotten the plume of fire that lit up the valley and the destruction left in its wake. In the absence of formal answers, theories continue to circulate with the evidence of a larger plan being found in the environmental impacts. Old factory pipes used for dumping the industrial waste in the 1900s still formed an integral part of the buildings structure. The dumping of waste in the valley was banned in 1904 after significant imapct into the waterstream wiped out 50% of the village and the pipes were blocked off but never removed.\n",
         "Inspection of the lower levels from authorities reported no damage with the pipes still being intact. Farmers protest these reports, following concerns after witnessing a significant decline in the health of their livestock. Since reporting this issue, farmers have since claimed 'water treatment officials' have visited their properties following the increase in affected livestock. Veryfew reports have been released leading to farmers speculating if the water treatment officals were legitimate, in thhe little that has been published, the chemicals found are inconsistent with previous statements issued by authorities.\n",
+        "\n",
         "Outrage among residents affected has reached boiling point. A petition calling for independent inquiry has gathered over 2,000 signatures from the resdients and surrounding areas with the total growing quicky. Farmers lead the petition, for the health of their animals and for some acknowledgement by government bodies that this is bigger than the town. The environmental implications cannot be ignored.  \n",
-        "Older residents of the valley many whom worked in the facory themselves support claims of the farmers. A gentlemen who also wishes to remain anonymous worked within the factory for many years between 1920-1930 claimed that the where the pipes ran through the basements, given the size of the blast it would be impossible for them too remain in tact. Attempts to obtain floor plans or structural blueprints of the factory have failed. Records have been labelled as lost, sealed, or they never existed. One local said 'It's like the place was built to disapear'.\n",
+        "Older residents of the valley many whom worked in the facory themselves support claims of the farmers. A gentlemen who also wishes to remain anonymous worked within the factory for many years between 1920-1930 claimed that the where the pipes ran through the basements, given the size of the blast it would be impossible for them too remain in tact. Attempts to obtain floor plans or structural blueprints of the factory have failed. Records have been labelled as lost, sealed, or they never existed. One local said 'It's like the place was built to disapear'. Almost like a 'ghost file' waiting to be deleted.\n",
         "\n",
         "A second local has also reported seeing a strange man on the night of the blast, stumbling through the village. \n",
         "\n",
         "As of writing, no one has been held responsible. No final report has been published, but the mystery grows fueled by the passion of the valleys residents.\n",
         "\n",
-        "********************************************************************",
+        "********************************************************************\n",
         "\n"
 
     };
 
-    public string[] NEWPAGE =
+    private string[] GhostFile =
     {
-        "The Old Post\n",
+        "THE GHOST FILES\n",
+        "By J. G. Joiner\n",
+        "\n",
+        "********************************************************************\n",
+        "** FINDINGS: 01 **\n",
+        "Data File Inspected: 0001v03\n",
+        "\n",
+        "Everything I have tried to recover is full of ghost files. There's nothing to go off. My instincts tell me that the factory did not belong to the same company of 1949, and it was purchased by a private entity. I will refer to them as 'The Company'. They are secretive but I am determined to trace something from these logs. \n",
+        "\n",
+        "The call them ghost files because they never fully load, they just flicker some data in and out of the system... like it knows it being watched.\n",
+        "There were three patterns of text that emerged that I made note of.\n",
+        "The first two were single words: 'DONT' and 'AI'.\n",
+        "\n",
+        "The final text was a config string that flashed across the terminal. It took a few cycles to get it all down: \n",
+        "Z0.MODEL.SET:EXTYPE_03/INLAY_ACTIVE/WATCHDOG_TRUE\n",
+        "\n",
+        "I keep trying to get attention on this matter but no one's taking notice, and no one has mentioned it since. But it could be connection to another facility... are they trying to boot something up again?\n",
+        "********************************************************************\n",
+        "\n"
+
+    };
+
+    private string[] NEWPAGE =
+    {
+        "\n",
         "\n",
         "\n",
         "\n",
@@ -149,6 +181,7 @@ public class WebCrawler : MonoBehaviour
     public void SearchWeb()
     {
         ResetText();
+
         if (searchInput.text.ToLower() == "restoration" || searchInput.text.ToLower() == "restoration software" || searchInput.text.ToLower() == "rescue bit" || searchInput.text.ToLower() == "rescuebit")
         {
             StartCoroutine(LoadWebWithButton(RestorationSoftware, RescueBitDownloadButton));
@@ -156,20 +189,48 @@ public class WebCrawler : MonoBehaviour
         }
         else if (searchInput.text.ToLower() == "admin" || searchInput.text.ToLower() == "admin passwords")
         {
+            StartCoroutine(LoadWeb(AdminPasswords));
+
             if (controller.currentPlayer.data.currentChapter == 2 && !controller.currentPlayer.data.sideObjSubTwo_OneComplete)
             {
                 controller.UpdateObjective("sideTwoSubOne");
+
             }
 
-            StartCoroutine(LoadWeb(AdminPasswords));
+
+
         }
-        else if (searchInput.text.ToLower() == "the old post" || searchInput.text.ToLower() == "J G Joiner" || searchInput.text.ToLower() == "J. G. Joiner" || searchInput.text.ToLower() == "J.G.Joiner" || searchInput.text.ToLower() == "JG Joiner" || searchInput.text.ToLower() == "JGJoiner")
+        else if (searchInput.text.ToLower() == "the old post" || searchInput.text.ToLower() == "old post" || searchInput.text.ToLower() == "j g joiner" || searchInput.text.ToLower() == "j. g. joiner" || searchInput.text.ToLower() == "j.g.joiner" || searchInput.text.ToLower() == "jg joiner" || searchInput.text.ToLower() == "jgjoiner")
         {
-            if(controller.currentPlayer.data.currentChapter == 2 && !controller.currentPlayer.data.sideObjSubOne_OneComplete)
+            StartCoroutine(LoadWeb(OldHeadlines));
+
+            if (controller.currentPlayer.data.currentChapter == 2 && !controller.currentPlayer.data.sideObjSubOne_OneComplete)
             {
                 controller.UpdateObjective("sideOneSubOne");
+
             }
-            StartCoroutine(LoadWeb(OldHeadlines));
+
+
+        }
+        else if (searchInput.text.ToLower() == "ghost file")
+        {
+            CheckWebText();
+
+            if (controller.currentPlayer.data.currentChapter == 2 && !controller.currentPlayer.data.sideObjSubOne_TwoComplete)
+            {
+                controller.UpdateObjective("sideOneSubTwo");
+            }
+
+            if (controller.currentPlayer.data.ghostSiteUnlocked)
+            {
+                StartCoroutine(LoadWeb(GhostFile));
+            }
+            else
+            {
+                GhostFilePage.SetActive(true);
+            }
+            
+            
         }
         else
         {
@@ -177,10 +238,33 @@ public class WebCrawler : MonoBehaviour
         }
     }
 
+    public void CheckWebText()
+    {
+        if(webText.text != "")
+        {
+            webText.text = "";
+        }
+    }
     public void ResetText()
     {
         StopAllCoroutines();
         RescueBitDownloadButton.SetActive(false);
+        GhostFilePage.SetActive(false);
+    }
+
+    public void CheckGhostFilePassword()
+    {
+        if(userInput.text == GhostFilePassword)
+        {
+            controller.UpdateObjective("sideOneSubThree");
+            ResetText();
+            GhostFilePage.SetActive(false);
+            StartCoroutine(LoadWeb(GhostFile));
+        }
+        else
+        {
+            GFResponseText.text = "Incorrect Password";
+        }
     }
 
     public void RescueBitInstall()

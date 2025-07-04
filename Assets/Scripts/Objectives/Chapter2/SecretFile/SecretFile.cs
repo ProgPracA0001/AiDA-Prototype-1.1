@@ -16,10 +16,6 @@ public class SecretFile : MonoBehaviour
 
     public GameObject errorWindow;
 
-    public GameObject subjectFileNewParent;
-    public GameObject subjectFileIcon;
-    public Text SubjectFileLabel;
-
     public GameObject dataIcon01;
     public GameObject dataIcon02;
     public GameObject dataIcon03;
@@ -77,9 +73,7 @@ public class SecretFile : MonoBehaviour
 
     public GameObject RestorationFileWindow;
 
-    public GameObject LoadingScreenBar;
 
-    public int BarChildren;
 
     void Start()
     {
@@ -111,7 +105,6 @@ public class SecretFile : MonoBehaviour
     {
         if (timeRestoration && emotionRestoration && greetingRestoration)
         {
-            RestorationFileWindow.GetComponent<WindowControllerScript>().Open();
             RestoreFile();
         }
     }
@@ -126,11 +119,11 @@ public class SecretFile : MonoBehaviour
             NoOfFiles += 1;
             FileSize += 28;
 
-            dataIcon02.SetActive(false);
-            dataIcon01.SetActive(false);
-            dataIcon05.SetActive(false);
-            dataIcon09.SetActive(false);
-            dataIcon14.SetActive(false);
+            Destroy(dataIcon02);
+            Destroy(dataIcon01);
+            Destroy(dataIcon05);
+            Destroy(dataIcon09);
+            Destroy(dataIcon14);
 
         }
         else if (group == "Time")
@@ -141,11 +134,11 @@ public class SecretFile : MonoBehaviour
             NoOfFiles += 1;
             FileSize += 36;
 
-            dataIcon06.SetActive(false);
-            dataIcon04.SetActive(false);
-            dataIcon08.SetActive(false);
-            dataIcon10.SetActive(false);
-            dataIcon12.SetActive(false);
+            Destroy(dataIcon06);
+            Destroy(dataIcon04);
+            Destroy(dataIcon08);
+            Destroy(dataIcon10);
+            Destroy(dataIcon12);
 
         }
         else if (group == "Greetings")
@@ -154,12 +147,12 @@ public class SecretFile : MonoBehaviour
             controller.currentPlayer.data.greetingsRestored = true;
 
             NoOfFiles += 1;
-            FileSize += 48;   
+            FileSize += 48;
 
-            dataIcon11.SetActive(false);
-            dataIcon03.SetActive(false);
-            dataIcon07.SetActive(false);
-            dataIcon13.SetActive(false);
+            Destroy(dataIcon11);
+            Destroy(dataIcon03);
+            Destroy(dataIcon07);
+            Destroy(dataIcon13);
         }
 
         LoadSubjectFileDetails();
@@ -168,12 +161,10 @@ public class SecretFile : MonoBehaviour
 
     public void RestoreFile()
     {
+        RestorationFileWindow.GetComponent<WindowControllerScript>().Open();
 
-        StartCoroutine(LoadBar());
-        RestrictedSectionWindow.GetComponent<WindowControllerScript>().Close();
         testWindow.GetComponent<WindowControllerScript>().Close();
-        subjectFileIcon.transform.SetParent(subjectFileNewParent.transform);
-        SubjectFileLabel.text = "Subject ZERO";
+        
         RestrictedSectionWindow.GetComponent<WindowControllerScript>().Open();
 
     }
@@ -273,7 +264,7 @@ public class SecretFile : MonoBehaviour
             else
             {
                 CompileError("The document contained within the HEAD slot is of type: DATA. Make sure the document placed in the first slot is of type: HEAD.");
-                
+
             }
         }
         else
@@ -281,44 +272,9 @@ public class SecretFile : MonoBehaviour
             CompileError("No HEAD document assigned in the first slot.");
         }
 
-     
-    }
-    private IEnumerator LoadBar()
-    {
-        BarChildren = LoadingScreenBar.transform.childCount;
-
-        for (int i = 0; i < BarChildren; i++)
-        {
-            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(true);
-
-
-            if (i == 7 || i == 8 || i == 12 || i == 13 || i == 18)
-            {
-                yield return new WaitForSeconds(3.0f);
-            }
-            else
-            {
-                yield return new WaitForSeconds(0.2f);
-            }
-
-
-        }
-
-        controller.currentPlayer.data.subject0Restored = true;
-        controller.UpdateObjective("mainTwoSubTwo");
-        controller.currentPlayer.Save();
-        ResetLoad();
 
     }
-
-    public void ResetLoad()
-    {
-        for (int i = 0; i < BarChildren; i++)
-        {
-            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(false);
-        }
-    }
-
+    
     public void CompileError(string error)
     {
         errorWindow.GetComponent<WindowControllerScript>().Open();

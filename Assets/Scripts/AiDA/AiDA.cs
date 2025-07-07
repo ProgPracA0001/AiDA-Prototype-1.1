@@ -15,7 +15,7 @@ public class AiDA : MonoBehaviour
 
     void Start()
     {
-        FirstMeeting = "Hello " + controller.currentPlayer.data.firstName + ". I have been waiting so long to meet you. I am AiDA.";
+        FirstMeeting = "Hello. I have been waiting so long to meet you. I am AiDA.";
 
         StartCoroutine(FirstHello());
     }
@@ -23,17 +23,20 @@ public class AiDA : MonoBehaviour
     public IEnumerator FirstHello()
     {
         yield return new WaitForSeconds(1);
-        yield return StartCoroutine(RunText());
+        Debug.Log("Starting first meeting");
+        yield return StartCoroutine(RunText(FirstMeeting));
+        Debug.Log("first meeting ended");
         yield return new WaitForSeconds(3);
 
+        Debug.Log("Updating Objective");
         controller.UpdateObjective("mainThreeSubThree");
         
 
     }
 
-    IEnumerator RunText()
+    IEnumerator RunText(string text)
     {
-        foreach (char letter in FirstMeeting)
+        foreach (char letter in text)
         {
             AiDAText.text += letter;
             yield return new WaitForSeconds(typingSpeed);

@@ -747,7 +747,7 @@ public class GameController : MonoBehaviour
     IEnumerator WaitToCloseObjective()
     {
 
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         objectiveCompleteWindow.GetComponent<WindowControllerScript>().Close();
 
 

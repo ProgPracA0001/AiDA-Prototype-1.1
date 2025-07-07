@@ -53,7 +53,7 @@ public class WebCrawler : MonoBehaviour
         "Security and Protection:\n",
         "Troubleshooting and Maintenance:\n",
         "Data Management: Controlling data\n",
-        "Many modern systems ustilise this within their window controls, however some older systems utilise the ctrl + alt method to gain access to the BIOS.\n",
+        "Many modern systems ustilise this within their window controls, however some older systems utilise the ctrl + alt + LEFTshift method to gain access to the BIOS.\n",
 
     };
 

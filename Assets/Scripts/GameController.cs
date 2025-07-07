@@ -164,55 +164,60 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("StartMenu");
     }
 
+    public void QuitGame()
+    {
+        currentPlayer.Save();
+        Application.Quit();
+    }
    
     //Loads Main objective One - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadMainObjectiveOne()
     {
         if (currentPlayer.data.currentChapter == 1)
         {
-            mainObjectiveTitle.text = "New User Detected: Create a New Profile and First Time Login:";
+            mainObjectiveTitle.text = "1: New User Detected: Create a New Profile and First Time Login:";
 
-            mainObjSubOneTitle.text = "Signed Up: Create User Profile and Login";
+            mainObjSubOneTitle.text = "1.1: Signed Up: Create User Profile and Login";
             mainObjSubOneDesc.text = "Set up a profile with a username, password and first name, then log in!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Dr Who?: Find the Inheritance Message";
+            mainObjSubTwoTitle.text = "1.2: Dr Who?: Find the Inheritance Message";
             mainObjSubTwoDesc.text = "Go through the Welcome File on the Desktop and read the Inheritance Report";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "The Last Message: Find the Dr's Last Message";
+            mainObjSubThreeTitle.text = "1.3: The Last Message: Find the Dr's Last Message";
             mainObjSubThreeDesc.text = "It looks like the Dr left something behind for you...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Dial Up Dilemma: Connect To The Internet and Start Searching!";
+            mainObjectiveTitle.text = "1: Dial Up Dilemma: Connect To The Internet and Start Searching!";
 
-            mainObjSubOneTitle.text = "Who You Gonna Call? Dial-Up Network!:";
+            mainObjSubOneTitle.text = "1.1: Who You Gonna Call? Dial-Up Network!:";
             mainObjSubOneDesc.text = "How does Dial-Up work again? Maybe theres an information booklet we can use? Makes you miss the beauty of modern Wifi!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Who Will You Actually Call Though?:";
+            mainObjSubTwoTitle.text = "1.2: Who Will You Actually Call Though?:";
             mainObjSubTwoDesc.text = "Seriously, these Dial-Up Networks actually require a legitimate line to link to... maybe the Dr left contact details?";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "The World Wide Web:";
+            mainObjSubThreeTitle.text = "1.3: The World Wide Web: Get Connected!";
             mainObjSubThreeDesc.text = "Once you have the details you need, complete the Dial-Up Network Install and you're online!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "Ask AiDA:";
+            mainObjectiveTitle.text = "1: Ask AiDA:";
 
-            mainObjSubOneTitle.text = "The First Interaction:";
+            mainObjSubOneTitle.text = "1.1: The First Interaction:";
             mainObjSubOneDesc.text = "Well... you can't tell me you're NOT going to say hello...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "What can AiDA tell us?";
+            mainObjSubTwoTitle.text = "1.2: What can AiDA tell us?";
             mainObjSubTwoDesc.text = "AiDA might have some useful information, go through the options provided and see what you can find out.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeTitle.text = "1.3: ";
             mainObjSubThreeDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -222,33 +227,33 @@ public class GameController : MonoBehaviour
     {
         if(currentPlayer.data.currentChapter == 1)
         {    
-            mainObjectiveTitle.text = "The File Explorer: Explore the Desktop's Main Folders";
+            mainObjectiveTitle.text = "2: The File Explorer: Explore the Desktop's Main Folders";
 
-            mainObjSubOneTitle.text = "Byte-Sized Expedition: Find the Dr's Diaries";
+            mainObjSubOneTitle.text = "2.1: Byte-Sized Expedition: Find the Dr's Diaries";
             mainObjSubOneDesc.text = "Scattered around the desktop are the Dr's personal files, explore them, some may contain vital information";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "First Questions: Access to the Research File is Protected";
+            mainObjSubTwoTitle.text = "2.2: First Questions: Access to the Research File is Protected";
             mainObjSubTwoDesc.text = "Enter the correct word to unlock the Research folder, certain phrases may be found in other documents.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Note To Self: Note Down Your Clues and Findings";
+            mainObjSubThreeTitle.text = "2.3: Note To Self: Note Down Your Clues and Findings";
             mainObjSubThreeDesc.text = "Not everything can be kept in your mind! Start noting your findings and save them in the notepad";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "The Restricted Section: Access Restricted Folders";
+            mainObjectiveTitle.text = "2: The Restricted Section: Access Restricted Folders";
          
-            mainObjSubOneTitle.text = "Notes from The Dr's Hand Himself:";
+            mainObjSubOneTitle.text = "2.1: Notes from The Dr's Hand Himself:";
             mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research. Look for some notes that he has digitised!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "A Guide Through the Fire:";
+            mainObjSubTwoTitle.text = "2.2: A Guide Through the Fire:";
             mainObjSubTwoDesc.text = "A Firewall App Blocker security software is blocking your access to the Restricted Section! Figure out how to disable it, maybe some files or documents can help!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Call the Fireman: Bypass the Security Software:";
+            mainObjSubThreeTitle.text = "2.3: Call the Fireman: Bypass the Security Software:";
             mainObjSubThreeDesc.text = "Disable the Firewall and gain access to the restricted section!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -275,33 +280,33 @@ public class GameController : MonoBehaviour
     {
         if(currentPlayer.data.currentChapter == 1)
         {    
-            mainObjectiveTitle.text = "Access Denied: Unlock the MyFile Folder";
+            mainObjectiveTitle.text = "3: Access Denied: Unlock the MyFile Folder";
 
-            mainObjSubOneTitle.text = "Time To Hit The Books: The First Clue";
-            mainObjSubOneDesc.text = "Somewhere on the desktop is the first clue, time to track it down!";
+            mainObjSubOneTitle.text = "3.1: Hidden in The Binary: The First Clue";
+            mainObjSubOneDesc.text = "Somewhere on the desktop is the first clue, time to track it down! The MyFile questions look like some of the Dr's documents.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Piecing It Together: Second Clue In The Queue:";
+            mainObjSubTwoTitle.text = "3.2: Piecing It Together: Second Clue In The Queue:";
             mainObjSubTwoDesc.text = "The second piece of information we need is around here somewhere...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Quiz Time: Enter The Correct Answers and Unlock the Folder:";
+            mainObjSubThreeTitle.text = "3.3: Quiz Time: Enter The Correct Answers and Unlock the Folder:";
             mainObjSubThreeDesc.text = "You have all the information you need, it's time to unlock the file!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "The Restoration Project: Restore The Corrupted Files";
+            mainObjectiveTitle.text = "3: The Restoration Project: Restore The Corrupted Files";
 
-            mainObjSubOneTitle.text = "Software Will Sort It: Install The File Restoration Software";
+            mainObjSubOneTitle.text = "3.1: Software Will Sort It: Install The File Restoration Software";
             mainObjSubOneDesc.text = "A software that restores corrupted files is mentioned... If you have access to the internet maybe you can search for a download? Then test it by restoring the Diary05 file!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Hidden In Plain Sight: A Secret File?";
+            mainObjSubTwoTitle.text = "3.2: Hidden In Plain Sight: A Secret File?";
             mainObjSubTwoDesc.text = "Restore all corrupted files and using the documents in the Restricted Section correctly compile them into their categories to reveal the secret file.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Restoration Complete: Install The Project";
+            mainObjSubThreeTitle.text = "3.3: Restoration Complete: Install The Project";
             mainObjSubThreeDesc.text = "Install the project by using the correct values for training the model. Some files may be elsewhere within the system, have you checked the recycle bin?";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -327,34 +332,34 @@ public class GameController : MonoBehaviour
     {
         if (currentPlayer.data.currentChapter == 1)
         {
-            mainObjectiveTitle.text = "The Old Post: Enter the Correct Password and Access the Mystery Newspaper ";
+            mainObjectiveTitle.text = "S1: The Old Post: Enter the Correct Password and Access the Mystery Newspaper ";
 
-            mainObjSubOneTitle.text = "Find The First Clue: Contact List";
+            mainObjSubOneTitle.text = "S1.1: Find The First Clue: Contact List";
             mainObjSubOneDesc.text = "The Dr liked to take a lot of notes, maybe something can help!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Clue Number Two: Food Supplies";
+            mainObjSubTwoTitle.text = "S1.2: Clue Number Two: Food Supplies";
             mainObjSubTwoDesc.text = "Clue Number Two is similar to the first, I think the Dr was hungry when he came up with this!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "The Clue Slueth:";
+            mainObjSubThreeTitle.text = "S1.3: The Clue Slueth:";
             mainObjSubThreeDesc.text = "Using both clues solve the password to gain access to the Newspaper";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
 
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Deep Dive: Find out more about the Dr's job";
+            mainObjectiveTitle.text = "S1: Deep Dive: Find out more about the Dr's job";
 
-            mainObjSubOneTitle.text = "Old Headliners: From Paper to Digital";
+            mainObjSubOneTitle.text = "S1.1: Old Headliners: From Paper to Digital";
             mainObjSubOneDesc.text = "Remember that old newspaper you found? Maybe a search online will give us some updates? Use the journalists name or the newspaper title!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Pattern Pending: A Strange Recurrence?";
+            mainObjSubTwoTitle.text = "S1.2: Pattern Pending: A Strange Recurrence?";
             mainObjSubTwoDesc.text = "While reading through articles, two words keep appearing. Why would the same source use the samelanguage or phrasing? It might be worth a search. ";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Uncover the Unseen: Joiners Secret Site";
+            mainObjSubThreeTitle.text = "S1.3: Uncover the Unseen: Joiners Secret Site";
             mainObjSubThreeDesc.text = "Something about the wording lingers... Familiar steps, repeated in the right order, might open more than just a door.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -369,34 +374,34 @@ public class GameController : MonoBehaviour
     {
         if(currentPlayer.data.currentChapter == 1)
         {
-            mainObjectiveTitle.text = "Voice From the Void: Unlock Mystery Audio File";
+            mainObjectiveTitle.text = "S2: Voice From the Void: Unlock Mystery Audio File";
 
-            mainObjSubOneTitle.text = "Combo Clue One: Find the First Clue To The Combernation";
+            mainObjSubOneTitle.text = "S2.1: Combo Clue One: Find the First Clue To The Combination";
             mainObjSubOneDesc.text = "This clue contains half the information you need for the combination!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Make It Make Sense: Find The Second Clue";
+            mainObjSubTwoTitle.text = "S2.2: Make It Make Sense: Find The Second Clue";
             mainObjSubTwoDesc.text = "This clue might require another file to be unlocked! But together, they should make sense!";      
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "A Good Combination";
+            mainObjSubThreeTitle.text = "S2.3: A Good Combination";
             mainObjSubThreeDesc.text = "The clues together will allow for you work out the correct combination, you might want to keep notes!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
 
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
-            mainObjectiveTitle.text = "Recycle Deciple: Unlock The Recycle Bin";
+            mainObjectiveTitle.text = "S2: Recycle Deciple: Unlock The Recycle Bin";
 
-            mainObjSubOneTitle.text = "Making A Start: A Move In The Right Direction";
+            mainObjSubOneTitle.text = "S2.1: Making A Start: A Move In The Right Direction";
             mainObjSubOneDesc.text = "Try searching on the internet for information about admin passwords, maybe something can help.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "Instructions: Taking Control";
+            mainObjSubTwoTitle.text = "S2.2: Instructions: Taking Control";
             mainObjSubTwoDesc.text = "Using what you have found online, change your user privilege to ADMIN.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "Sifting Through The Trash: Gain Access To The Recycle Bin";
+            mainObjSubThreeTitle.text = "S2.3: Sifting Through The Trash: Gain Access To The Recycle Bin";
             mainObjSubThreeDesc.text = "Once you have obtained an Admin Password give it a go! Unlock the Recycle Bin and look for that file the Dr mentioned for installing the software!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -506,7 +511,7 @@ public class GameController : MonoBehaviour
                 currentPlayer.LoadPlayer();
                 StartCoroutine(NewChapterStarted());
                 ResetObjectives();
-                LogOff();
+                
             }
             else if (currentPlayer.data.currentChapter == 4)
             {
@@ -704,6 +709,10 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(RunChapterTitle());
         yield return new WaitForSeconds(6);
         ChapterUpdateWindow.SetActive(false);
+        if(currentPlayer.data.currentChapter == 3)
+        {
+            LogOff();
+        }
 
     }
 
@@ -730,6 +739,17 @@ public class GameController : MonoBehaviour
         objectiveCompleteText.text = objective;
         objectiveCompleteWindow.GetComponent<WindowControllerScript>().Open();
         objectiveCompleteWindow.transform.SetSiblingIndex(parentChildren - 1);
+        StartCoroutine(WaitToCloseObjective());
+        
+
+    }
+
+    IEnumerator WaitToCloseObjective()
+    {
+
+        yield return new WaitForSeconds(6);
+        objectiveCompleteWindow.GetComponent<WindowControllerScript>().Close();
+
 
     }
 

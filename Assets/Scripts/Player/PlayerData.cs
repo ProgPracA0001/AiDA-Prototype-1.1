@@ -12,6 +12,11 @@ public class PlayerData
 
     public string notes = "";
 
+    public string AiDALog = "";
+    public int AiDATrustLevel = 0;
+    public bool hasLearnedPromise = false;
+    public bool trustSystemInitiated = false;
+
     public int currentChapter = 1;
     public string currentChapterName = "Chapter One: An inherited Legacy...";
     
@@ -37,9 +42,6 @@ public class PlayerData
     public bool AiDAInstalled = false;
 
     public bool diary05Corrupted = true;
-
-    public bool data03Corrupted = false;
-    //public bool data04Corrupted = true;
 
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;

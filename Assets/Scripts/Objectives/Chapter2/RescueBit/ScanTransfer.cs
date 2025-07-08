@@ -35,11 +35,6 @@ public class ScanTransfer : MonoBehaviour
     public GameObject diary05Icon;
 
 
-    public GameObject data03Window;
-    public GameObject data03OriginalParent;
-    public GameObject data03Icon;
-
-
     // Start is called before the first frame update
     void Update()
     {
@@ -83,10 +78,7 @@ public class ScanTransfer : MonoBehaviour
             targetName = "diary05";
             descriptionLabel.text = "Diary05.txt ready for transfer";
         }
-        else if (transferIcon.GetComponent<FileClass>().name == "Data_03Icon")
-        {
-
-        }
+       
 
     }
 
@@ -129,10 +121,6 @@ public class ScanTransfer : MonoBehaviour
             windowIcon.sprite = corruptedDocumentImage;
             descriptionLabel.text = "Corrupted File Found: Diary05.txt";
             targetName = "diary05";
-
-        }
-        else if(data03Window.GetComponent<WindowControllerScript>().isOpen && data03Icon.GetComponent<FileClass>().isCorrupted)
-        {
 
         }
         else

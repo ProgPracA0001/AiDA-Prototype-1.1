@@ -30,6 +30,11 @@ public class BIOS : MonoBehaviour
 
     public Toggle adminToggle;
 
+    //System Memory Page
+
+
+
+
 
     void Start()
     {

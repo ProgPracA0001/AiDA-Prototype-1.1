@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     //Player Manager from the first scene
     public GameObject playerManagerObject;
     public PlayerManager currentPlayer;
+    public AiDA AiDAManager;
 
     [SerializeField] public Sprite objectiveComplete;
     public Sprite objectiveDefault;
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour
     public GameObject welcomeWindow;
     public GameObject objectiveCompleteWindow;
     public GameObject ChapterUpdateWindow;
+
+    public Text welcomeWindowText;
 
     public Text objectiveCompleteText;
     public Text newChapterText;
@@ -78,24 +81,14 @@ public class GameController : MonoBehaviour
 
         }
 
-        if (currentPlayer.data.internetLinkInstalled != true)
-        {
-            internetIcon.SetActive(false);
-        }
+        LoadIcons();
 
-        if (currentPlayer.data.internetConnected != true)
+        if(currentPlayer.data.currentChapter >= 3)
         {
-            webCrawlerIcon.SetActive(false);
-        }
+            LoadAiDA();
+            welcomeWindow.SetActive(true);
+            welcomeWindowText.text = "Thank you for playing AiDA! You have completed all current chapters! Feel free to look around the desktop however things will not work properly as this Chapter is still in development.s Thank you again for your participation in our Early Access build, and watch out for new updates!";
 
-        if (currentPlayer.data.RescureBitInstalled != true)
-        {
-            rescueBitIcon.SetActive(false);
-        }
-
-        if(currentPlayer.data.AiDAInstalled != true)
-        {
-            AiDAIcon.SetActive(false);
         }
         //If returning player then main objective one is loaded.
         LoadMainObjectiveOne();
@@ -146,6 +139,35 @@ public class GameController : MonoBehaviour
         if (currentPlayer.data.currentChapter >= 2)
         {
             BIOSWindow.GetComponent<WindowControllerScript>().Open();
+        }
+    }
+
+    public void LoadAiDA()
+    {
+        AiDAManager.trustLevel = currentPlayer.data.AiDATrustLevel;
+
+    }
+
+    public void LoadIcons()
+    {
+        if (currentPlayer.data.internetLinkInstalled != true)
+        {
+            internetIcon.SetActive(false);
+        }
+
+        if (currentPlayer.data.internetConnected != true)
+        {
+            webCrawlerIcon.SetActive(false);
+        }
+
+        if (currentPlayer.data.RescureBitInstalled != true)
+        {
+            rescueBitIcon.SetActive(false);
+        }
+
+        if (currentPlayer.data.AiDAInstalled != true)
+        {
+            AiDAIcon.SetActive(false);
         }
     }
 
@@ -207,18 +229,18 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "1: Ask AiDA:";
+            mainObjectiveTitle.text = "1: Ask AiDA: Go Through The Interactions to Learn More About AiDA";
 
-            mainObjSubOneTitle.text = "1.1: The First Interaction:";
-            mainObjSubOneDesc.text = "Well... you can't tell me you're NOT going to say hello...";
+            mainObjSubOneTitle.text = "1.1: The First Interaction: Say Something";
+            mainObjSubOneDesc.text = "Well... you can't tell me you're NOT going to say hello... go on, say something!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "1.2: What can AiDA tell us?";
-            mainObjSubTwoDesc.text = "AiDA might have some useful information, go through the options provided and see what you can find out.";
+            mainObjSubTwoTitle.text = "1.2: A Curious Mind: Teach AiDA Something New";
+            mainObjSubTwoDesc.text = "AiDA knows a lot, but not everything. Explore the responses and see if there's something you can explain to her. She might surprise you.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "1.3: ";
-            mainObjSubThreeDesc.text = "";
+            mainObjSubThreeTitle.text = "1.3: System Check: AiDA's Full Potential";
+            mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works, if its limited and if you can help restore any more of her system.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }

@@ -84,13 +84,6 @@ public class RescueBitRestoration : MonoBehaviour
             
             
         }
-        else if(targetName == "Data_03Icon")
-        {
-            File.GetComponent<DraggableFile>().draggable = true;
-            player.currentPlayer.data.data03Corrupted = false;
-
-
-        }
         else
         {
             Debug.Log("Not Matching");

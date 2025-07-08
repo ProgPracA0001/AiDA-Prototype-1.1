@@ -57,17 +57,6 @@ public class FileClass: MonoBehaviour
             isCorrupted = controller.currentPlayer.data.diary05Corrupted;
 
         }
-
-        else if(fileName == "data03")
-        {
-            isCorrupted = controller.currentPlayer.data.data03Corrupted;
-
-            if(isCorrupted)
-            {
-                gameObject.GetComponent<DraggableFile>().draggable = false;
-            }
-        
-        }
         
 
     }

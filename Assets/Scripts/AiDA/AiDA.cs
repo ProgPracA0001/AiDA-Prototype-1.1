@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.LowLevel;
 using UnityEngine.UI;
 
 public class AiDA : MonoBehaviour
@@ -91,8 +92,10 @@ public class AiDA : MonoBehaviour
 
     private void LoadAiDAKnowledge()
     {
+        Debug.Log("Has Learned Promise: " + hasLearnedPromise);
         hasLearnedPromise = controller.currentPlayer.data.hasLearnedPromise;
         trustSystemInitiated = controller.currentPlayer.data.trustSystemInitiated;
+        Debug.Log("Has Learned Promise: " + hasLearnedPromise);
     }
 
     private void LoadNodes()
@@ -100,22 +103,20 @@ public class AiDA : MonoBehaviour
 
         int chapter = controller.currentPlayer.data.currentChapter;
 
-        Debug.Log("Running LOADING AIDA KNOWLEDGE");
+        
         LoadAiDAKnowledge();
 
         if (chapter == 3 && !controller.currentPlayer.data.mainObjectiveOneComplete)
         {
-            Debug.Log("Running LOADING FIRST INTERACTIONS");
-            LoadFirstInteractionNodes();
+           
+            LoadFirstInteractionNodes(false);
         }
-        else if (chapter == 3 && controller.currentPlayer.data.mainObjectiveOneComplete)
-        {
-            
-        }
+        
     }
 
-    public void LoadFirstInteractionNodes()
+    public void LoadFirstInteractionNodes(bool reloading)
     {
+
         startNodeFI = new AiDADialogueNode();
         startNodeFI.aidaText = "Hello " + userFirstName + ". I have been waiting to meet you. I am AiDA.";
         startNodeFI.playerOptions[0] = "Hello...";
@@ -221,7 +222,7 @@ public class AiDA : MonoBehaviour
         node3.nextNodes[2] = node3_3;
         node3_3.previousNode = node3;
        
-        if (hasLearnedPromise)
+        if (!hasLearnedPromise)
         {
             node2_1.nextNodes[1] = node2_1aResponse;
         }
@@ -230,25 +231,28 @@ public class AiDA : MonoBehaviour
             node2_1.nextNodes[1] = null;
         }
 
-        
-        
 
-         currentNode = startNodeFI;
-
-        StartCoroutine(ShowCurrentNode());
-
+        if (!reloading)
+        {
+            currentNode = startNodeFI;
+            StartCoroutine(ShowCurrentNode());
+        }
+        else
+        {
+            Debug.Log("Interaction Nodes Updated");
+        }
+       
 
     }
-
 
     public void OptionOne()
     {
 
         if (!CR_Running)
         {
-            AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
+            UpdateAiDAKnowledge(controller.currentPlayer.data.hasLearnedPromise, controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
 
-            UpdateAiDAKnowledge(controller.currentPlayer.data.hasLearnedPromise, node2_1bResponse, node2_1);
+            AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
 
             EventSystem.current.SetSelectedGameObject(null);
             AdvanceToNode(0);
@@ -260,6 +264,7 @@ public class AiDA : MonoBehaviour
     {
         if (!CR_Running)
         {
+
             AiDAText.text += "YOU: " + optionTwoLabel.text + "\n";
 
             EventSystem.current.SetSelectedGameObject(null);
@@ -272,6 +277,7 @@ public class AiDA : MonoBehaviour
     {
         if (!CR_Running)
         {
+
             AiDAText.text += "YOU: " + optionThreeLabel.text + "\n";
 
             EventSystem.current.SetSelectedGameObject(null);
@@ -289,28 +295,37 @@ public class AiDA : MonoBehaviour
         }
     }
 
-    public void UpdateAiDAKnowledge(bool playerBool, AiDADialogueNode targetNode, AiDADialogueNode returnNode)
+    public void UpdateAiDAKnowledge(bool playerAiDABool, bool playerObjective, AiDADialogueNode targetNode, string targetObjective, int targetChapter)
     {
 
-        if(currentNode == targetNode && !playerBool)
+        if(controller.currentPlayer.data.currentChapter == targetChapter && !playerObjective)
         {
-            playerBool = true;
-            controller.UpdatePlayer();
-            LoadNodes();
-            currentNode = returnNode;
-            StartCoroutine(ShowCurrentNode());
+            if (currentNode == targetNode && !playerAiDABool)
+            {
+                Debug.Log("Has Learned Promise: " + playerAiDABool);
+                playerAiDABool = true;
+                controller.UpdateObjective(targetObjective);
 
-            
+                Debug.Log("Has Learned Promise: " + playerAiDABool);
+                LoadAiDAKnowledge();
+                LoadFirstInteractionNodes(true);
+
+            }
         }
+
+        
     }
+
     private void AdvanceToNode(int index)
     {
         
         if (currentNode.nextNodes[index] != null)
         {
             AddObjectiveToOption(controller.currentPlayer.data.mainObjSubOne_OneComplete, startNodeFI, "mainOneSubOne", 3);
+            
 
             currentNode = currentNode.nextNodes[index];
+
             StartCoroutine(ShowCurrentNode());
             
         }
@@ -351,11 +366,11 @@ public class AiDA : MonoBehaviour
 
         StartCoroutine(RunText(currentNode.aidaText));
 
-        yield return new WaitForSeconds(2);
-
         optionOneLabel.text = currentNode.playerOptions[0];
         optionTwoLabel.text = currentNode.playerOptions[1];
         optionThreeLabel.text = currentNode.playerOptions[2];
+
+        yield return new WaitForSeconds(2);
 
         backButton.SetActive(currentNode.previousNode != null);
 
@@ -370,7 +385,7 @@ public class AiDA : MonoBehaviour
             AiDAText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-
+        yield return new WaitForSeconds(2);
         AiDAText.text += "\n";
         CR_Running = false;
         

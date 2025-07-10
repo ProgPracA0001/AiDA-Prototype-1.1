@@ -16,6 +16,10 @@ public class SecretFile : MonoBehaviour
 
     public GameObject errorWindow;
 
+    public GameObject newSubjectParent;
+    public GameObject subjectIcon;
+    public Text subjectLabel;
+
     public GameObject dataIcon01;
     public GameObject dataIcon02;
     public GameObject dataIcon03;
@@ -30,6 +34,9 @@ public class SecretFile : MonoBehaviour
     public GameObject dataIcon12;
     public GameObject dataIcon13;
     public GameObject dataIcon14;
+
+    public GameObject additionalDataIcon;
+    public GameObject additionalDataWindow;
 
     public GameObject dataFile01;
     public GameObject dataFile02;
@@ -105,6 +112,8 @@ public class SecretFile : MonoBehaviour
     {
         if (timeRestoration && emotionRestoration && greetingRestoration)
         {
+            Destroy(additionalDataWindow);
+            Destroy(additionalDataIcon);
             RestoreFile();
         }
     }
@@ -167,6 +176,31 @@ public class SecretFile : MonoBehaviour
         
         RestrictedSectionWindow.GetComponent<WindowControllerScript>().Open();
 
+    }
+
+    public void FileRestored()
+    {
+
+        subjectIcon.transform.SetParent(newSubjectParent.transform);
+        subjectLabel.text = "Subject ZERO";
+
+        Destroy(dataIcon02);
+        Destroy(dataIcon01);
+        Destroy(dataIcon05);
+        Destroy(dataIcon09);
+        Destroy(dataIcon14);
+        Destroy(dataIcon06);
+        Destroy(dataIcon04);
+        Destroy(dataIcon08);
+        Destroy(dataIcon10);
+        Destroy(dataIcon12);
+        Destroy(dataIcon11);
+        Destroy(dataIcon03);
+        Destroy(dataIcon07);
+        Destroy(dataIcon13);
+
+        Destroy(additionalDataIcon);
+        Destroy(additionalDataWindow);
     }
 
     public int AssignTotalFileCount(string group)

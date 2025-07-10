@@ -82,13 +82,6 @@ public class ScanTransfer : MonoBehaviour
 
     }
 
-    public void CheckForOpenMultipleWindows()
-    {
-        if(diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted)
-        {
-
-        }
-    }
     public void InitializeWindow()
     {
         targetName = null;
@@ -115,7 +108,7 @@ public class ScanTransfer : MonoBehaviour
         loadingContainer.SetActive(false);
         
 
-        if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted)
+        if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().status == "Corrupted")
         {
             acceptContainer.SetActive(true);
             windowIcon.sprite = corruptedDocumentImage;

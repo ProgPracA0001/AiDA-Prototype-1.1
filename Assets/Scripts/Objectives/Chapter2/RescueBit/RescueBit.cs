@@ -52,7 +52,7 @@ public class RescueBit : MonoBehaviour
             GameObject child = container.transform.GetChild(0).gameObject;
             GetFileDetails();
 
-            if (child.GetComponent<FileClass>().isCorrupted)
+            if (child.GetComponent<FileClass>().isCorrupted == true)
             {
                 transferButton.SetActive(false);
             }

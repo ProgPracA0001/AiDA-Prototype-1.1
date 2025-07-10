@@ -24,11 +24,12 @@ public class RescueBitRestoration : MonoBehaviour
 
     public void Restore()
     {
+
         if (Container.transform.childCount != 0)
         {
             File = Container.transform.GetChild(0).gameObject;
 
-            if (File.GetComponent<FileClass>().isCorrupted)
+            if (File.GetComponent<FileClass>().isCorrupted == true)
             {
                 loadingBarContainer.SetActive(true);
 
@@ -54,6 +55,7 @@ public class RescueBitRestoration : MonoBehaviour
         }
     }
 
+  
     public void RestoreFile()
     {
 
@@ -71,17 +73,13 @@ public class RescueBitRestoration : MonoBehaviour
     {
         Debug.Log("Checking File: " + targetName);
 
-        File.GetComponent<FileClass>().isCorrupted = false;
-        File.GetComponent<FileClass>().fileIcon.sprite = File.GetComponent<FileClass>().restoredIcon;
-        File.GetComponent<FileClass>().status = "Restored";
-
         if (targetName == "Diary05Icon")
         {
             Debug.Log("File is Diary");
             
             player.currentPlayer.data.diary05Corrupted = false;
+            File.GetComponent<FileClass>().CheckIfRestored();
             player.UpdateObjective("mainThreeSubOne");
-            
             
         }
         else

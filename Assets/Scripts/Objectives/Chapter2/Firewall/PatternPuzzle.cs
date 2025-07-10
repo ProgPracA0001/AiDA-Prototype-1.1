@@ -92,6 +92,9 @@ public class PatternPuzzle : MonoBehaviour
     public string L3AnswerFive;
     public string L3AnswerSix;
 
+    public GameObject backButton;
+    public GameObject nextButton;
+
 
     //LEVEL 4 COMPONENTS
     public GameObject containerOne;
@@ -196,32 +199,38 @@ public class PatternPuzzle : MonoBehaviour
     {
         if (QuestionNo < 6)
         {
+            
             QuestionNo++;
         }
+        
     }
 
     public void BackPage()
     {
-        if(QuestionNo > 1)
+        if (QuestionNo > 1)
         {
+
             QuestionNo--;
         }
     }
+       
 
 
     public void LoadCurrentQuestionLevel3()
     {
         if (QuestionNo == 1)
         {
+            backButton.SetActive(false);
             LevelThreeQuestionText.text = "Q1) What is an AI model??";
 
             buttonOneText.text = "A) A computer program that follows a fixed set of rules";
-            buttonTwoText.text = "B) A system that adjustd and improves based on data";
+            buttonTwoText.text = "B) A system that adjusts and improves based on data";
             buttonThreeText.text = "C) A digital copy of a human brain";
             buttonFourText.text = "D) A type of advanced search engine";
         }
         else if (QuestionNo == 2)
         {
+            backButton.SetActive(true);
             LevelThreeQuestionText.text = "Q2) What is the main thing an AI need to learn?";
 
             buttonOneText.text = "A) A powerful computer";
@@ -249,6 +258,7 @@ public class PatternPuzzle : MonoBehaviour
         }
         else if(QuestionNo == 5)
         {
+            nextButton.SetActive(true);
             LevelThreeQuestionText.text = "Q5) What is the difference between AI and regular computer programs?";
 
             buttonOneText.text = "A) AI follows strict rules, while regular programs learn from data";
@@ -258,6 +268,7 @@ public class PatternPuzzle : MonoBehaviour
         }
         else if (QuestionNo== 6)
         {
+            nextButton.SetActive(false);
             LevelThreeQuestionText.text = "Q6) Why does AI need large amounts of data?";
 
             buttonOneText.text = "A) To memorise every possible outcome";

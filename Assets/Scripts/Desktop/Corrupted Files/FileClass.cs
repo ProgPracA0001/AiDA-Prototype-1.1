@@ -32,9 +32,23 @@ public class FileClass: MonoBehaviour
 
     void Start()
     {
-        
         CheckIfRestored();
-        
+    }
+    public void CheckIfRestored()
+    {
+        Debug.Log("Running: CheckIfFRestored");
+
+        Debug.Log("Filename: " + filename);
+
+        if(filename == "diary05")
+        {
+            Debug.Log("DIARY CORRUPTED IN (CheckIfRestored): " + isCorrupted);
+            Debug.Log("PLAYER CORRUPTED: " + controller.currentPlayer.data.diary05Corrupted);
+            isCorrupted = controller.currentPlayer.data.diary05Corrupted;
+            Debug.Log("DIARY CORRUPTED: " + isCorrupted);
+
+        }
+
         if (isCorrupted)
         {
             fileIcon.sprite = corruptedIcon;
@@ -48,16 +62,7 @@ public class FileClass: MonoBehaviour
 
             status = "Restored";
         }
-    }
 
-    public void CheckIfRestored()
-    {
-        if(fileName == "diary05")
-        {
-            isCorrupted = controller.currentPlayer.data.diary05Corrupted;
-
-        }
-        
 
     }
 

@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FirewallOne_0: 5998769749470823154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -193,7 +193,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icons8-pause-50_0: 4277712820709775284
+      icons8-pause-50_1: 9045650990335132204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

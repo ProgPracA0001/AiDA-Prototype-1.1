@@ -16,7 +16,7 @@ public class CorruptedFile : MonoBehaviour
 
     void Start()
     {
-        corrupted = targetFile.isCorrupted;
+        corrupted = targetFile.isCorrupted == true;
     }
 
     public void checkCorruptionStatus()

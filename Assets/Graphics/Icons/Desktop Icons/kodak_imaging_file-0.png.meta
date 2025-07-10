@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kodak_imaging_file-0_0: 7259923431975100843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

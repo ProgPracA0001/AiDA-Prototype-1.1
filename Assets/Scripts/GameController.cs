@@ -528,7 +528,7 @@ public class GameController : MonoBehaviour
             {
                 currentPlayer.data.currentChapterName = "Chapter Three: Booting Up The Past...";
 
-                currentChapterTitle.text = "Chapter Three: Booting Up The Past\n Coming soon....";
+                currentChapterTitle.text = "Chapter Three: Booting Up The Past\n Coming soon....\n Thank you so much for playing!";
                 UpdatePlayer();
                 currentPlayer.LoadPlayer();
                 StartCoroutine(NewChapterStarted());
@@ -731,6 +731,7 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(RunChapterTitle());
         yield return new WaitForSeconds(6);
         ChapterUpdateWindow.SetActive(false);
+        newChapterText.text = "";
         if(currentPlayer.data.currentChapter == 3)
         {
             LogOff();
@@ -752,6 +753,7 @@ public class GameController : MonoBehaviour
 
     public void ObjectivePopUp(string objective)
     {
+        StopCoroutine(WaitToCloseObjective());
         if (objectiveCompleteWindow.GetComponent<WindowControllerScript>().isOpen)
         {
             objectiveCompleteWindow.GetComponent<WindowControllerScript>().Close();

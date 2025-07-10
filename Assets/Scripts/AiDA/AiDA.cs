@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -250,7 +251,9 @@ public class AiDA : MonoBehaviour
 
         if (!CR_Running)
         {
-            UpdateAiDAKnowledge(controller.currentPlayer.data.hasLearnedPromise, controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
+            UpdateAiDAKnowledge(() => controller.currentPlayer.data.hasLearnedPromise, 
+                                () => controller.currentPlayer.data.hasLearnedPromise = true, 
+                                controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
 
             AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
 
@@ -295,25 +298,24 @@ public class AiDA : MonoBehaviour
         }
     }
 
-    public void UpdateAiDAKnowledge(bool playerAiDABool, bool playerObjective, AiDADialogueNode targetNode, string targetObjective, int targetChapter)
-    {
 
+    public void UpdateAiDAKnowledge(Func<bool> getKnowledgeBool, Action setKnowledgeBool, bool playerObjective, AiDADialogueNode targetNode, string targetObjective, int targetChapter)
+    {
         if(controller.currentPlayer.data.currentChapter == targetChapter && !playerObjective)
         {
-            if (currentNode == targetNode && !playerAiDABool)
+            if(currentNode == targetNode && !getKnowledgeBool())
             {
-                Debug.Log("Has Learned Promise: " + playerAiDABool);
-                playerAiDABool = true;
+                Debug.Log("Has Learned Promise: " + getKnowledgeBool());
+
+                setKnowledgeBool();
                 controller.UpdateObjective(targetObjective);
 
-                Debug.Log("Has Learned Promise: " + playerAiDABool);
+                Debug.Log("Has Learned Promise: " + getKnowledgeBool());
+
                 LoadAiDAKnowledge();
                 LoadFirstInteractionNodes(true);
-
             }
         }
-
-        
     }
 
     private void AdvanceToNode(int index)

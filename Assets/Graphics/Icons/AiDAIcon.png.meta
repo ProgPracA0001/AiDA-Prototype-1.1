@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AiDAIcon_0: 1702490068154671866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

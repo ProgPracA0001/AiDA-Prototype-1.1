@@ -45,6 +45,7 @@ public class AiDA : MonoBehaviour
     private AiDADialogueNode currentNode;
 
     private AiDADialogueNode startNodeFI;
+    private AiDADialogueNode node2_1aResponse;
     private AiDADialogueNode node2_1bResponse;
     private AiDADialogueNode node2_1;
 
@@ -97,6 +98,15 @@ public class AiDA : MonoBehaviour
         hasLearnedPromise = controller.currentPlayer.data.hasLearnedPromise;
         trustSystemInitiated = controller.currentPlayer.data.trustSystemInitiated;
         Debug.Log("Has Learned Promise: " + hasLearnedPromise);
+
+        if (!hasLearnedPromise)
+        {
+            node2_1.nextNodes[1] = node2_1aResponse;
+        }
+        else
+        {
+            node2_1.nextNodes[1] = null;
+        }
     }
 
     private void LoadNodes()
@@ -104,15 +114,17 @@ public class AiDA : MonoBehaviour
 
         int chapter = controller.currentPlayer.data.currentChapter;
 
+       
         
-        LoadAiDAKnowledge();
 
         if (chapter == 3 && !controller.currentPlayer.data.mainObjectiveOneComplete)
         {
            
             LoadFirstInteractionNodes(false);
+            
         }
-        
+        LoadAiDAKnowledge();
+
     }
 
     public void LoadFirstInteractionNodes(bool reloading)
@@ -174,7 +186,7 @@ public class AiDA : MonoBehaviour
         node2_2.fallbackResponses[0] = "As my programming and data files increase, my responses will improve and I will be able to access more information.";
         node2_2.fallbackResponses[2] = "Yes, without your input and help, my programming will stay the same.";
 
-        AiDADialogueNode node2_1aResponse = new AiDADialogueNode();
+        node2_1aResponse = new AiDADialogueNode();
         node2_1aResponse.aidaText = "What is a promise?";
         node2_1aResponse.playerOptions[0] = "It's a commitment to doing or not doing something.";
         node2_1aResponse.playerOptions[1] = "It's a form of trust";
@@ -223,14 +235,7 @@ public class AiDA : MonoBehaviour
         node3.nextNodes[2] = node3_3;
         node3_3.previousNode = node3;
        
-        if (!hasLearnedPromise)
-        {
-            node2_1.nextNodes[1] = node2_1aResponse;
-        }
-        else
-        {
-            node2_1.nextNodes[1] = null;
-        }
+
 
 
         if (!reloading)
@@ -251,17 +256,22 @@ public class AiDA : MonoBehaviour
 
         if (!CR_Running)
         {
-            UpdateAiDAKnowledge(() => controller.currentPlayer.data.hasLearnedPromise, 
-                                () => controller.currentPlayer.data.hasLearnedPromise = true, 
-                                controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
 
-            AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
-
-            EventSystem.current.SetSelectedGameObject(null);
-            AdvanceToNode(0);
-            
+            RunOne();
 
         }
+    }
+
+    public void RunOne()
+    {
+        UpdateAiDAKnowledge(() => controller.currentPlayer.data.hasLearnedPromise,
+                               () => controller.currentPlayer.data.hasLearnedPromise = true,
+                               controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
+
+        AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
+
+        EventSystem.current.SetSelectedGameObject(null);
+        AdvanceToNode(0);
     }
     public void OptionTwo()
     {
@@ -313,7 +323,7 @@ public class AiDA : MonoBehaviour
                 Debug.Log("Has Learned Promise: " + getKnowledgeBool());
 
                 LoadAiDAKnowledge();
-                LoadFirstInteractionNodes(true);
+               
             }
         }
     }
@@ -339,13 +349,16 @@ public class AiDA : MonoBehaviour
 
     public void GoBack()
     {
-        StopAllCoroutines();
-        if(currentNode.previousNode != null)
+        if (!CR_Running)
         {
-            currentNode = currentNode.previousNode;
-            StartCoroutine(ShowCurrentNode());
-            
+            if (currentNode.previousNode != null)
+            {
+                currentNode = currentNode.previousNode;
+                StartCoroutine(ShowCurrentNode());
+
+            }
         }
+        
 
     }
     public IEnumerator FirstHello()

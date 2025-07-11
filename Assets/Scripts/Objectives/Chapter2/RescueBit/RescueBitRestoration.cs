@@ -82,6 +82,12 @@ public class RescueBitRestoration : MonoBehaviour
             player.UpdateObjective("mainThreeSubOne");
             
         }
+        else if (targetName == "XFileIcon")
+        {
+            player.currentPlayer.data.XFileCorrupted = false;
+            File.GetComponent<FileClass>().CheckIfRestored();
+
+        }
         else
         {
             Debug.Log("Not Matching");

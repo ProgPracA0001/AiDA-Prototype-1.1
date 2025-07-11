@@ -34,6 +34,10 @@ public class ScanTransfer : MonoBehaviour
     public GameObject diaryOriginalParent;
     public GameObject diary05Icon;
 
+    public GameObject recycleWindow;
+    public GameObject originalXFileParent;
+    public GameObject XFileIcon;
+
 
     // Start is called before the first frame update
     void Update()
@@ -78,6 +82,11 @@ public class ScanTransfer : MonoBehaviour
             targetName = "diary05";
             descriptionLabel.text = "Diary05.txt ready for transfer";
         }
+        else if(transferIcon.name == "XFileIcon")
+        {
+            targetName = "XFile";
+            descriptionLabel.text = "XFile ready for transfer";
+        }
        
 
     }
@@ -102,24 +111,44 @@ public class ScanTransfer : MonoBehaviour
         StartCoroutine(LoadBar());
 
     }
-    
-    public void ScanComplete()
-    {
-        loadingContainer.SetActive(false);
-        
 
-        if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().status == "Corrupted")
+    public void CheckForMultipleWindows()
+    {
+        if(diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted == true && recycleWindow.GetComponent<WindowControllerScript>().isOpen && XFileIcon.GetComponent<FileClass>().isCorrupted == true)
         {
-            acceptContainer.SetActive(true);
-            windowIcon.sprite = corruptedDocumentImage;
-            descriptionLabel.text = "Corrupted File Found: Diary05.txt";
-            targetName = "diary05";
+            multipleWindowsOpen = true;
 
         }
         else
         {
+            multipleWindowsOpen = false;
+        }
+    }
+    
+    public void ScanComplete()
+    {
+        loadingContainer.SetActive(false);
+
+        if (!multipleWindowsOpen)
+        {
+            if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted == true)
+            {
+                acceptContainer.SetActive(true);
+                windowIcon.sprite = corruptedDocumentImage;
+                descriptionLabel.text = "Corrupted File Found: Diary05.txt";
+                targetName = "diary05";
+
+            }
+            else
+            {
+                noFileFound.SetActive(true);
+                descriptionLabel.text = "No Files Found";
+            }
+        }
+        else
+        {
             noFileFound.SetActive(true);
-            descriptionLabel.text = "No Files Found";
+            descriptionLabel.text = "Have only one window with a corrupted file open at a time.";
         }
     }
 
@@ -179,6 +208,7 @@ public class ScanTransfer : MonoBehaviour
 
         }
 
+        CheckForMultipleWindows();
         ScanComplete();
         ResetLoad();
 

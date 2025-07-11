@@ -42,6 +42,7 @@ public class PlayerData
     public bool AiDAInstalled = false;
 
     public bool diary05Corrupted = true;
+    public bool XFileCorrupted = true;
 
     public bool chapterOneComplete = false;
     public bool chapterTwoComplete = false;

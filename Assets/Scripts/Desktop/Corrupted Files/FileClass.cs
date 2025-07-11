@@ -42,11 +42,14 @@ public class FileClass: MonoBehaviour
 
         if(filename == "diary05")
         {
-            Debug.Log("DIARY CORRUPTED IN (CheckIfRestored): " + isCorrupted);
-            Debug.Log("PLAYER CORRUPTED: " + controller.currentPlayer.data.diary05Corrupted);
+            
             isCorrupted = controller.currentPlayer.data.diary05Corrupted;
-            Debug.Log("DIARY CORRUPTED: " + isCorrupted);
+            
 
+        }
+        else if(filename == "XFile")
+        {
+            isCorrupted = controller.currentPlayer.data.XFileCorrupted;
         }
 
         if (isCorrupted)

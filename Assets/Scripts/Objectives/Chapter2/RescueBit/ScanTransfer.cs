@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class ScanTransfer : MonoBehaviour
 {
+    public GameObject chapterAlert;
+    public Text chapterAlerText;
+
     public Text descriptionLabel;
     public Image windowIcon;
 
@@ -139,6 +142,22 @@ public class ScanTransfer : MonoBehaviour
                 targetName = "diary05";
 
             }
+            else if(recycleWindow.GetComponent<WindowControllerScript>().isOpen && XFileIcon.GetComponent<FileClass>().isCorrupted == true)
+            {
+                if (RBScript.controller.currentPlayer.data.currentChapter == 3)
+                {
+                    acceptContainer.SetActive(true);
+                    windowIcon.sprite = corruptedDocumentImage;
+                    descriptionLabel.text = "Corrupted File Found: XFile";
+                    targetName = "XFile";
+                }
+                else
+                {
+                    chapterAlert.GetComponent<WindowControllerScript>().Open();
+                    chapterAlerText.text = "Access Denied. Requires:\n Chapter 3";
+                }
+                
+            }
             else
             {
                 noFileFound.SetActive(true);
@@ -168,9 +187,14 @@ public class ScanTransfer : MonoBehaviour
             diary05Icon.transform.SetParent(rescueBitContainer.transform);
 
         }
+        else if(targetName == "XFile")
+        {
+            XFileIcon.GetComponent<FileClass>().inRescueBit = true;
+            XFileIcon.transform.SetParent(rescueBitContainer.transform);
+        }
 
-        RBScript.CheckContainer();
-        gameObject.GetComponent<WindowControllerScript>().Close();
+         RBScript.CheckContainer();
+         gameObject.GetComponent<WindowControllerScript>().Close();
     }
 
     public void TransferBack()
@@ -179,6 +203,11 @@ public class ScanTransfer : MonoBehaviour
         {
             diary05Icon.GetComponent<FileClass>().inRescueBit = false;
             diary05Icon.transform.SetParent(diaryOriginalParent.transform);
+        }
+        else if (targetName == "XFile")
+        {
+            XFileIcon.GetComponent<FileClass>().inRescueBit = false;
+            XFileIcon.transform.SetParent(originalXFileParent.transform);
         }
 
         RBScript.CheckContainer();

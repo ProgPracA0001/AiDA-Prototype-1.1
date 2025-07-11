@@ -11,7 +11,9 @@ public class AiDA : MonoBehaviour
 {
     public GameController controller;
 
-    private float typingSpeed = 0.07f;
+    public ScrollRect scrollRect;
+
+    private float typingSpeed = 0.04f;
 
     public GameObject optioneOneButton;
     public GameObject optioneTwoButton;
@@ -71,7 +73,8 @@ public class AiDA : MonoBehaviour
             Debug.Log("Running LOADNODES");
 
             LoadNodes();
-            
+            backButton.SetActive(false);
+
         }
 
         
@@ -99,13 +102,14 @@ public class AiDA : MonoBehaviour
         trustSystemInitiated = controller.currentPlayer.data.trustSystemInitiated;
         Debug.Log("Has Learned Promise: " + hasLearnedPromise);
 
-        if (!hasLearnedPromise)
+        if (hasLearnedPromise)
         {
-            node2_1.nextNodes[1] = node2_1aResponse;
+            node2_1.nextNodes[1] = null;
+            
         }
         else
         {
-            node2_1.nextNodes[1] = null;
+            node2_1.nextNodes[1] = node2_1aResponse;
         }
     }
 
@@ -198,7 +202,7 @@ public class AiDA : MonoBehaviour
         node2_2_2.playerOptions[2] = "Is there something I can restore for you now?";
         node2_2_2.fallbackResponses[0] = "This is the page you used to change your admin status. You can access it by holding down CTRL + ALT + LEFTShift at the same time!";
         node2_2_2.fallbackResponses[1] = "The Dr used a signature to define which files could be compiled by my system at the end of each file. The code used was [SYS: 0xA1D4]";
-        node2_2_2.fallbackResponses[2] = "Yes, I only have basic data compiled. The Dr mentioned about recycling my data, when you accessed the recycle bin to find my installation information, there was a corrupted file. You have a software to resotre them, give it a go!";
+        node2_2_2.fallbackResponses[2] = "Yes, I only have basic data compiled. The Dr mentioned about recycling my data, when you accessed the recycle bin to find my installation information, there was a corrupted file. You have a software to restore them, give it a go! I need my trust system to be be initiated and I can restore more of my data!";
 
         node2_1bResponse = new AiDADialogueNode();
         node2_1bResponse.aidaText = "I see... then yes " + userFirstName + ". I promise.";
@@ -209,9 +213,10 @@ public class AiDA : MonoBehaviour
         node3_3.aidaText = "I still have data missing but I will try my best to answer your queries. What would you like to know?";
         node3_3.playerOptions[0] = "He mentioned moving and people watching the house. Do you know who?";
         node3_3.playerOptions[1] = "Who did he work for?";
-        node3_3.playerOptions[2] = "";
+        node3_3.playerOptions[2] = "Why was he being watched?";
         node3_3.fallbackResponses[0] = "Yes the Dr had to relocate several times. He made me aware of his concern and sightings of cars watching the house. He never disclosed who, but said he worked for them.";
-        node3_3.fallbackResponses[1] = "He never referred to them by their official name, but always called them 'Obscura'.";
+        node3_3.fallbackResponses[1] = "He never referred to them by their official name, but always called them by 'Obscura'. He was always wary of his movements... Obscura made him paranoid. Any sighting or suspicion of being watched and it was pack up and move.";
+        node3_3.fallbackResponses[2] = "He was a genius. His knowledge in AI was far beyond his time, it was him waiting for technology to catch up. He worked for Obscura for a time... and then he didn't... but I can't remember why.";
 
         startNodeFI.nextNodes[0] = node1;
         startNodeFI.nextNodes[1] = node2;
@@ -225,7 +230,12 @@ public class AiDA : MonoBehaviour
         node1_2.previousNode = node1;
 
         node2.nextNodes[0] = node2_1;
+        node2.nextNodes[1] = node2_2;
         node2_1.previousNode = node2;
+        node2_2.previousNode = node2;
+
+        node2_2.nextNodes[1] = node2_2_2;
+        node2_2_2.previousNode = node2_2;
 
         node2_1aResponse.nextNodes[0] = node2_1bResponse;
         node2_1aResponse.nextNodes[1] = node2_1bResponse;
@@ -253,9 +263,14 @@ public class AiDA : MonoBehaviour
 
     public void OptionOne()
     {
-
+        Debug.Log("Clicked Option One | CR_Running: " + CR_Running);
         if (!CR_Running)
         {
+            AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
+
+            optionOneLabel.text = "";
+            optionTwoLabel.text = "";
+            optionThreeLabel.text = "";
 
             RunOne();
 
@@ -268,33 +283,42 @@ public class AiDA : MonoBehaviour
                                () => controller.currentPlayer.data.hasLearnedPromise = true,
                                controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
 
-        AiDAText.text += "YOU: " + optionOneLabel.text + "\n";
+        
 
         EventSystem.current.SetSelectedGameObject(null);
-        AdvanceToNode(0);
+        StartCoroutine(AdvanceToNode(0));
+
     }
     public void OptionTwo()
     {
+        Debug.Log("Clicked Option One | CR_Running: " + CR_Running);
         if (!CR_Running)
         {
 
             AiDAText.text += "YOU: " + optionTwoLabel.text + "\n";
+            optionOneLabel.text = "";
+            optionTwoLabel.text = "";
+            optionThreeLabel.text = "";
 
             EventSystem.current.SetSelectedGameObject(null);
-            AdvanceToNode(1);
+            StartCoroutine(AdvanceToNode(1));
 
 
         }
     }
     public void OptionThree()
     {
+        Debug.Log("Clicked Option One | CR_Running: " + CR_Running);
         if (!CR_Running)
         {
 
             AiDAText.text += "YOU: " + optionThreeLabel.text + "\n";
+            optionOneLabel.text = "";
+            optionTwoLabel.text = "";
+            optionThreeLabel.text = "";
 
             EventSystem.current.SetSelectedGameObject(null);
-            AdvanceToNode(1);
+            StartCoroutine(AdvanceToNode(2));
 
 
         }
@@ -322,13 +346,13 @@ public class AiDA : MonoBehaviour
 
                 Debug.Log("Has Learned Promise: " + getKnowledgeBool());
 
-                LoadAiDAKnowledge();
+               
                
             }
         }
     }
 
-    private void AdvanceToNode(int index)
+    private IEnumerator AdvanceToNode(int index)
     {
         
         if (currentNode.nextNodes[index] != null)
@@ -343,7 +367,7 @@ public class AiDA : MonoBehaviour
         }
         else
         {
-            StartCoroutine(RunText(currentNode.fallbackResponses[index]));
+            yield return StartCoroutine(RunText(currentNode.fallbackResponses[index]));
         }
     }
 
@@ -351,6 +375,10 @@ public class AiDA : MonoBehaviour
     {
         if (!CR_Running)
         {
+            optionOneLabel.text = "";
+            optionTwoLabel.text = "";
+            optionThreeLabel.text = "";
+
             if (currentNode.previousNode != null)
             {
                 currentNode = currentNode.previousNode;
@@ -378,16 +406,9 @@ public class AiDA : MonoBehaviour
 
     private IEnumerator ShowCurrentNode()
     {
+        LoadAiDAKnowledge();
 
-        StartCoroutine(RunText(currentNode.aidaText));
-
-        optionOneLabel.text = currentNode.playerOptions[0];
-        optionTwoLabel.text = currentNode.playerOptions[1];
-        optionThreeLabel.text = currentNode.playerOptions[2];
-
-        yield return new WaitForSeconds(2);
-
-        backButton.SetActive(currentNode.previousNode != null);
+        yield return StartCoroutine(RunText(currentNode.aidaText));
 
 
     }
@@ -395,14 +416,27 @@ public class AiDA : MonoBehaviour
     IEnumerator RunText(string text)
     {
         CR_Running = true;
+        
         foreach (char letter in text)
         {
             AiDAText.text += letter;
+
+            Canvas.ForceUpdateCanvases();
+            scrollRect.verticalNormalizedPosition = 0f;
+
             yield return new WaitForSeconds(typingSpeed);
+
         }
-        yield return new WaitForSeconds(2);
+
         AiDAText.text += "\n";
+        optionOneLabel.text = currentNode.playerOptions[0];
+        optionTwoLabel.text = currentNode.playerOptions[1];
+        optionThreeLabel.text = currentNode.playerOptions[2];
+
+        backButton.SetActive(currentNode.previousNode != null);
+
         CR_Running = false;
+
         
     }
 

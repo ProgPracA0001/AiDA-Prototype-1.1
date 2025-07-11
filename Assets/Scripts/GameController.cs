@@ -236,11 +236,11 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "1.2: A Curious Mind: Teach AiDA Something New";
-            mainObjSubTwoDesc.text = "AiDA knows a lot, but not everything. Explore the responses and see if there's something you can explain to her. She might surprise you.";
+            mainObjSubTwoDesc.text = "AiDA knows a lot, but not everything. Explore AiDA's responses and see if there's something you can explain to her. She might surprise you.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "1.3: System Check: AiDA's Full Potential";
-            mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works, if its limited and if you can help restore any more of her system.";
+            mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works, if its limited and if you can help restore any more of her system. ";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }

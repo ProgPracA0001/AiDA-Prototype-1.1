@@ -56,6 +56,8 @@ public class PatternPuzzle : MonoBehaviour
 
     public Button L1Button;
 
+    public Text levelOneStatusLabel;
+
 
     // LEVEL 2 COMPONENTS
     public GameObject LevelTwoObjectContainer;
@@ -309,7 +311,9 @@ public class PatternPuzzle : MonoBehaviour
 
     public void RunLevelOne()
     {
+        levelOneStatusLabel.text = "Running pattern...";
         StartCoroutine(levelOneSequence());
+        levelOneStatusLabel.text = "";
     }
 
 
@@ -338,6 +342,7 @@ public class PatternPuzzle : MonoBehaviour
                 Level1Test.SetActive(false);
                 Level1Details.SetActive(false);
                 Level1Answers.SetActive(false);
+                levelOneStatusLabel.text = "";
                 LevelLabel.text = "Level: 2";
                 Level2Test.SetActive(true);
                 Level2Details.SetActive(true);
@@ -378,6 +383,7 @@ public class PatternPuzzle : MonoBehaviour
                 Level3Test.SetActive(false);
                 Level3Details.SetActive(false);
                 Level3Answers.SetActive(false);
+                LevelLabel.text = "Level: 4";
                 Level4Test.SetActive(true);
                 Level4Details.SetActive(true);
                 Level4Answers.SetActive(true);

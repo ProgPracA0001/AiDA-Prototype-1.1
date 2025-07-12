@@ -275,7 +275,7 @@ public class SecretFile : MonoBehaviour
         }
         else
         {
-            CompileError("Slots are empty. Drag files into the slots for successful compiling.");
+            CompileError("HEAD document assigned. DATA slots are empty. Drag files into the slots for successful compiling.");
         }
     }
 

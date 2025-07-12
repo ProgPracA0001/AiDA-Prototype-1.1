@@ -15,7 +15,7 @@ public class AiDAKnowledgeGridSlot : MonoBehaviour, IDropHandler
             AiDAKnowledgeFile draggableIcon = dropped.GetComponent<AiDAKnowledgeFile>();
             draggableIcon.parentAfterDrag = transform;
 
-            fileDetectedLabel.text = draggableIcon.name;
+            fileDetectedLabel.text = "File Detected: " + draggableIcon.name;
 
         }
 

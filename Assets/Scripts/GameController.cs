@@ -220,11 +220,11 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "1.2: Who Will You Actually Call Though?:";
-            mainObjSubTwoDesc.text = "Seriously, these Dial-Up Networks actually require a legitimate line to link to... maybe the Dr left contact details?";
+            mainObjSubTwoDesc.text = "Seriously, these Dial-Up Networks actually require a legitimate line to link to... the Dr mentions leaving some details in the information booklet.!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "1.3: The World Wide Web: Get Connected!";
-            mainObjSubThreeDesc.text = "Once you have the details you need, complete the Dial-Up Network Install and you're online!";
+            mainObjSubThreeTitle.text = "1.3: The World Wide Web: Webcrawler!";
+            mainObjSubThreeDesc.text = "Once you have the details you need, complete the Dial-Up Network Install and you should have an internet icon on your desktop! Use it to start a network handshake and you should then have access to the WebCrawler search engine.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -240,7 +240,7 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "1.3: System Check: AiDA's Full Potential";
-            mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works, if its limited and if you can help restore any more of her system. ";
+            mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works and if you can help restore any more of her system.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }
@@ -260,7 +260,7 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "2.3: Note To Self: Note Down Your Clues and Findings";
-            mainObjSubThreeDesc.text = "Not everything can be kept in your mind! Start noting your findings and save them in the notepad";
+            mainObjSubThreeDesc.text = "Not everything can be kept in your mind! Start noting your findings and then press the 'Save' button to keep them in the your notepad!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 2)
@@ -268,7 +268,7 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "2: The Restricted Section: Access Restricted Folders";
          
             mainObjSubOneTitle.text = "2.1: Notes from The Dr's Hand Himself:";
-            mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research. Look for some notes that he has digitised!";
+            mainObjSubOneDesc.text = "Further into the files you notice that there's more of the Dr's research. Look for some notes that he has digitised! They may come in handy in the future.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "2.2: A Guide Through the Fire:";
@@ -281,7 +281,7 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "";
+            mainObjectiveTitle.text = "2: ";
 
             mainObjSubOneTitle.text = "";
             mainObjSubOneDesc.text = "";
@@ -305,7 +305,7 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "3: Access Denied: Unlock the MyFile Folder";
 
             mainObjSubOneTitle.text = "3.1: Hidden in The Binary: The First Clue";
-            mainObjSubOneDesc.text = "Somewhere on the desktop is the first clue, time to track it down! The MyFile questions look like some of the Dr's documents.";
+            mainObjSubOneDesc.text = "Somewhere in the Drs Documents is the first clue we need, time to track it down! The MyFile questions looks like some of the Dr's research.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "3.2: Piecing It Together: Second Clue In The Queue:";
@@ -321,15 +321,15 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "3: The Restoration Project: Restore The Corrupted Files";
 
             mainObjSubOneTitle.text = "3.1: Software Will Sort It: Install The File Restoration Software";
-            mainObjSubOneDesc.text = "A software that restores corrupted files is mentioned... If you have access to the internet maybe you can search for a download? Then test it by restoring the Diary05 file!";
+            mainObjSubOneDesc.text = "A software that restores corrupted files is mentioned in the Drs notes... If you have access to the internet maybe you can search for a download on WebCrawler? Then test it by restoring the Diary05 file!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "3.2: Hidden In Plain Sight: A Secret File?";
-            mainObjSubTwoDesc.text = "Restore all corrupted files and using the documents in the Restricted Section correctly compile them into their categories to reveal the secret file.";
+            mainObjSubTwoDesc.text = "The Dr has left a hidden secret File in the restricted section. Using the test environment and the specified files throughout the Restricted Section, compile them to reveal the secret file.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "3.3: Restoration Complete: Install The Project";
-            mainObjSubThreeDesc.text = "Install the project by using the correct values for training the model. Some files may be elsewhere within the system, have you checked the recycle bin?";
+            mainObjSubThreeTitle.text = "3.3: Restoration Complete: Install and Run The Project";
+            mainObjSubThreeDesc.text = "Install the project by using the correct values for training the model. Some files may be elsewhere within the system, have you checked the recycle bin? Once installed run the project from the icon on your desktop.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)
@@ -399,11 +399,11 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "S2: Voice From the Void: Unlock Mystery Audio File";
 
             mainObjSubOneTitle.text = "S2.1: Combo Clue One: Find the First Clue To The Combination";
-            mainObjSubOneDesc.text = "This clue contains half the information you need for the combination!";
+            mainObjSubOneDesc.text = "This clue contains half the information you need for the combination! ";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "S2.2: Make It Make Sense: Find The Second Clue";
-            mainObjSubTwoDesc.text = "This clue might require another file to be unlocked! But together, they should make sense!";      
+            mainObjSubTwoDesc.text = "This clue might require another file to be unlocked! But it should give us the second half of the combination information!";      
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "S2.3: A Good Combination";
@@ -416,15 +416,15 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "S2: Recycle Deciple: Unlock The Recycle Bin";
 
             mainObjSubOneTitle.text = "S2.1: Making A Start: A Move In The Right Direction";
-            mainObjSubOneDesc.text = "Try searching on the internet for information about admin passwords, maybe something can help.";
+            mainObjSubOneDesc.text = "The recycle bin is also locked.... shock. It requires an admin password. Try searching on the online for information about admin passwords, maybe something can help.";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "S2.2: Instructions: Taking Control";
-            mainObjSubTwoDesc.text = "Using what you have found online, change your user privilege to ADMIN.";
+            mainObjSubTwoDesc.text = "The information online should give us directions on how to access our user Privileges. Give it a go and then update your profile to admin!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "S2.3: Sifting Through The Trash: Gain Access To The Recycle Bin";
-            mainObjSubThreeDesc.text = "Once you have obtained an Admin Password give it a go! Unlock the Recycle Bin and look for that file the Dr mentioned for installing the software!";
+            mainObjSubThreeDesc.text = "Once you have obtained an Admin Password try using it to open the Recycle Bin and look for that file the Dr mentioned for installing the software!";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 3)

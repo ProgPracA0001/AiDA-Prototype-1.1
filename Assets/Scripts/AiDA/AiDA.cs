@@ -15,28 +15,33 @@ public class AiDA : MonoBehaviour
 
     private float typingSpeed = 0.04f;
 
+    //Player Option buttons within AiDA
     public GameObject optioneOneButton;
     public GameObject optioneTwoButton;
     public GameObject optioneThreeButton;
 
     public GameObject backButton;
 
+    //Text labels for option buttons
     public Text optionOneLabel;
     public Text optionTwoLabel;
     public Text optionThreeLabel;
 
+    //Main AiDA Text display
     public Text AiDAText;
 
+    //Details for user and first meeting
     private string FirstMeeting;
     private string userFirstName;
     private string userLastName;
     private string username;
 
+    //AiDA Knowledge control booleans
     private bool hasLearnedPromise;
 
     private bool trustSystemInitiated;
 
-
+    //AiDA System level details
     public int systemLevel = 0;
     public int trustLevel = 0;
 
@@ -46,6 +51,7 @@ public class AiDA : MonoBehaviour
 
     private AiDADialogueNode currentNode;
 
+    //Nodes established for AiDA's learning functionality.
     private AiDADialogueNode startNodeFI;
     private AiDADialogueNode node2_1aResponse;
     private AiDADialogueNode node2_1bResponse;
@@ -68,7 +74,7 @@ public class AiDA : MonoBehaviour
 
             StartCoroutine(FirstHello());
         }
-        else 
+        else
         {
             Debug.Log("Running LOADNODES");
 
@@ -261,6 +267,22 @@ public class AiDA : MonoBehaviour
 
     }
 
+    public void LoadChapter3MainNodes()
+    {
+        AiDADialogueNode startNode = new AiDADialogueNode();
+        startNode.aidaText = "";
+        startNode.playerOptions[0] = "";
+        startNode.playerOptions[1] = "";
+        startNode.playerOptions[2] = "";
+
+
+        AiDADialogueNode node1 = new AiDADialogueNode();
+
+
+
+
+    }
+
     public void OptionOne()
     {
         Debug.Log("Clicked Option One | CR_Running: " + CR_Running);
@@ -428,12 +450,16 @@ public class AiDA : MonoBehaviour
 
         }
 
-        AiDAText.text += "\n";
-        optionOneLabel.text = currentNode.playerOptions[0];
-        optionTwoLabel.text = currentNode.playerOptions[1];
-        optionThreeLabel.text = currentNode.playerOptions[2];
+        if(controller.currentPlayer.data.currentChapter >= 3)
+        {
+            AiDAText.text += "\n";
+            optionOneLabel.text = currentNode.playerOptions[0];
+            optionTwoLabel.text = currentNode.playerOptions[1];
+            optionThreeLabel.text = currentNode.playerOptions[2];
 
-        backButton.SetActive(currentNode.previousNode != null);
+            backButton.SetActive(currentNode.previousNode != null);
+        }
+        
 
         CR_Running = false;
 

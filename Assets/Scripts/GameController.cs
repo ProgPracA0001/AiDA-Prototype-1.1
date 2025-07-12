@@ -200,7 +200,7 @@ public class GameController : MonoBehaviour
             mainObjectiveTitle.text = "1: New User Detected: Create a New Profile and First Time Login:";
 
             mainObjSubOneTitle.text = "1.1: Signed Up: Create User Profile and Login";
-            mainObjSubOneDesc.text = "Set up a profile with a username, password and first name, then log in!";
+            mainObjSubOneDesc.text = "Comeplete a new profile with a username, first and last name, password and then log in!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 
             mainObjSubTwoTitle.text = "1.2: Dr Who?: Find the Inheritance Message";
@@ -208,14 +208,14 @@ public class GameController : MonoBehaviour
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
 
             mainObjSubThreeTitle.text = "1.3: The Last Message: Find the Dr's Last Message";
-            mainObjSubThreeDesc.text = "It looks like the Dr left something behind for you...";
+            mainObjSubThreeDesc.text = "In the same file it appears that the Dr left a message behind for you...";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
         else if (currentPlayer.data.currentChapter == 2)
         {
             mainObjectiveTitle.text = "1: Dial Up Dilemma: Connect To The Internet and Start Searching!";
 
-            mainObjSubOneTitle.text = "1.1: Who You Gonna Call? Dial-Up Network!:";
+            mainObjSubOneTitle.text = "1.1: Who You Gonna Call? Dial-Up Network!: Back to Basics";
             mainObjSubOneDesc.text = "How does Dial-Up work again? Maybe theres an information booklet we can use? Makes you miss the beauty of modern Wifi!";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
 

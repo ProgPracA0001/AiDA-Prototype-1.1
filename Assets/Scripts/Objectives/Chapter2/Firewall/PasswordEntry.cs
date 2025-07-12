@@ -22,7 +22,7 @@ public class PasswordEntry : MonoBehaviour
             firewallWindow.GetComponent<WindowControllerScript>().Close();
             targetWindow.GetComponent<WindowControllerScript>().Open();
 
-            this.gameObject.SetActive(false);
+            this.gameObject.GetComponent<WindowControllerScript>().Close();
 
         }
         else

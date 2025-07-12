@@ -25,14 +25,24 @@ public class BIOS : MonoBehaviour
     //User Privileges Page
 
     public Text usernameLabel;
+    public Text firstnameLabel;
+    public Text lastnameLabel;
     public bool userIsAdmin;
     public Text adminStatusLabel;
 
     public Toggle adminToggle;
 
+    //Boot Config Page
+    public Text currentUser;
+    public Text NetworkStatusLabel;
+
+
     //System Memory Page
 
-
+    public Text systemStatusLabel;
+    public Text SystemLevelLabel;
+    public Text trustSystemStatusLabel;
+    public Text trustLevelLabel;
 
 
 
@@ -53,6 +63,7 @@ public class BIOS : MonoBehaviour
         }
         else
         {
+            adminToggle.isOn = false;
             BIOSAssignAdmin.GetComponent<WindowControllerScript>().Open();
         }
     }
@@ -70,7 +81,11 @@ public class BIOS : MonoBehaviour
     {
         userIsAdmin = controller.currentPlayer.data.playerIsAdmin;
 
-        usernameLabel.text = controller.currentPlayer.data.username;
+        usernameLabel.text = "Current User: " + controller.currentPlayer.data.username;
+
+        firstnameLabel.text = "First Name: " + controller.currentPlayer.data.firstName;
+        lastnameLabel.text = "Last Name: " + controller.currentPlayer.data.lastName;
+
 
         if(userIsAdmin)
         {
@@ -96,6 +111,11 @@ public class BIOS : MonoBehaviour
 
     public void LoadBootConfiguration()
     {
+
+        currentUser.text = "Current User: " +  controller.currentPlayer.data.username;
+
+        NetworkStatusLabel.text = "Network Status: " + Status(controller.currentPlayer.data.internetConnected);
+
         MenuPage.SetActive(false);
         UserPrivilegePage.SetActive(false);
         BootConfigPage.SetActive(true);
@@ -107,6 +127,7 @@ public class BIOS : MonoBehaviour
         if (controller.currentPlayer.data.AiDAInstalled)
         {
             LoadSystemMemoryChecks();
+
         }
         else
         {
@@ -129,6 +150,18 @@ public class BIOS : MonoBehaviour
         UserPrivilegePage.SetActive(false);
         BootConfigPage.SetActive(false);
         SystemMemoryPage.SetActive(false);
+    }
+
+    public string Status(bool checkBool)
+    {
+        if (checkBool)
+        {
+            return "Online";
+        }
+        else
+        {
+            return "Offline";
+        }
     }
 
     public void LoadError(string error)

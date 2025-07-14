@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class RescueBitRestoration : MonoBehaviour
 {
+    //Player script
     public GameController player;
 
+    //Rescue Bit script
     public RescueBit rescueBit;
 
+    //Window Components
     public GameObject Container;
     public GameObject File;
 
@@ -16,6 +19,7 @@ public class RescueBitRestoration : MonoBehaviour
 
     public string targetName;
 
+    //Loading bar components
     public GameObject loadingBarContainer;
     public GameObject LoadingScreenBar;
 
@@ -24,11 +28,12 @@ public class RescueBitRestoration : MonoBehaviour
 
     public void Restore()
     {
-
+        //Check the container is not empoty
         if (Container.transform.childCount != 0)
         {
             File = Container.transform.GetChild(0).gameObject;
 
+            // Check file is not already restored
             if (File.GetComponent<FileClass>().isCorrupted == true)
             {
                 loadingBarContainer.SetActive(true);
@@ -86,6 +91,7 @@ public class RescueBitRestoration : MonoBehaviour
         {
             player.currentPlayer.data.XFileCorrupted = false;
             File.GetComponent<FileClass>().CheckIfRestored();
+            player.currentPlayer.Save();
 
         }
         else

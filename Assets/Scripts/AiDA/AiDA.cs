@@ -13,7 +13,8 @@ public class AiDA : MonoBehaviour
 
     public ScrollRect scrollRect;
 
-    private float typingSpeed = 0.04f;
+    private float firstMeetTypeSpeed = 0.07f;
+    private float standardTypingSpeed = 0.04f;
 
     //Player Option buttons within AiDA
     public GameObject optioneOneButton;
@@ -389,7 +390,7 @@ public class AiDA : MonoBehaviour
         }
         else
         {
-            yield return StartCoroutine(RunText(currentNode.fallbackResponses[index]));
+            yield return StartCoroutine(RunText(currentNode.fallbackResponses[index], standardTypingSpeed));
         }
     }
 
@@ -416,7 +417,7 @@ public class AiDA : MonoBehaviour
         CR_Running = true;
         yield return new WaitForSeconds(1);
 
-        yield return StartCoroutine(RunText(FirstMeeting));
+        yield return StartCoroutine(RunText(FirstMeeting, firstMeetTypeSpeed));
     
         yield return new WaitForSeconds(3);
 
@@ -430,12 +431,12 @@ public class AiDA : MonoBehaviour
     {
         LoadAiDAKnowledge();
 
-        yield return StartCoroutine(RunText(currentNode.aidaText));
+        yield return StartCoroutine(RunText(currentNode.aidaText, standardTypingSpeed));
 
 
     }
 
-    IEnumerator RunText(string text)
+    IEnumerator RunText(string text, float typingSpeed)
     {
         CR_Running = true;
         

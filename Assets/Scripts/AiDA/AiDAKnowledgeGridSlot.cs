@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class AiDAKnowledgeGridSlot : MonoBehaviour, IDropHandler
 {
-    public Text fileDetectedLabel;
+    
+    
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -15,7 +16,6 @@ public class AiDAKnowledgeGridSlot : MonoBehaviour, IDropHandler
             AiDAKnowledgeFile draggableIcon = dropped.GetComponent<AiDAKnowledgeFile>();
             draggableIcon.parentAfterDrag = transform;
 
-            fileDetectedLabel.text = "File Detected: " + draggableIcon.name;
 
         }
 

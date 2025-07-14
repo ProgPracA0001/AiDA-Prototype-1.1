@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,5 +14,7 @@ public class AiDADialogueNode
 
     // Trust effects for player options
     public int[] trustEffects =  new int[3]; // +1, -1, 0 etc
+
+    public Action[] onOptionSelected = new Action[3];
    
 }

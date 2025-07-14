@@ -51,7 +51,7 @@ public class RescueBitInstall : MonoBehaviour
 
         }
 
-        player.currentPlayer.data.RescureBitInstalled = true;
+        player.currentPlayer.data.RescueBitInstalled = true;
         player.currentPlayer.Save();
         ResetLoad();
         RescueBitIcon.SetActive(true);

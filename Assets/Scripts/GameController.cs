@@ -160,7 +160,7 @@ public class GameController : MonoBehaviour
             webCrawlerIcon.SetActive(false);
         }
 
-        if (currentPlayer.data.RescureBitInstalled != true)
+        if (currentPlayer.data.RescueBitInstalled != true)
         {
             rescueBitIcon.SetActive(false);
         }
@@ -243,6 +243,23 @@ public class GameController : MonoBehaviour
             mainObjSubThreeDesc.text = "There's more to AiDA than what is currently seen. Find out more about how her system works and if you can help restore any more of her system.";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
+        else if (currentPlayer.data.currentChapter == 4)
+        {
+            mainObjectiveTitle.text = "1: ";
+
+            mainObjSubOneTitle.text = "1.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "1.2: ";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "1.3: ";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubOne_ThreeComplete, mainObjSubThreeIcon);
+        }
+
     }
     //Loads Main objective Two - checks the players current chapter and loads the corresponding objectives into the objective windows text.
     public void LoadMainObjectiveTwo()
@@ -281,17 +298,33 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "2: ";
+            mainObjectiveTitle.text = "2: Trust Protocol Activated: Earn AiDA's trust";
 
-            mainObjSubOneTitle.text = "";
+            mainObjSubOneTitle.text = "2.1: ";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoTitle.text = "2.2: ";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeTitle.text = "2.3: ";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 4)
+        {
+            mainObjectiveTitle.text = "2: ";
+
+            mainObjSubOneTitle.text = "2.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "2.2: ";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "2.3: ";
             mainObjSubThreeDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -334,16 +367,31 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjectiveTitle.text = "";
-            mainObjSubOneTitle.text = "";
+            mainObjectiveTitle.text = "3: ";
+            mainObjSubOneTitle.text = "3.1: ";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoTitle.text = "3.2: ";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeTitle.text = "3.3 ";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 4)
+        {
+            mainObjectiveTitle.text = "3: ";
+            mainObjSubOneTitle.text = "3.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "3.2: ";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "3.3: ";
             mainObjSubThreeDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.mainObjSubThree_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -387,7 +435,35 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
+            mainObjectiveTitle.text = "S1: ";
 
+            mainObjSubOneTitle.text = "S1.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "S1.2:";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "S1.3:";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 4)
+        {
+            mainObjectiveTitle.text = "S1: ";
+
+            mainObjSubOneTitle.text = "S1.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "S1.2:";
+            mainObjSubTwoDesc.text = "While reading through articles, two words keep appearing. Why would the same source use the samelanguage or phrasing? It might be worth a search. ";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "S1.3:";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubOne_ThreeComplete, mainObjSubThreeIcon);
         }
     }
 
@@ -429,15 +505,33 @@ public class GameController : MonoBehaviour
         }
         else if (currentPlayer.data.currentChapter == 3)
         {
-            mainObjSubOneTitle.text = "";
+            mainObjectiveTitle.text = "S2: ";
+
+            mainObjSubOneTitle.text = "S2.1: ";
             mainObjSubOneDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
 
-            mainObjSubTwoTitle.text = "";
+            mainObjSubTwoTitle.text = "S2.2: ";
             mainObjSubTwoDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
 
-            mainObjSubThreeTitle.text = "";
+            mainObjSubThreeTitle.text = "S2.3: ";
+            mainObjSubThreeDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
+        }
+        else if (currentPlayer.data.currentChapter == 4)
+        {
+            mainObjectiveTitle.text = "S2: ";
+
+            mainObjSubOneTitle.text = "S2.1: ";
+            mainObjSubOneDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_OneComplete, mainObjSubOneIcon);
+
+            mainObjSubTwoTitle.text = "S2.2: ";
+            mainObjSubTwoDesc.text = "";
+            LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_TwoComplete, mainObjSubTwoIcon);
+
+            mainObjSubThreeTitle.text = "S2.3: ";
             mainObjSubThreeDesc.text = "";
             LoadObjectiveStatus(currentPlayer.data.sideObjSubTwo_ThreeComplete, mainObjSubThreeIcon);
         }
@@ -554,6 +648,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //Update Objective - takes string assigning which objecctive to update
     public void UpdateObjective(string objective)
     {
         if (objective == "mainOneSubOne")
@@ -723,7 +818,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-   
+   //Run New Chapter Title upon completing current Chapter
     public IEnumerator NewChapterStarted()
     {
 

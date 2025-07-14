@@ -25,18 +25,22 @@ public class UpdateAiDA : MonoBehaviour
 
     //Install Window Components
     public GameObject updateWindow;
-    public GameObject loadingScreenBarContainer;
-    public GameObject loadingScreenBar;
+    public GameObject LoadingScreenBarContainer;
+    public GameObject LoadingScreenBar;
 
-    public int barChildren;
+    public int BarChildren;
 
     //Trust System Components
     public bool trustSlotFound;
     public GameObject TrustFileIcon;
     public GameObject[] TrustFileSlots = new GameObject[7];
 
+    void Update()
+    {
+        BarChildren = LoadingScreenBar.transform.childCount;
 
-    
+    }
+
     public void CheckBIOSContainer()
     {
       
@@ -50,7 +54,7 @@ public class UpdateAiDA : MonoBehaviour
         }
         else
         {
-            FileDetectionLabel.text = "File Detected: ";
+            FileDetectionLabel.text = "File Detected: Empty";
         }
     }
 
@@ -109,7 +113,7 @@ public class UpdateAiDA : MonoBehaviour
 
             if (systemFile.filename == "Trust_Data.sys")
             {
-                Debug.Log("Install Trust System");
+                InstallTrustSystem();
             }
             else
             {
@@ -124,5 +128,63 @@ public class UpdateAiDA : MonoBehaviour
     }
 
 
+    public void InstallTrustSystem()
+    {
+        if (AiDAWindow.GetComponent<WindowControllerScript>().isOpen)
+        {
+            AiDAWindow.GetComponent<WindowControllerScript>().Close();
+        }
+
+        RunUpdate();
+
+        updateWindow.GetComponent<WindowControllerScript>().Close();
+        controller.currentPlayer.data.trustSystemInstalled = true;
+        controller.currentPlayer.Save();
+        TrustFileIcon.SetActive(true);
+
+        AiDAWindow.GetComponent<WindowControllerScript>().Open();
+        AiDAWindow.GetComponent<AiDA>().TrustSystemInstalled();
+
+    }
+
+  
+    public void RunUpdate()
+    {
+        updateWindow.GetComponent<WindowControllerScript>().Open();
+        StartCoroutine(LoadBar());
+    }
+
+    private IEnumerator LoadBar()
+    {
+        BarChildren = LoadingScreenBar.transform.childCount;
+
+        for (int i = 0; i < BarChildren; i++)
+        {
+            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(true);
+
+
+            if (i == 7 || i == 8 || i == 12 || i == 13 || i == 18)
+            {
+                yield return new WaitForSeconds(3.0f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
+
+
+        }
+        yield return new WaitForSeconds(2);
+
+        ResetLoad();
+    }
+
+    public void ResetLoad()
+    {
+        for (int i = 0; i < BarChildren; i++)
+        {
+            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
 }

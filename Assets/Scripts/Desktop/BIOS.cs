@@ -116,6 +116,7 @@ public class BIOS : MonoBehaviour
 
         NetworkStatusLabel.text = "Network Status: " + Status(controller.currentPlayer.data.internetConnected);
 
+
         MenuPage.SetActive(false);
         UserPrivilegePage.SetActive(false);
         BootConfigPage.SetActive(true);
@@ -137,6 +138,7 @@ public class BIOS : MonoBehaviour
 
     public void LoadSystemMemoryChecks()
     {
+        
 
         MenuPage.SetActive(false);
         UserPrivilegePage.SetActive(false);

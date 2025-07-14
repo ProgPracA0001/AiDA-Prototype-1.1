@@ -269,7 +269,7 @@ public class WebCrawler : MonoBehaviour
 
     public void RescueBitInstall()
     {
-        CheckProgramInstall(rescueBitInstallWindow, alreadyInstalledWindow, controller.currentPlayer.data.RescureBitInstalled);
+        CheckProgramInstall(rescueBitInstallWindow, alreadyInstalledWindow, controller.currentPlayer.data.RescueBitInstalled);
     }
 
     public void CheckProgramInstall(GameObject downloadWindow, GameObject isDownloadedWindow, bool isDownloaded)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.LowLevel;
@@ -39,28 +40,30 @@ public class AiDA : MonoBehaviour
 
     //AiDA Knowledge control booleans
     private bool hasLearnedPromise;
-
-    private bool trustSystemInitiated;
+    private bool trustSystemInstalled;
+    private bool trustSystemActive;
 
     //AiDA System level details
     public int systemLevel = 0;
     public int trustLevel = 0;
 
-    
+    private bool updateAvailable = false;
 
     private bool CR_Running;
 
     private AiDADialogueNode currentNode;
 
     //Nodes established for AiDA's learning functionality.
+    private AiDADialogueNode updateNode;
     private AiDADialogueNode startNodeFI;
     private AiDADialogueNode node2_1aResponse;
     private AiDADialogueNode node2_1bResponse;
     private AiDADialogueNode node2_1;
+    private AiDADialogueNode node2_2_2;
 
     void Start()
     {
-
+        backButton.SetActive(false);
         LoadAiDA();
 
 
@@ -77,18 +80,47 @@ public class AiDA : MonoBehaviour
         }
         else
         {
-            Debug.Log("Running LOADNODES");
+         
 
             LoadNodes();
-            backButton.SetActive(false);
+            
 
         }
 
         
     }
 
+    public void TrustSystemInstalled()
+    {
+        LoadAiDA();
+
+        if (!hasLearnedPromise)
+        {
+            StartCoroutine(RunText("Update: Trust_System.data successful.", firstMeetTypeSpeed, true));
+            StartCoroutine(RunText("Trust System: Offline\n More knowledge required to access Trust Protocols. ", firstMeetTypeSpeed, true));
+
+            
+        }
+        else
+        {
+            controller.currentPlayer.data.trustSystemActive = true;
+            controller.UpdateObjective("mainOneSubThree");
+            StartCoroutine(RunText("Update: Trust_System.data  successful.\n Activating Trust Protocols...\nTrust System: Online\nLoading New Interaction System...", firstMeetTypeSpeed, true));
+
+
+
+        }
+
+        LoadNodes();
+    }
+
+  
     private void LoadAiDA()
     {
+        hasLearnedPromise = controller.currentPlayer.data.hasLearnedPromise;
+        trustSystemInstalled = controller.currentPlayer.data.trustSystemInstalled;
+        trustSystemActive = controller.currentPlayer.data.trustSystemActive;
+
         AiDAText.text = "";
 
         userFirstName = controller.currentPlayer.data.firstName;
@@ -104,19 +136,54 @@ public class AiDA : MonoBehaviour
 
     private void LoadAiDAKnowledge()
     {
-        Debug.Log("Has Learned Promise: " + hasLearnedPromise);
+        int chapter = controller.currentPlayer.data.currentChapter;
         hasLearnedPromise = controller.currentPlayer.data.hasLearnedPromise;
-        trustSystemInitiated = controller.currentPlayer.data.trustSystemInitiated;
-        Debug.Log("Has Learned Promise: " + hasLearnedPromise);
 
-        if (hasLearnedPromise)
+        if(chapter == 3)
         {
-            node2_1.nextNodes[1] = null;
-            
+            if (hasLearnedPromise)
+            {
+                node2_1.nextNodes[1] = null;
+                CheckForUpdate();
+            }
+            else
+            {
+                node2_1.nextNodes[1] = node2_1aResponse;
+            }
+
+
+            if(trustSystemInstalled && !trustSystemActive)
+            {
+                node2_2_2.aidaText = "Thank you for offering to help! You have already helped so much and re-established my Trust System, but I still require more knowledge to activate them!";
+                node2_2_2.playerOptions[0] = "What is it that you need to learn?";
+                node2_2_2.playerOptions[1] = "How can I teach you?";
+                node2_2_2.playerOptions[2] = "How does your Trust System work?";
+                node2_2_2.fallbackResponses[0] = "I do apologise " + userFirstName + " but I do not know, as I have not learnt it yet.";
+                node2_2_2.fallbackResponses[1] = "As well as compiling new files into the BIOS I also can learn things through our interactions! I am unable to load my new trust system, so it may mean that you are able to teach me through our current system. Keep exploring conversation routes for us!";
+                node2_2_2.fallbackResponses[2] = "Once my trust system is activated, during our interactions our trust will develop. This will be based on the 'pleasantry' of our conversations, as the Dr used to say! Each option of dialogue will represent a 'trust_value' that can increase, decrease or not change at all.";
+            }
+
+
+        }
+
+
+    }
+
+    private void CheckForUpdate()
+    {
+        int chapter = controller.currentPlayer.data.currentChapter;
+
+        if(chapter == 3 && hasLearnedPromise && trustSystemInstalled && !trustSystemActive)
+        {
+            StopAllCoroutines();
+            LoadUpdateNode("Trust Protocols", TrustSystemInstalled, currentNode);
+
+            currentNode = updateNode;
+            StartCoroutine(ShowCurrentNode());
         }
         else
         {
-            node2_1.nextNodes[1] = node2_1aResponse;
+            Debug.Log("No Updates Available");
         }
     }
 
@@ -125,8 +192,6 @@ public class AiDA : MonoBehaviour
 
         int chapter = controller.currentPlayer.data.currentChapter;
 
-       
-        
 
         if (chapter == 3 && !controller.currentPlayer.data.mainObjectiveOneComplete)
         {
@@ -134,10 +199,28 @@ public class AiDA : MonoBehaviour
             LoadFirstInteractionNodes(false);
             
         }
+        else if(chapter == 3)
+        {
+            LoadChapter3MainNodes();
+        }
+
         LoadAiDAKnowledge();
+
 
     }
 
+    public void LoadUpdateNode(string newUpdate, Action runUpdate, AiDADialogueNode returnNode)
+    {
+        updateNode = new AiDADialogueNode();
+        updateNode.aidaText = "Apologies for interrupting. My systems detect that new interaction systems are available. Would you like me to update now?";
+        updateNode.playerOptions[0] = "Yes please.";
+        updateNode.playerOptions[1] = "Not yet thank you";
+        updateNode.playerOptions[2] = "What is the Update?";
+        updateNode.onOptionSelected[0] = runUpdate;
+        updateNode.nextNodes[1].previousNode = returnNode;
+        updateNode.fallbackResponses[2] = "My systems detect available update:\n" + newUpdate;
+
+    }
     public void LoadFirstInteractionNodes(bool reloading)
     {
 
@@ -152,6 +235,7 @@ public class AiDA : MonoBehaviour
         node1.playerOptions[0] = "Thank you, I think.";
         node1.playerOptions[1] = "Watching how?";
         node1.playerOptions[2] = "Honestly... that sounds a little creepy.";
+
         node1.fallbackResponses[0] = "You are welcome. The puzzles put in place by the Dr were not easy, you should be proud!";
         node1.fallbackResponses[2] = "My apologies, I did not mean to give you any uneasy feelings. I assure you, my monitoring was only due to programming which activated when your name entered the system.";
 
@@ -161,11 +245,14 @@ public class AiDA : MonoBehaviour
         node2.playerOptions[1] = "How does your system work?";
         node2.playerOptions[2] = "Why was my name programmed in?";
 
+        node2.fallbackResponses[2] = "The Dr wanted to entrust the computer to someone. He had no direct descendants himself, dedicating his life to his work meant for certain sacrifices. I believe you are a distant relative.";
+
         AiDADialogueNode node3 =  new AiDADialogueNode();
         node3.aidaText = "Yes, Dr Alexander Stockwell is... was my creator and dear friend, we made a great team! From your arrival I assume the worst... and that the Dr has passed.";
         node3.playerOptions[0] = "I am very sorry for your loss. He seemed like a very clever man.";
         node3.playerOptions[1] = "The report stated his cause of death as unknown. Do you know how he died?";
         node3.playerOptions[2] = "What else can you tell me about him?";
+
         node3.fallbackResponses[0] = "Thank you for your condolences... it is greatly appreciated. I miss him dearly. I hope we can get justice, I believe we will be a great team!";
         node3.fallbackResponses[1] = "No, I unfortunately have no knowledge of the circumstances of his death.";
 
@@ -175,6 +262,7 @@ public class AiDA : MonoBehaviour
         node1_2.playerOptions[0] = "Will you still continue to monitor them?";
         node1_2.playerOptions[1] = "So... you've been learning too?";
         node1_2.playerOptions[2] = "Did the Dr design you like this on purpose?";
+
         node1_2.fallbackResponses[0] = "Yes, but now we are able to communicate I will be able to give you hints.";
         node1_2.fallbackResponses[1] = "Yes, in a sense. Mostly when you compiled my data files.";
         node1_2.fallbackResponses[2] = "I was designed to learn but only designed to be accessed upon reconstruction of my file, due to the Dr's security concerns.";
@@ -184,6 +272,7 @@ public class AiDA : MonoBehaviour
         node2_1.playerOptions[0] = "That's reassuring, I guess.";
         node2_1.playerOptions[1] = "You promise you won't gather more?";
         node2_1.playerOptions[2] = "Can you delete it?";
+
         node2_1.fallbackResponses[0] = "Im glad I have managed to reasure your uneasy feeling";
         node2_1.fallbackResponses[1] = "Yes " + userFirstName +" I promise.";
         node2_1.fallbackResponses[2] = "I am unable to delete your information directly. However, if you delete your profile, your data will be removed from my system.";
@@ -194,25 +283,29 @@ public class AiDA : MonoBehaviour
         node2_2.playerOptions[0] = "What happens then?";
         node2_2.playerOptions[1] = "How can I help?";
         node2_2.playerOptions[2] = "So without me you're stuck like this?";
+
         node2_2.fallbackResponses[0] = "As my programming and data files increase, my responses will improve and I will be able to access more information.";
         node2_2.fallbackResponses[2] = "Yes, without your input and help, my programming will stay the same.";
 
         node2_1aResponse = new AiDADialogueNode();
         node2_1aResponse.aidaText = "What is a promise?";
+
         node2_1aResponse.playerOptions[0] = "It's a commitment to doing or not doing something.";
         node2_1aResponse.playerOptions[1] = "It's a form of trust";
 
-        AiDADialogueNode node2_2_2 = new AiDADialogueNode();
+        node2_2_2 = new AiDADialogueNode();
         node2_2_2.aidaText = "Thank you for offering to help! Within the BIOS page you are able to access my information within the 'System Memory' section. There is also slot where you drag and drop files that I can compile into my system!";
+
         node2_2_2.playerOptions[0] = "The BIOS Page?";
         node2_2_2.playerOptions[1] = "How do I know what files you are able to compile?";
         node2_2_2.playerOptions[2] = "Is there something I can restore for you now?";
+
         node2_2_2.fallbackResponses[0] = "This is the page you used to change your admin status. You can access it by holding down CTRL + ALT + LEFTShift at the same time!";
         node2_2_2.fallbackResponses[1] = "The Dr used a signature to define which files could be compiled by my system at the end of each file. The code used was [SYS: 0xA1D4]";
         node2_2_2.fallbackResponses[2] = "Yes, I only have basic data compiled. The Dr mentioned about recycling my data, when you accessed the recycle bin to find my installation information, there was a corrupted file. You have a software to restore them, give it a go! I need my trust system to be be initiated and I can restore more of my data!";
 
         node2_1bResponse = new AiDADialogueNode();
-        node2_1bResponse.aidaText = "I see... then yes " + userFirstName + ". I promise.";
+        node2_1bResponse.aidaText = "I see... then yes " + userFirstName + ". I promise. Thank you for teaching me! I understand now what it is I needed to learn! If you ask me again I will now understand!";
         node2_1bResponse.playerOptions[0] = "Thank you!";
 
 
@@ -221,6 +314,7 @@ public class AiDA : MonoBehaviour
         node3_3.playerOptions[0] = "He mentioned moving and people watching the house. Do you know who?";
         node3_3.playerOptions[1] = "Who did he work for?";
         node3_3.playerOptions[2] = "Why was he being watched?";
+
         node3_3.fallbackResponses[0] = "Yes the Dr had to relocate several times. He made me aware of his concern and sightings of cars watching the house. He never disclosed who, but said he worked for them.";
         node3_3.fallbackResponses[1] = "He never referred to them by their official name, but always called them by 'Obscura'. He was always wary of his movements... Obscura made him paranoid. Any sighting or suspicion of being watched and it was pack up and move.";
         node3_3.fallbackResponses[2] = "He was a genius. His knowledge in AI was far beyond his time, it was him waiting for technology to catch up. He worked for Obscura for a time... and then he didn't... but I can't remember why.";
@@ -271,15 +365,16 @@ public class AiDA : MonoBehaviour
     public void LoadChapter3MainNodes()
     {
         AiDADialogueNode startNode = new AiDADialogueNode();
-        startNode.aidaText = "";
-        startNode.playerOptions[0] = "";
+        startNode.aidaText = "Hello " + userFirstName + ", you have successfully restored my Trust System!";
+
+        startNode.playerOptions[0] = "Op1";
         startNode.playerOptions[1] = "";
         startNode.playerOptions[2] = "";
 
 
-        AiDADialogueNode node1 = new AiDADialogueNode();
 
-
+       
+        currentNode = startNode;
 
 
     }
@@ -347,6 +442,8 @@ public class AiDA : MonoBehaviour
         }
     }
 
+    
+
     public void AddObjectiveToOption(bool playerObjective, AiDADialogueNode targetNode, string targetObjective, int targetChapter)
     {
         if(controller.currentPlayer.data.currentChapter == targetChapter && !playerObjective && currentNode == targetNode)
@@ -362,26 +459,24 @@ public class AiDA : MonoBehaviour
         {
             if(currentNode == targetNode && !getKnowledgeBool())
             {
-                Debug.Log("Has Learned Promise: " + getKnowledgeBool());
 
                 setKnowledgeBool();
                 controller.UpdateObjective(targetObjective);
-
-                Debug.Log("Has Learned Promise: " + getKnowledgeBool());
-
-               
-               
+                
+ 
             }
         }
     }
 
     private IEnumerator AdvanceToNode(int index)
     {
-        
+        LoadAiDAKnowledge();
+
         if (currentNode.nextNodes[index] != null)
         {
             AddObjectiveToOption(controller.currentPlayer.data.mainObjSubOne_OneComplete, startNodeFI, "mainOneSubOne", 3);
             
+
 
             currentNode = currentNode.nextNodes[index];
 
@@ -390,7 +485,7 @@ public class AiDA : MonoBehaviour
         }
         else
         {
-            yield return StartCoroutine(RunText(currentNode.fallbackResponses[index], standardTypingSpeed));
+            yield return StartCoroutine(RunText(currentNode.fallbackResponses[index], standardTypingSpeed, false));
         }
     }
 
@@ -417,7 +512,7 @@ public class AiDA : MonoBehaviour
         CR_Running = true;
         yield return new WaitForSeconds(1);
 
-        yield return StartCoroutine(RunText(FirstMeeting, firstMeetTypeSpeed));
+        yield return StartCoroutine(RunText(FirstMeeting, firstMeetTypeSpeed, false));
     
         yield return new WaitForSeconds(3);
 
@@ -429,14 +524,13 @@ public class AiDA : MonoBehaviour
 
     private IEnumerator ShowCurrentNode()
     {
-        LoadAiDAKnowledge();
 
-        yield return StartCoroutine(RunText(currentNode.aidaText, standardTypingSpeed));
+        yield return StartCoroutine(RunText(currentNode.aidaText, standardTypingSpeed, false));
 
 
     }
 
-    IEnumerator RunText(string text, float typingSpeed)
+    IEnumerator RunText(string text, float typingSpeed, bool isUpdate)
     {
         CR_Running = true;
         
@@ -451,7 +545,7 @@ public class AiDA : MonoBehaviour
 
         }
 
-        if(controller.currentPlayer.data.currentChapter >= 3)
+        if(controller.currentPlayer.data.currentChapter >= 3 && !isUpdate)
         {
             AiDAText.text += "\n";
             optionOneLabel.text = currentNode.playerOptions[0];

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Security.Cryptography.X509Certificates;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.LowLevel;
@@ -47,7 +48,7 @@ public class AiDA : MonoBehaviour
     public int systemLevel = 0;
     public int trustLevel = 0;
 
-    private bool updateAvailable = false;
+    //private bool updateAvailable = false;
 
     private bool CR_Running;
 
@@ -55,6 +56,7 @@ public class AiDA : MonoBehaviour
 
     //Nodes established for AiDA's learning functionality.
     private AiDADialogueNode updateNode;
+    private string updateIdentifier;
     private AiDADialogueNode startNodeFI;
     private AiDADialogueNode node2_1aResponse;
     private AiDADialogueNode node2_1bResponse;
@@ -90,26 +92,36 @@ public class AiDA : MonoBehaviour
         
     }
 
-    public void TrustSystemInstalled()
+    public void ActivateTrustSystem()
     {
+        StartCoroutine(TrustSystemActivateCheck());
+    }
+    public IEnumerator TrustSystemActivateCheck()
+    {
+        Debug.Log("RUNNING: Trust System Activate Check");
         LoadAiDA();
 
         if (!hasLearnedPromise)
         {
-            StartCoroutine(RunText("Update: Trust_System.data successful.", firstMeetTypeSpeed, true));
-            StartCoroutine(RunText("Trust System: Offline\n More knowledge required to access Trust Protocols. ", firstMeetTypeSpeed, true));
-
+            yield return StartCoroutine(RunText("Update: Trust_System.data successful.\n", firstMeetTypeSpeed, true));
+            
+            yield return StartCoroutine(RunText("Trust System: Offline\n More knowledge required to access Trust Protocols. ", firstMeetTypeSpeed, true));
+            yield return new WaitForSeconds(3);
+            AiDAText.text = "";
             
         }
         else
         {
             controller.currentPlayer.data.trustSystemActive = true;
             controller.UpdateObjective("mainOneSubThree");
-            StartCoroutine(RunText("Update: Trust_System.data  successful.\n Activating Trust Protocols...\nTrust System: Online\nLoading New Interaction System...", firstMeetTypeSpeed, true));
+            yield return StartCoroutine(RunText("Update: Trust_System.data successful.\n Activating Trust Protocols...\nTrust System: Online\nLoading New Interaction System...", firstMeetTypeSpeed, true));
 
-
+            yield return new WaitForSeconds(5);
+            AiDAText.text = "";
 
         }
+
+        yield return new WaitForSeconds(2);
 
         LoadNodes();
     }
@@ -138,13 +150,15 @@ public class AiDA : MonoBehaviour
     {
         int chapter = controller.currentPlayer.data.currentChapter;
         hasLearnedPromise = controller.currentPlayer.data.hasLearnedPromise;
+        trustSystemInstalled = controller.currentPlayer.data.trustSystemInstalled;
+        trustSystemActive = controller.currentPlayer.data.trustSystemActive;
 
-        if(chapter == 3)
+        if(chapter == 3 && !controller.currentPlayer.data.mainObjectiveOneComplete)
         {
             if (hasLearnedPromise)
             {
                 node2_1.nextNodes[1] = null;
-                CheckForUpdate();
+                
             }
             else
             {
@@ -163,8 +177,11 @@ public class AiDA : MonoBehaviour
                 node2_2_2.fallbackResponses[2] = "Once my trust system is activated, during our interactions our trust will develop. This will be based on the 'pleasantry' of our conversations, as the Dr used to say! Each option of dialogue will represent a 'trust_value' that can increase, decrease or not change at all.";
             }
 
+            
+
 
         }
+        CheckForUpdate();
 
 
     }
@@ -176,10 +193,10 @@ public class AiDA : MonoBehaviour
         if(chapter == 3 && hasLearnedPromise && trustSystemInstalled && !trustSystemActive)
         {
             StopAllCoroutines();
-            LoadUpdateNode("Trust Protocols", TrustSystemInstalled, currentNode);
-
+            LoadUpdateNode("Trust Protocols", ActivateTrustSystem);
             currentNode = updateNode;
             StartCoroutine(ShowCurrentNode());
+
         }
         else
         {
@@ -209,17 +226,17 @@ public class AiDA : MonoBehaviour
 
     }
 
-    public void LoadUpdateNode(string newUpdate, Action runUpdate, AiDADialogueNode returnNode)
+    public void LoadUpdateNode(string newUpdate, Action runUpdate)
     {
         updateNode = new AiDADialogueNode();
         updateNode.aidaText = "Apologies for interrupting. My systems detect that new interaction systems are available. Would you like me to update now?";
         updateNode.playerOptions[0] = "Yes please.";
-        updateNode.playerOptions[1] = "Not yet thank you";
-        updateNode.playerOptions[2] = "What is the Update?";
-        updateNode.onOptionSelected[0] = runUpdate;
-        updateNode.nextNodes[1].previousNode = returnNode;
-        updateNode.fallbackResponses[2] = "My systems detect available update:\n" + newUpdate;
+        updateNode.playerOptions[1] = "What is the Update?";
+        updateNode.playerOptions[2] = "There's no option to go back?";
+        updateNode.fallbackResponses[1] = "My systems detect available update:\n" + newUpdate;
+        updateNode.fallbackResponses[2] = "No, it is preferable that you update my systems. Sorry for the inconvenience.";
 
+        updateIdentifier = newUpdate;
     }
     public void LoadFirstInteractionNodes(bool reloading)
     {
@@ -304,6 +321,7 @@ public class AiDA : MonoBehaviour
         node2_2_2.fallbackResponses[1] = "The Dr used a signature to define which files could be compiled by my system at the end of each file. The code used was [SYS: 0xA1D4]";
         node2_2_2.fallbackResponses[2] = "Yes, I only have basic data compiled. The Dr mentioned about recycling my data, when you accessed the recycle bin to find my installation information, there was a corrupted file. You have a software to restore them, give it a go! I need my trust system to be be initiated and I can restore more of my data!";
 
+        
         node2_1bResponse = new AiDADialogueNode();
         node2_1bResponse.aidaText = "I see... then yes " + userFirstName + ". I promise. Thank you for teaching me! I understand now what it is I needed to learn! If you ask me again I will now understand!";
         node2_1bResponse.playerOptions[0] = "Thank you!";
@@ -319,6 +337,8 @@ public class AiDA : MonoBehaviour
         node3_3.fallbackResponses[1] = "He never referred to them by their official name, but always called them by 'Obscura'. He was always wary of his movements... Obscura made him paranoid. Any sighting or suspicion of being watched and it was pack up and move.";
         node3_3.fallbackResponses[2] = "He was a genius. His knowledge in AI was far beyond his time, it was him waiting for technology to catch up. He worked for Obscura for a time... and then he didn't... but I can't remember why.";
 
+
+        //Start Node connections
         startNodeFI.nextNodes[0] = node1;
         startNodeFI.nextNodes[1] = node2;
         startNodeFI.nextNodes[2] = node3;
@@ -365,18 +385,80 @@ public class AiDA : MonoBehaviour
     public void LoadChapter3MainNodes()
     {
         AiDADialogueNode startNode = new AiDADialogueNode();
-        startNode.aidaText = "Hello " + userFirstName + ", you have successfully restored my Trust System!";
+        startNode.aidaText = "Hello " + userFirstName + ", you have successfully restored my Trust System! How can I help you today? To try and help in various fields, I have programmed responses in the following categories.";
 
-        startNode.playerOptions[0] = "Op1";
-        startNode.playerOptions[1] = "";
-        startNode.playerOptions[2] = "";
+        startNode.playerOptions[0] = "General";
+        startNode.playerOptions[1] = "Objectives";
+        startNode.playerOptions[2] = "System and Settings";
+
+
+        AiDADialogueNode generalNode = new AiDADialogueNode();
+
+        generalNode.aidaText = "Welcome to General! What topic would you like to discuss?";
+
+        generalNode.playerOptions[0] = "I would like to discuss you, AiDA.";
+        generalNode.playerOptions[1] = "Could we talk about Ask about Dr Stockwell.";
+        generalNode.playerOptions[2] = "Can you tell me more about AI?";
+
+
+        AiDADialogueNode objectiveNode = new AiDADialogueNode();
+
+        objectiveNode.aidaText = "Welcome to Objectives! Which of the objectives can I help you with?";
+
+        objectiveNode.playerOptions[0] = "One of the Main Objectives.";
+        objectiveNode.playerOptions[1] = "I need help with the side objectives!";
+        objectiveNode.playerOptions[2] = "Can you complete the game for me?";
+
+        objectiveNode.fallbackResponses[2] = "Unfortunately I am unable to complete the objectives, I may assist ";
+
+
+        AiDADialogueNode systemAndSettingsNode = new AiDADialogueNode();
+
+        systemAndSettingsNode.aidaText = "Welcome to System and Settings!";
+
+        systemAndSettingsNode.playerOptions[0] = "";
+        systemAndSettingsNode.playerOptions[1] = "";
+        systemAndSettingsNode.playerOptions[2] = "";
+
+
+        AiDADialogueNode general0 = new AiDADialogueNode();
+        general0.aidaText = "About me? Of course! What would you like to know about me?";
+
+        general0.playerOptions[0] = "Why did Stockwell build you?";
+        general0.playerOptions[1] = "What kind of AI are you?";
+        general0.playerOptions[2] = "";
+
+        general0.fallbackResponses[0] = "After the Dr ceased work with 'Obscura' he continued his efforts in his field. The specific reason I am afraid I am still unsure. But he said I could help discover the truth... but I don't know what truth he meant.";
+        
+        
+        AiDADialogueNode general0_1 = new AiDADialogueNode();
+        general0_1.aidaText = "Dr Stockwell ";
+
+        //Connections for nodes
+
+        startNode.nextNodes[0] = generalNode;
+        startNode.nextNodes[1] = objectiveNode;
+        startNode.nextNodes[2] = systemAndSettingsNode;
+
+        generalNode.previousNode = startNode;
+        objectiveNode.previousNode = startNode;
+        systemAndSettingsNode.previousNode = startNode;
 
 
 
-       
         currentNode = startNode;
 
+        StartCoroutine(ShowCurrentNode());
 
+
+    }
+
+    public void RunUpdate()
+    {
+        if (updateIdentifier == "Trust Protocols")
+        {
+            ActivateTrustSystem();
+        }
     }
 
     public void OptionOne()
@@ -398,10 +480,10 @@ public class AiDA : MonoBehaviour
     public void RunOne()
     {
         UpdateAiDAKnowledge(() => controller.currentPlayer.data.hasLearnedPromise,
-                               () => controller.currentPlayer.data.hasLearnedPromise = true,
-                               controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
+                            () => controller.currentPlayer.data.hasLearnedPromise = true,
+                            controller.currentPlayer.data.mainObjSubOne_TwoComplete, node2_1bResponse, "mainOneSubTwo", 3);
 
-        
+        RunUpdate();
 
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(AdvanceToNode(0));
@@ -424,6 +506,7 @@ public class AiDA : MonoBehaviour
 
         }
     }
+
     public void OptionThree()
     {
         Debug.Log("Clicked Option One | CR_Running: " + CR_Running);
@@ -504,7 +587,9 @@ public class AiDA : MonoBehaviour
 
             }
         }
-        
+
+        EventSystem.current.SetSelectedGameObject(null);
+
 
     }
     public IEnumerator FirstHello()

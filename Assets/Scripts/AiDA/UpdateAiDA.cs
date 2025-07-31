@@ -141,9 +141,11 @@ public class UpdateAiDA : MonoBehaviour
         controller.currentPlayer.data.trustSystemInstalled = true;
         controller.currentPlayer.Save();
         TrustFileIcon.SetActive(true);
-
+        GameObject File = BIOSGridslot.transform.GetChild(0).gameObject;
+        Destroy(File);
         AiDAWindow.GetComponent<WindowControllerScript>().Open();
-        AiDAWindow.GetComponent<AiDA>().TrustSystemInstalled();
+        AiDAWindow.GetComponent<AiDA>().ActivateTrustSystem();
+        
 
     }
 

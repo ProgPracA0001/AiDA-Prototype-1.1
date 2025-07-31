@@ -51,15 +51,6 @@ public class PlayerData
     public bool diary05Corrupted = true;
     public bool XFileCorrupted = true;
 
-    //Chapter trackers
-    public bool chapterOneComplete = false;
-    public bool chapterTwoComplete = false;
-    public bool chapterThreeComplete = false;
-    public bool chapterFourComplete = false;
-    public bool chapterFiveComplete = false;
-    public bool chapterSixComplete = false;
-    public bool chapterSevenComplete = false;
-
     //Main Objective Trackers
     public bool mainObjectiveOneComplete = false;
     public bool mainObjectiveTwoComplete = false;

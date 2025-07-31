@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] public Sprite objectiveComplete;
     public Sprite objectiveDefault;
 
+    //Start Menu Windows
     public GameObject objectivesWindow;
     public GameObject welcomeWindow;
     public GameObject objectiveCompleteWindow;
@@ -49,6 +50,8 @@ public class GameController : MonoBehaviour
     public GameObject webCrawlerIcon;
     public GameObject rescueBitIcon;
     public GameObject AiDAIcon;
+    public GameObject trustFileIcon;
+    public GameObject trustSystemDataFile;
 
     public bool controlPressed = false;
     public bool shiftPressed = false;
@@ -169,6 +172,16 @@ public class GameController : MonoBehaviour
         {
             AiDAIcon.SetActive(false);
         }
+
+        if(currentPlayer.data.trustSystemInstalled != true)
+        {
+            trustFileIcon.SetActive(false);
+        }
+        else
+        {
+            Destroy(trustSystemDataFile);
+        }
+     
     }
 
     //Saves the player and loads the updated variables

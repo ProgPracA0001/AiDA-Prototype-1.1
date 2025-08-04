@@ -147,6 +147,24 @@ public class WebCrawler : MonoBehaviour
 
     };
 
+    private string[] DecisionTree =
+    {
+        "Decision Tree Structures\n",
+        "\n",
+        "In Artificial Intelligence decision trees are a type of 'Supervised Machine Learning model\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+
+    };
+
     private string[] NEWPAGE =
     {
         "\n",

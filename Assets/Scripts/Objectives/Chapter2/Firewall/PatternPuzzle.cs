@@ -56,6 +56,8 @@ public class PatternPuzzle : MonoBehaviour
 
     public Button L1Button;
 
+    public Text levelOneStatusLabel;
+
 
     // LEVEL 2 COMPONENTS
     public GameObject LevelTwoObjectContainer;
@@ -91,6 +93,9 @@ public class PatternPuzzle : MonoBehaviour
     public string L3AnswerFour;
     public string L3AnswerFive;
     public string L3AnswerSix;
+
+    public GameObject backButton;
+    public GameObject nextButton;
 
 
     //LEVEL 4 COMPONENTS
@@ -196,32 +201,38 @@ public class PatternPuzzle : MonoBehaviour
     {
         if (QuestionNo < 6)
         {
+            
             QuestionNo++;
         }
+        
     }
 
     public void BackPage()
     {
-        if(QuestionNo > 1)
+        if (QuestionNo > 1)
         {
+
             QuestionNo--;
         }
     }
+       
 
 
     public void LoadCurrentQuestionLevel3()
     {
         if (QuestionNo == 1)
         {
+            backButton.SetActive(false);
             LevelThreeQuestionText.text = "Q1) What is an AI model??";
 
             buttonOneText.text = "A) A computer program that follows a fixed set of rules";
-            buttonTwoText.text = "B) A system that adjustd and improves based on data";
+            buttonTwoText.text = "B) A system that adjusts and improves based on data";
             buttonThreeText.text = "C) A digital copy of a human brain";
             buttonFourText.text = "D) A type of advanced search engine";
         }
         else if (QuestionNo == 2)
         {
+            backButton.SetActive(true);
             LevelThreeQuestionText.text = "Q2) What is the main thing an AI need to learn?";
 
             buttonOneText.text = "A) A powerful computer";
@@ -249,6 +260,7 @@ public class PatternPuzzle : MonoBehaviour
         }
         else if(QuestionNo == 5)
         {
+            nextButton.SetActive(true);
             LevelThreeQuestionText.text = "Q5) What is the difference between AI and regular computer programs?";
 
             buttonOneText.text = "A) AI follows strict rules, while regular programs learn from data";
@@ -258,6 +270,7 @@ public class PatternPuzzle : MonoBehaviour
         }
         else if (QuestionNo== 6)
         {
+            nextButton.SetActive(false);
             LevelThreeQuestionText.text = "Q6) Why does AI need large amounts of data?";
 
             buttonOneText.text = "A) To memorise every possible outcome";
@@ -298,7 +311,9 @@ public class PatternPuzzle : MonoBehaviour
 
     public void RunLevelOne()
     {
+        levelOneStatusLabel.text = "Running pattern...";
         StartCoroutine(levelOneSequence());
+        levelOneStatusLabel.text = "";
     }
 
 
@@ -327,6 +342,7 @@ public class PatternPuzzle : MonoBehaviour
                 Level1Test.SetActive(false);
                 Level1Details.SetActive(false);
                 Level1Answers.SetActive(false);
+                levelOneStatusLabel.text = "";
                 LevelLabel.text = "Level: 2";
                 Level2Test.SetActive(true);
                 Level2Details.SetActive(true);
@@ -367,6 +383,7 @@ public class PatternPuzzle : MonoBehaviour
                 Level3Test.SetActive(false);
                 Level3Details.SetActive(false);
                 Level3Answers.SetActive(false);
+                LevelLabel.text = "Level: 4";
                 Level4Test.SetActive(true);
                 Level4Details.SetActive(true);
                 Level4Answers.SetActive(true);
@@ -379,7 +396,7 @@ public class PatternPuzzle : MonoBehaviour
 
             if (allObjectsCorrect)
             {
-                player.UpdateObjective("mainOneSubThree");
+                player.UpdateObjective("mainTwoSubThree");
                 restrictedSection.GetComponent<WindowControllerScript>().Open();
                 this.gameObject.SetActive(false);
             }

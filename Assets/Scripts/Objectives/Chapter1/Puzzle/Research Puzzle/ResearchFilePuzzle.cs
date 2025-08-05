@@ -158,11 +158,13 @@ public class ResearchFilePuzzle : MonoBehaviour
             }
             else
             {
+                targetCorrect = false;
                 containerName.GetComponent<Image>().color = Color.red;
             }
         }
        else
         {
+            targetCorrect = false;
             containerName.GetComponent<Image>().color = Color.red;
         }
         

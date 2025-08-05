@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      web crawler_0: -7346456345509149884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

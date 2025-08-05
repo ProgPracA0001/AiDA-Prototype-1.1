@@ -193,7 +193,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      network_internet_pcs_installer-2_0: 6515299124130646762
+      network_internet_pcs_installer-2_1: 4779217366434731195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

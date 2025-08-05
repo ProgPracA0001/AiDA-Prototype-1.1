@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      settings_gear_cool-5_0: 5271218146424653134
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

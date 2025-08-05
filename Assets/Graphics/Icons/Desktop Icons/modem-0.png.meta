@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      modem-0_0: -9051132112487285776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

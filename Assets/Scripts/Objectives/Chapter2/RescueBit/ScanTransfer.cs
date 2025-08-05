@@ -1,0 +1,253 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ScanTransfer : MonoBehaviour
+{
+    public GameObject chapterAlert;
+    public Text chapterAlerText;
+
+    public Text descriptionLabel;
+    public Image windowIcon;
+
+    public string targetName;
+
+    public GameObject LoadingScreenBar;
+    public int BarChildren;
+
+    public bool multipleWindowsOpen = false;
+
+    public Sprite rescueBitImage;
+    public Sprite corruptedDocumentImage;
+    public Sprite restoredDocumentImage;
+
+    public GameObject loadingContainer;
+    public GameObject acceptContainer;
+    public GameObject noFileFound;
+    public GameObject transferBackContainer;
+
+    public RescueBit RBScript;
+
+    public GameObject rescueBitContainer;
+   
+    public GameObject diaryWindow;
+    public GameObject diaryOriginalParent;
+    public GameObject diary05Icon;
+
+    public GameObject recycleWindow;
+    public GameObject originalXFileParent;
+    public GameObject XFileIcon;
+
+
+    // Start is called before the first frame update
+    void Update()
+    {
+        BarChildren = LoadingScreenBar.transform.childCount;
+
+    }
+
+    public void Scan()
+    {
+        InitializeWindow();
+
+        if (RBScript.detailsStored)
+        {
+            loadingContainer.SetActive(false);
+            descriptionLabel.text = "File already in RescueBit";
+            gameObject.GetComponent<WindowControllerScript>().Open();
+        }
+        else
+        {
+            gameObject.GetComponent<WindowControllerScript>().Open();
+
+            ScanTransferLoad();
+        }
+            
+
+    }
+
+    public void Transfer()
+    {
+        GameObject transferIcon = rescueBitContainer.transform.GetChild(0).gameObject;
+        InitializeWindow();
+        loadingContainer.SetActive(false);
+        transferBackContainer.SetActive(true);
+
+        gameObject.GetComponent<WindowControllerScript>().Open();
+
+        windowIcon.sprite = restoredDocumentImage;
+
+        if (transferIcon.GetComponent<FileClass>().name == "Diary05Icon")
+        {
+            targetName = "diary05";
+            descriptionLabel.text = "Diary05.txt ready for transfer";
+        }
+        else if(transferIcon.name == "XFileIcon")
+        {
+            targetName = "XFile";
+            descriptionLabel.text = "XFile ready for transfer";
+        }
+       
+
+    }
+
+    public void InitializeWindow()
+    {
+        targetName = null;
+
+        windowIcon.sprite = rescueBitImage;
+        descriptionLabel.text = "Scanning Files in Open Folders...";
+
+        loadingContainer.SetActive(true);
+        acceptContainer.SetActive(false);
+        noFileFound.SetActive(false);
+        transferBackContainer.SetActive(false);
+
+    }
+
+    public void ScanTransferLoad()
+    {
+
+        StartCoroutine(LoadBar());
+
+    }
+
+    public void CheckForMultipleWindows()
+    {
+        if(diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted == true && recycleWindow.GetComponent<WindowControllerScript>().isOpen && XFileIcon.GetComponent<FileClass>().isCorrupted == true)
+        {
+            multipleWindowsOpen = true;
+
+        }
+        else
+        {
+            multipleWindowsOpen = false;
+        }
+    }
+    
+    public void ScanComplete()
+    {
+        loadingContainer.SetActive(false);
+
+        if (!multipleWindowsOpen)
+        {
+            if (diaryWindow.GetComponent<WindowControllerScript>().isOpen && diary05Icon.GetComponent<FileClass>().isCorrupted == true)
+            {
+                acceptContainer.SetActive(true);
+                windowIcon.sprite = corruptedDocumentImage;
+                descriptionLabel.text = "Corrupted File Found: Diary05.txt";
+                targetName = "diary05";
+
+            }
+            else if(recycleWindow.GetComponent<WindowControllerScript>().isOpen && XFileIcon.GetComponent<FileClass>().isCorrupted == true)
+            {
+                if (RBScript.controller.currentPlayer.data.currentChapter == 3)
+                {
+                    acceptContainer.SetActive(true);
+                    windowIcon.sprite = corruptedDocumentImage;
+                    descriptionLabel.text = "Corrupted File Found: XFile";
+                    targetName = "XFile";
+                }
+                else
+                {
+                    chapterAlert.GetComponent<WindowControllerScript>().Open();
+                    chapterAlerText.text = "Access Denied. Requires:\n Chapter 3";
+                }
+                
+            }
+            else
+            {
+                noFileFound.SetActive(true);
+                descriptionLabel.text = "No Files Found";
+            }
+        }
+        else
+        {
+            noFileFound.SetActive(true);
+            descriptionLabel.text = "Have only one window with a corrupted file open at a time.";
+        }
+    }
+
+    public void ScanAgain()
+    {
+        descriptionLabel.text = "Scanning...";
+        loadingContainer.SetActive(true);
+        acceptContainer.SetActive(false);
+        noFileFound.SetActive(false);
+        ScanTransferLoad();
+    }
+    public void TransferToRB()
+    {
+        if(targetName == "diary05")
+        {
+            diary05Icon.GetComponent<FileClass>().inRescueBit = true;
+            diary05Icon.transform.SetParent(rescueBitContainer.transform);
+
+        }
+        else if(targetName == "XFile")
+        {
+            XFileIcon.GetComponent<FileClass>().inRescueBit = true;
+            XFileIcon.transform.SetParent(rescueBitContainer.transform);
+        }
+
+         RBScript.CheckContainer();
+         gameObject.GetComponent<WindowControllerScript>().Close();
+    }
+
+    public void TransferBack()
+    {
+        if(targetName == "diary05")
+        {
+            diary05Icon.GetComponent<FileClass>().inRescueBit = false;
+            diary05Icon.transform.SetParent(diaryOriginalParent.transform);
+        }
+        else if (targetName == "XFile")
+        {
+            XFileIcon.GetComponent<FileClass>().inRescueBit = false;
+            XFileIcon.transform.SetParent(originalXFileParent.transform);
+        }
+
+        RBScript.CheckContainer();
+
+        gameObject.GetComponent<WindowControllerScript>().Close();
+
+    }
+
+    private IEnumerator LoadBar()
+    {
+        BarChildren = LoadingScreenBar.transform.childCount;
+
+        for (int i = 0; i < BarChildren; i++)
+        {
+            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(true);
+
+
+            if (i == 7 || i == 8 || i == 12 || i == 13 || i == 18)
+            {
+                yield return new WaitForSeconds(3.0f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
+
+
+        }
+
+        CheckForMultipleWindows();
+        ScanComplete();
+        ResetLoad();
+
+    }
+
+    public void ResetLoad()
+    {
+        for (int i = 0; i < BarChildren; i++)
+        {
+            LoadingScreenBar.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+}

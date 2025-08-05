@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,6 @@ public class NetworkWindowControl : MonoBehaviour
 
     public GameObject pageTwo;
     public Text computerNameInput;
-    public string correctComputerName;
     public Text modemNameSelected;
     public string correctModemName;
     public Text errorTextPage2;
@@ -69,16 +66,16 @@ public class NetworkWindowControl : MonoBehaviour
 
     public void CheckPageTwo()
     {
-        if (computerNameInput.text == correctComputerName && modemNameSelected.text == correctModemName)
+        if (computerNameInput.text.ToLower() == "epoch" && modemNameSelected.text == correctModemName)
         {
             pageTwo.SetActive(false);
             pageThree.SetActive(true);
         }
-        else if (computerNameInput.text != correctComputerName && modemNameSelected.text == correctModemName)
+        else if (computerNameInput.text.ToLower() != "epoch" && modemNameSelected.text == correctModemName)
         {
             errorTextPage2.text = "Computer name Unknown";
         }
-        else if (computerNameInput.text == correctComputerName && modemNameSelected.text != correctModemName)
+        else if (computerNameInput.text.ToLower() == "epoch" && modemNameSelected.text != correctModemName)
         {
             errorTextPage2.text = "This Modem Has no Connections";
         }
@@ -96,7 +93,7 @@ public class NetworkWindowControl : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 setFirstPage();
-                InstallWindow.SetActive(true);
+                InstallWindow.GetComponent<WindowControllerScript>().Open();
             }
             else if (AreaCodeSelected.text != correctAreaCode && TelephoneNoInput.text == correctTelephoneNo && CountryCodeSelected.text == correctCountryCode)
             {

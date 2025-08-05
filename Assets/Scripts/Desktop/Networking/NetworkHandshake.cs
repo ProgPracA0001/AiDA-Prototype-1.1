@@ -75,7 +75,7 @@ public class NetworkHandshake : MonoBehaviour
            
         }
         statusText.text = "Connected";
-        player.UpdateObjective("sideOneSubThree");
+        player.UpdateObjective("mainOneSubThree");
         webCrawlerIcon.SetActive(true);
         
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ee0d5d11aa6be440bce8bd020b30076
+guid: a69d512a52ff6594386a458e287f8442
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8696137689421863028
-    second: NetworkManualP1_0
+      213: -1485120890317287686
+    second: corrupted_directory_open_file_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NetworkManualP1_0
+      name: corrupted_directory_open_file_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 511
-        height: 728
+        width: 190
+        height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47850e78723eea870800000000000000
-      internalID: 8696137689421863028
+      spriteID: afe40243b6ac36be0800000000000000
+      internalID: -1485120890317287686
       vertices: []
       indices: 
       edges: []

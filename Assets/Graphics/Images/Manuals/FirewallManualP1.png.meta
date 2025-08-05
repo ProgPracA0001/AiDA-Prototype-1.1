@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f68f02ac550480947a5a63dd6a8b5329
+guid: 1a19bde01290ba44abee597ef41f311f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5998769749470823154
-    second: FirewallOne_0
+      213: -5083726319701136941
+    second: FirewallManualP1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FirewallOne_0
+      name: FirewallManualP1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 567
-        height: 742
+        width: 548
+        height: 737
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f24196ed49ef3350800000000000000
-      internalID: 5998769749470823154
+      spriteID: 3d9e8e2d8d9f279b0800000000000000
+      internalID: -5083726319701136941
       vertices: []
       indices: 
       edges: []

@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 
 public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
     public Image image;
     public Text text;
-    [HideInInspector] public Transform parentAfterDrag;
+
+    public Transform parentAfterDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -28,7 +29,7 @@ public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-       
+
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
         text.raycastTarget = true;

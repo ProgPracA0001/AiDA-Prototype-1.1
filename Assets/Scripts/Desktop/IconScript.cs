@@ -7,16 +7,16 @@ using UnityEngine.UI;
 using System.Security.Cryptography.X509Certificates;
 
 
-public class IconScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerClickHandler
+public class IconScript : MonoBehaviour, IDragHandler, IPointerClickHandler
 {
-    [SerializeField] private Graphic target = default;
-    [SerializeField] private Color defaultColour = new Color(0f, 0f, 0f, 0f);
-    [SerializeField] private Color singleClickColour = Color.blue;
+    public Graphic target = default;
+    public Color defaultColour = new Color(0f, 0f, 0f, 0f);
+    public Color singleClickColour = Color.blue;
 
-    [SerializeField] private bool Draggable = true;
+    public bool Draggable = true;
 
-    [SerializeField] private bool requiresDoubleClick = true;
-    [SerializeField] private UnityEvent OnDoubleClick = default;
+    public bool requiresDoubleClick = true;
+    public  UnityEvent OnDoubleClick = default;
 
     private bool isSelected = false;
     private RectTransform RectTransform;
@@ -27,7 +27,7 @@ public class IconScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IPoint
         RectTransform = GetComponent<RectTransform>();
         if(RectTransform == null )
         {
-            Debug.LogException(new MissingComponentException("Icon reuires a RectTransform"), this);
+            Debug.LogException(new MissingComponentException("Icon requires a RectTransform"), this);
         }
 
     }
@@ -75,18 +75,17 @@ public class IconScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IPoint
 
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        mouseOffset = RectTransform.position - Input.mousePosition;
-    }
-
+    
     public void OnDrag(PointerEventData eventData)
     {
         if(Draggable)
         {
             Unselect();
-            RectTransform.position = Input.mousePosition + mouseOffset;
+            transform.position = Input.mousePosition;
+            
         }
     }
+
+   
  
 }

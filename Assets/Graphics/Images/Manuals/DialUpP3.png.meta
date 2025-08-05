@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DialUpP3_0: 7486394072055788797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

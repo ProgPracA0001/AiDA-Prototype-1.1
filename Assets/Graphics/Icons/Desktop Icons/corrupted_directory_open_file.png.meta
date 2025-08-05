@@ -169,7 +169,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      corrupted_directory_open_file_0: -1485120890317287686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
